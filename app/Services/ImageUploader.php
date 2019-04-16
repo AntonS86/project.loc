@@ -9,7 +9,6 @@ use Illuminate\Http\UploadedFile;
 class ImageUploader
 {
 
-
     private $width;
     private $height;
 
@@ -19,6 +18,9 @@ class ImageUploader
     private $imagePath;
     private $thumbsPath;
 
+    /**
+     * ImageUploader constructor.
+     */
     public function __construct()
     {
         $this->width        = config('settings.imageSize')['width'];
@@ -31,7 +33,13 @@ class ImageUploader
     }
 
 
-    public function save(UploadedFile $file)
+    /**
+     * @param UploadedFile $file
+     *
+     * @return string
+     * @throws \Exception
+     */
+    public function save(UploadedFile $file): string
     {
         $pathName = $this->createRelativeFilename();
         $this->createFolder($pathName);
