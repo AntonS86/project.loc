@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Offer;
+use App\Models\Offer;
 use App\Services\MenuService;
-use App\Slider;
+use App\Models\Slider;
 use Illuminate\Contracts\View\View;
 
 class IndexController extends SiteController

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\CompanyLink;
+use App\Models\CompanyLink;
 
 class CompanyLinkSeeder extends Seeder
 {

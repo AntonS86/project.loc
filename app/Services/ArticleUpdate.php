@@ -4,8 +4,8 @@
 namespace App\Services;
 
 
-use App\Article;
-use App\Image;
+use App\Models\Article;
+use App\Models\Image;
 use Illuminate\Support\Arr;
 
 /**
@@ -34,7 +34,7 @@ class ArticleUpdate
     /**
      * ArticleUpdate constructor.
      *
-     * @param Article $article
+     * @param \App\Models\Article $article
      */
     public function __construct(Article $article)
     {

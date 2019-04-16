@@ -4,7 +4,7 @@
 namespace App\Repositories;
 
 
-use App\Keyword;
+use App\Models\Keyword;
 use Illuminate\Database\Eloquent\Collection;
 
 

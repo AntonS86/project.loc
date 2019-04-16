@@ -1,9 +1,9 @@
 <?php
 
-use App\Article;
+use App\Models\Article;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
-use App\Image;
+use App\Models\Image;
 use Illuminate\Support\Facades\DB;
 
 class ImagesSeeder extends Seeder

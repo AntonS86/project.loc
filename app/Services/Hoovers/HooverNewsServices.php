@@ -2,9 +2,9 @@
 
 namespace App\Services\Hoovers;
 
-use App\Article;
-use App\Category;
-use App\Image;
+use App\Models\Article;
+use App\Models\Category;
+use App\Models\Image;
 use App\Repositories\ArticleRepository;
 use Carbon\Carbon;
 use GuzzleHttp\Client;

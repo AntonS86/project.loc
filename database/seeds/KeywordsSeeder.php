@@ -3,8 +3,8 @@
 use Illuminate\Database\Seeder;
 use Faker\Factory;
 use Illuminate\Support\Str;
-use App\Keyword;
-use App\Article;
+use App\Models\Keyword;
+use App\Models\Article;
 use Illuminate\Support\Facades\DB;
 
 

@@ -31,7 +31,7 @@ class RouteServiceProvider extends ServiceProvider
             return \Corp\Article::where('alias', $value)->first() ?? abort(404);
         }); */
 
-        Route::model('article', \App\Article::class);
+        Route::model('article', \App\Models\Article::class);
     }
 
     /**

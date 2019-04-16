@@ -4,7 +4,7 @@
 namespace App\Services;
 
 
-use App\Keyword;
+use App\Models\Keyword;
 use Illuminate\Support\Str;
 
 class KeywordServices

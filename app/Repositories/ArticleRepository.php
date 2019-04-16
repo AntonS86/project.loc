@@ -2,12 +2,12 @@
 
 namespace App\Repositories;
 
-use App\Article;
-use App\Category;
+use App\Models\Article;
+use App\Models\Category;
 
 use Illuminate\Database\Eloquent\Collection;
 use App\Http\Requests\ArticleRequest;
-use App\Image;
+use App\Models\Image;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 

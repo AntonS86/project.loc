@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Image;
+use App\Models\Image;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 

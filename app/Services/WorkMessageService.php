@@ -6,8 +6,8 @@ namespace App\Services;
 
 use App\Jobs\ProcessEmail;
 use App\Mail\WorkMessageMail;
-use App\Phone;
-use App\WorkMessage;
+use App\Models\Phone;
+use App\Models\WorkMessage;
 
 class WorkMessageService
 {

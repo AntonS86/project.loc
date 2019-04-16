@@ -4,7 +4,7 @@
 namespace App\Models\Article;
 
 
-use App\Article;
+use App\Models\Article;
 
 class PublishedObserver
 {

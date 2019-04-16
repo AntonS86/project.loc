@@ -4,7 +4,7 @@
 namespace App\Models\Category;
 
 use Illuminate\Support\Str;
-use App\Category;
+use App\Models\Category;
 
 class SlugObserver
 {

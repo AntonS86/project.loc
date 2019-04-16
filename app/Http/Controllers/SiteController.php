@@ -4,7 +4,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Company;
+use App\Models\Company;
 
 class SiteController extends Controller
 {

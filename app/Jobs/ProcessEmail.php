@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\WorkMessage;
+use App\Models\WorkMessage;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;

@@ -3,12 +3,13 @@
 namespace App\Models\Article;
 
 use Illuminate\Support\Str;
-use App\Article;
+use App\Models\Article;
 
 class SlugObserver {
 
 	/**
-	 * @param Article $article
+	 * @param \App\Models\Article $article
+	 *
 	 * @return void
 	 */
 	public function creating(Article $article): void
@@ -19,7 +20,7 @@ class SlugObserver {
 
 
     /**
-     * @param Article $article
+     * @param \App\Models\Article $article
      */
 	public function updating(Article $article): void
 	{
@@ -28,7 +29,8 @@ class SlugObserver {
 
 
     /**
-     * @param Article $article
+     * @param \App\Models\Article $article
+     *
      * @return string
      */
 	private function getSlug(Article $article): string

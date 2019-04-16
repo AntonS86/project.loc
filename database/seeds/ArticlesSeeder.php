@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Article;
+use App\Models\Article;
 use Carbon\Carbon;
 
 class ArticlesSeeder extends Seeder

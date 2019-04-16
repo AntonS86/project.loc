@@ -4,7 +4,7 @@
 namespace App\Services;
 
 
-use App\Category;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Collection;
 
 class MenuService

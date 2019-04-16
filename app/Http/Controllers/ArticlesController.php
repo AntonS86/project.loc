@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Article;
-use App\Category;
+use App\Models\Article;
+use App\Models\Category;
 use App\Http\Requests\ArticlesSearch;
-use App\Keyword;
-use App\Works;
+use App\Models\Keyword;
+use App\Models\Works;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Repositories\ArticleRepository;

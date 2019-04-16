@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ImagesUploaderRequest;
 use App\Http\Requests\ImageUploaderRequest;
-use App\Image;
+use App\Models\Image;
 use App\Services\ImageUploader;
 
 

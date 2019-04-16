@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Company;
+use App\Models\Company;
 
 class CompaniesSeeder extends Seeder
 {

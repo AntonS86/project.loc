@@ -3,12 +3,12 @@
 
 namespace App\Models\Article;
 
-use App\Article;
+use App\Models\Article;
 
 class DeleteObserver
 {
     /**
-     * @param Article $article
+     * @param \App\Models\Article $article
      */
     public function deleting(Article $article): void
     {

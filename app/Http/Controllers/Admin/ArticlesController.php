@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Category;
+use App\Models\Category;
 use App\Services\ArticleUpdate;
 use App\Services\MenuService;
 use Illuminate\Contracts\View\View;
@@ -10,7 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Repositories\ArticleRepository;
 use App\Http\Requests\ArticleRequest;
-use App\Article;
+use App\Models\Article;
 
 class ArticlesController extends AdminController
 {
