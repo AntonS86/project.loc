@@ -12,6 +12,7 @@ class Works extends Model
     ];
 
     /**
+     *
      * @return HasMany
      */
     public function workMessages(): HasMany

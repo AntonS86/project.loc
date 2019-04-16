@@ -1,0 +1,30 @@
+/*
+ * Version: 2.1.1
+ * File Description: Place here your custom CSS styles
+ */
+
+.article-preview:hover {
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+a:hover, .link-dark:hover {
+    text-decoration: none !important;
+}
+
+.img-table {
+    height: 120px;
+}
+
+.img-many-articles {
+    width: 100%;
+    overflow: hidden;
+    height: 250px;
+}
+
+.uploader-images {
+    margin: 2px;
+    width: 48.3%;
+    height: 100px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
