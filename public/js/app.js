@@ -19976,6 +19976,8 @@ function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Article_ArticlesSearch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Article/ArticlesSearch */ "./resources/js/Article/ArticlesSearch.js");
+        /* harmony import */
+        var _custom_lazyimages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./custom/lazyimages */ "./resources/js/custom/lazyimages.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -20012,6 +20014,9 @@ __webpack_require__(/*! bootstrap-notify */ "./node_modules/bootstrap-notify/boo
 
 
 new _Article_ArticlesSearch__WEBPACK_IMPORTED_MODULE_0__["default"]().search();
+
+        Object(_custom_lazyimages__WEBPACK_IMPORTED_MODULE_1__["lazyImage"])();
+        window.addEventListener('scroll', _custom_lazyimages__WEBPACK_IMPORTED_MODULE_1__["lazyImage"]);
 
 /***/ }),
 
@@ -20071,7 +20076,43 @@ if (token) {
 //     encrypted: true
 // });
 
-/***/ }),
+        /***/
+    }),
+
+    /***/ "./resources/js/custom/lazyimages.js":
+    /*!*******************************************!*\
+      !*** ./resources/js/custom/lazyimages.js ***!
+      \*******************************************/
+    /*! exports provided: lazyImage */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+        __webpack_require__.d(__webpack_exports__, "lazyImage", function () {
+            return lazyImage;
+        });
+        var lazyImage = function lazyImage() {
+            document.querySelectorAll('img').forEach(function (img) {
+                if (img.dataset.src) {
+                    if (isVisible(img)) {
+                        console.log(img);
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                    }
+                }
+            });
+        };
+
+        var isVisible = function isVisible(elem) {
+            var coords        = elem.getBoundingClientRect();
+            var windowHeight  = document.documentElement.clientHeight;
+            var topVisible    = coords.top > 0 && coords.top < windowHeight;
+            var bottomVisible = coords.bottom < windowHeight && coords.bottom > 0;
+            return topVisible || bottomVisible;
+        };
+
+        /***/ }),
 
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
