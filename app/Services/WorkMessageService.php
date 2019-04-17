@@ -26,10 +26,10 @@ class WorkMessageService
         $result = $workMessage->save();
 
         if (isset($inputs['images'])) {
-            $workMessage->images()->detach($inputs['images']);
+            $workMessage->images()->attach($inputs['images']);
         }
-        //TODO : доделать очередь
-        //ProcessEmail::dispatch($workMessage);
+
+        ProcessEmail::dispatch($workMessage);
         return $result;
     }
 

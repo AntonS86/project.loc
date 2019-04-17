@@ -26,13 +26,11 @@ class WorkMessageMail extends Mailable
     }
 
     /**
-     * Build the message.
-     *
-     * @return $this
+     * @return WorkMessageMail
      */
-    public function build()
+    public function build(): WorkMessageMail
     {
-        return $this->from($this->data['companyEmail'],
-            $this->data['name'])->subject($this->subject)->view($this->view);
+        return $this->from(config('settings.email'),
+            $this->data->name)->subject($this->subject)->view($this->view);
     }
 }

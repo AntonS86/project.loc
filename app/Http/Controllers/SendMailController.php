@@ -24,7 +24,8 @@ class SendMailController extends SiteController
     private function sendMail(array $inputs)
     {
         $inputs['companyEmail'] = config('settings.email');
-        return \Mail::to($inputs['companyEmail'])->send(new ClientSendMail($inputs));
+        //TODO : вынести очередь в отдельный класс
+        return \Mail::to($inputs['companyEmail'])->queue(new ClientSendMail($inputs));
     }
 
 

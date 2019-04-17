@@ -2,18 +2,31 @@
 
 namespace App\Jobs;
 
+use App\Mail\WorkMessageMail;
 use App\Models\WorkMessage;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class ProcessEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    /**
+     * @var WorkMessage
+     */
     protected $workMessage;
+
+    /**
+     * Попытки отправить
+     * @var int
+     */
+    public $tries = 3;
+
     /**
      * Create a new job instance.
      *
@@ -31,7 +44,7 @@ class ProcessEmail implements ShouldQueue
      */
     public function handle()
     {
-        $this->workMessage;
-        $a = 5;
+        $this->workMessage->load(['phone', 'work', 'images']);
+        Mail::to(config('settings.email'))->send(new WorkMessageMail($this->workMessage));
     }
 }
