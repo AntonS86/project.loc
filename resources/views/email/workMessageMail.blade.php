@@ -1,7 +1,8 @@
 @if(isset($data))
-    <h1>{{$data->name}}</h1>
-    <div>{{$data->message}}</div>
-    <div>{{$data->phone->number}}</div>
+    <h1>Имя: {{$data->name}}</h1>
+    <p>Категория: {{$data->work->name}}</p>
+    <div>Сообщение: {{$data->message}}</div>
+    <div>Тел: {{$data->phone->number}}</div>
 
     @foreach($data->images as $image)
         <img src="{{asset($image->asset_path)}}">

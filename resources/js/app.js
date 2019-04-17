@@ -42,6 +42,7 @@ import ArticlesSearch from "./Article/ArticlesSearch";
 (new ArticlesSearch).search();
 
 import {lazyImage} from "./custom/lazyimages";
-
 lazyImage();
 window.addEventListener('scroll', lazyImage);
+
+import clientLetter from "./custom/ClientLetter";

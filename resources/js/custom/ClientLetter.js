@@ -9,7 +9,7 @@ class ClientLetter {
     constructor(id) {
         this.form = document.querySelector(id);
         if (this.form == null) {
-            throw new Error('Form not found / ${id}');
+            return false;
         }
         this.notify = new Notify();
         this.button = this.form.querySelector('input[type="submit"]');
@@ -17,7 +17,7 @@ class ClientLetter {
         this.name;
         this.phone;
         this.message;
-
+        this.run();
     }
 
 
@@ -99,7 +99,7 @@ class ClientLetter {
         })
             .then(function (response) {
                 self.notify.infoMessage('Ваше сообщение успешно отправленно');
-                self._inputClean();
+                self._inputClean(response);
                 self.button.disabled = false;
             })
             .catch(function (error) {
@@ -121,12 +121,15 @@ class ClientLetter {
      *
      * @private
      */
-    _inputClean() {
+    _inputClean(response) {
+        if (!(response.status === 200 && response.data === true)) {
+            this.notify.alertMessage('Проблемы на сервере, попробуйте позже');
+        }
         this.form.querySelector('input[name="name"]').value       = '';
         this.form.querySelector('input[name="phone"]').value      = '';
         this.form.querySelector('textarea[name="message"]').value = '';
     }
 }
 
-let letter = new ClientLetter('#sendmail');
-letter.run();
+export let clientLetter = new ClientLetter('#sendmail');
+

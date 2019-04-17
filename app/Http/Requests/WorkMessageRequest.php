@@ -27,7 +27,7 @@ class WorkMessageRequest extends FormRequest
             'work_id'  => 'required|int|exists:works,id',
             'name'     => 'required|string|min:2|max:30',
             'phone'    => 'regex:/^\+?[78]?[0-9]{10}$/',
-            'message'  => 'required|string|min:5|max:300',
+            'message'  => 'required|string|min:5|max:500',
             'images'   => 'sometimes|required|array',
             'images.*' => 'int|exists:images,id'
         ];

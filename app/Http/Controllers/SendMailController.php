@@ -3,30 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SendMailRequest;
-use App\Mail\ClientSendMail;
+use App\Models\Work;
+use App\Services\WorkMessageService;
+use Illuminate\Http\JsonResponse;
 
 class SendMailController extends SiteController
 {
-
     /**
-     * @param SendMailRequest $request
+     * @param SendMailRequest    $request
+     * @param WorkMessageService $workMessageService
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function store(SendMailRequest $request)
+    public function store(SendMailRequest $request, WorkMessageService $workMessageService): JsonResponse
     {
-        $inputs = $request->only(['name', 'phone', 'message']);
-        $this->sendMail($inputs);
-        return response()->json(['success' => true]);
+        $inputs            = $request->only(['name', 'phone', 'message']);
+        $work              = Work::where('name', config('settings.catClientEmail'))->first();
+        $inputs['work_id'] = $work ? $work->id : 1;
+        $result            = $workMessageService->save($inputs);
+        return response()->json($result);
     }
-
-
-    private function sendMail(array $inputs)
-    {
-        $inputs['companyEmail'] = config('settings.email');
-        //TODO : вынести очередь в отдельный класс
-        return \Mail::to($inputs['companyEmail'])->queue(new ClientSendMail($inputs));
-    }
-
-
 }

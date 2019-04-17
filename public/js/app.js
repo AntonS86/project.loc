@@ -19978,6 +19978,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Article_ArticlesSearch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Article/ArticlesSearch */ "./resources/js/Article/ArticlesSearch.js");
         /* harmony import */
         var _custom_lazyimages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./custom/lazyimages */ "./resources/js/custom/lazyimages.js");
+        /* harmony import */
+        var _custom_ClientLetter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./custom/ClientLetter */ "./resources/js/custom/ClientLetter.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -20017,6 +20019,7 @@ new _Article_ArticlesSearch__WEBPACK_IMPORTED_MODULE_0__["default"]().search();
 
         Object(_custom_lazyimages__WEBPACK_IMPORTED_MODULE_1__["lazyImage"])();
         window.addEventListener('scroll', _custom_lazyimages__WEBPACK_IMPORTED_MODULE_1__["lazyImage"]);
+
 
 /***/ }),
 
@@ -20079,6 +20082,291 @@ if (token) {
         /***/
     }),
 
+    /***/ "./resources/js/custom/ClientLetter.js":
+    /*!*********************************************!*\
+      !*** ./resources/js/custom/ClientLetter.js ***!
+      \*********************************************/
+    /*! exports provided: clientLetter */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+        __webpack_require__.d(__webpack_exports__, "clientLetter", function () {
+            return clientLetter;
+        });
+        /* harmony import */
+        var _Notify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Notify */ "./resources/js/custom/Notify.js");
+
+        function _classCallCheck(instance, Constructor) {
+            if (!(instance instanceof Constructor)) {
+                throw new TypeError("Cannot call a class as a function");
+            }
+        }
+
+        function _defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+                var descriptor          = props[i];
+                descriptor.enumerable   = descriptor.enumerable || false;
+                descriptor.configurable = true;
+                if ("value" in descriptor) descriptor.writable = true;
+                Object.defineProperty(target, descriptor.key, descriptor);
+            }
+        }
+
+        function _createClass(Constructor, protoProps, staticProps) {
+            if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) _defineProperties(Constructor, staticProps);
+            return Constructor;
+        }
+
+
+        var ClientLetter =
+                /*#__PURE__*/
+                function () {
+                    /**
+                     *
+                     * @param {string} id
+                     */
+                    function ClientLetter(id) {
+                        _classCallCheck(this, ClientLetter);
+
+                        this.form = document.querySelector(id);
+
+                        if (this.form == null) {
+                            return false;
+                        }
+
+                        this.notify = new _Notify__WEBPACK_IMPORTED_MODULE_0__["default"]();
+                        this.button = this.form.querySelector('input[type="submit"]');
+                        this.url    = this.form.action;
+                        this.name;
+                        this.phone;
+                        this.message;
+                        this.run();
+                    }
+
+                    _createClass(ClientLetter, [{
+                        key  : "run",
+                        value: function run() {
+                            var _this = this;
+
+                            this.form.addEventListener('submit', function (event) {
+                                event.preventDefault();
+
+                                _this._handler();
+
+                                if (!_this._checkValue()) {
+                                    return _this.notify.alertMessage('Все поля обязательны для заполнения');
+                                }
+
+                                _this._send();
+                            });
+                        }
+                        /**
+                         *
+                         * @private
+                         */
+
+                    }, {
+                        key  : "_handler",
+                        value: function _handler() {
+                            var name     = this.form.querySelector('input[name="name"]').value;
+                            var phone    = this.form.querySelector('input[name="phone"]').value;
+                            var message  = this.form.querySelector('textarea[name="message"]').value;
+                            this.name    = this._stringLength(name, 2, 30, 'Имя от 2 до 30 символов');
+                            this.message = this._stringLength(message, 5, 300, 'Сообщение от 5 до 300 символов');
+                            this.phone   = this._validPhone(phone, 'Номер, только цифры');
+                        }
+                        /**
+                         *
+                         * @param {string} str
+                         * @param {int} min
+                         * @param {int} max
+                         * @param {string} message
+                         * @returns {string|null}
+                         * @private
+                         */
+
+                    }, {
+                        key  : "_stringLength",
+                        value: function _stringLength(str, min, max, message) {
+                            if (str.length >= min && str.length <= max) return str;
+                            this.notify.alertMessage(message);
+                            return null;
+                        }
+                        /**
+                         *
+                         * @param {string} phone
+                         * @param {string} message
+                         * @returns {string|null}
+                         * @private
+                         */
+
+                    }, {
+                        key  : "_validPhone",
+                        value: function _validPhone(phone, message) {
+                            if (/^(\+7|7|8)?[0-9]{10}$/.test(phone)) return phone;
+                            this.notify.alertMessage(message);
+                            return null;
+                        }
+                        /**
+                         *
+                         * @returns {boolean}
+                         * @private
+                         */
+
+                    }, {
+                        key  : "_checkValue",
+                        value: function _checkValue() {
+                            return this.name && this.phone && this.message;
+                        }
+                        /**
+                         * send email
+                         * @private
+                         */
+
+                    }, {
+                        key  : "_send",
+                        value: function _send() {
+                            this.button.disabled = true;
+                            var self             = this;
+                            axios.post(this.url, {
+                                name   : this.name,
+                                phone  : this.phone,
+                                message: this.message
+                            }).then(function (response) {
+                                self.notify.infoMessage('Ваше сообщение успешно отправленно');
+
+                                self._inputClean(response);
+
+                                self.button.disabled = false;
+                            }).catch(function (error) {
+                                if (error.response.status == 422) {
+                                    var errors = error.response.data.errors;
+
+                                    for (var key in errors) {
+                                        errors[key].forEach(function (element) {
+                                            self.notify.alertMessage(element);
+                                        });
+                                    }
+                                } else {
+                                    self.notify.alertMessage('Ошибка на сервере, попробуйте позже');
+                                }
+
+                                self.button.disabled = false;
+                            });
+                        }
+                        /**
+                         *
+                         * @private
+                         */
+
+                    }, {
+                        key  : "_inputClean",
+                        value: function _inputClean(response) {
+                            if (!(response.status === 200 && response.data === true)) {
+                                this.notify.alertMessage('Проблемы на сервере, попробуйте позже');
+                            }
+
+                            this.form.querySelector('input[name="name"]').value       = '';
+                            this.form.querySelector('input[name="phone"]').value      = '';
+                            this.form.querySelector('textarea[name="message"]').value = '';
+                        }
+                    }]);
+
+                    return ClientLetter;
+                }();
+
+        var clientLetter = new ClientLetter('#sendmail');
+
+        /***/
+    }),
+
+    /***/ "./resources/js/custom/Notify.js":
+    /*!***************************************!*\
+      !*** ./resources/js/custom/Notify.js ***!
+      \***************************************/
+    /*! exports provided: default */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+        __webpack_require__.d(__webpack_exports__, "default", function () {
+            return Notify;
+        });
+
+        function _classCallCheck(instance, Constructor) {
+            if (!(instance instanceof Constructor)) {
+                throw new TypeError("Cannot call a class as a function");
+            }
+        }
+
+        function _defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+                var descriptor          = props[i];
+                descriptor.enumerable   = descriptor.enumerable || false;
+                descriptor.configurable = true;
+                if ("value" in descriptor) descriptor.writable = true;
+                Object.defineProperty(target, descriptor.key, descriptor);
+            }
+        }
+
+        function _createClass(Constructor, protoProps, staticProps) {
+            if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) _defineProperties(Constructor, staticProps);
+            return Constructor;
+        }
+
+        var Notify =
+                /*#__PURE__*/
+                function () {
+                    function Notify() {
+                        _classCallCheck(this, Notify);
+
+                        this.delay = 4000;
+                        this.x     = 20;
+                        this.y     = 100;
+                    }
+
+                    _createClass(Notify, [{
+                        key  : "infoMessage",
+                        value: function infoMessage(message) {
+                            $.notify({
+                                message: message
+                            }, {
+                                type  : 'info',
+                                delay : this.delay,
+                                offset: {
+                                    y: this.y,
+                                    x: this.x
+                                }
+                            });
+                        }
+                    }, {
+                        key  : "alertMessage",
+                        value: function alertMessage(message) {
+                            jQuery.notify({
+                                message: message
+                            }, {
+                                type  : 'danger',
+                                delay : this.delay,
+                                offset: {
+                                    y: this.y,
+                                    x: this.x
+                                }
+                            });
+                        }
+                    }]);
+
+                    return Notify;
+                }();
+
+
+        /***/
+    }),
+
     /***/ "./resources/js/custom/lazyimages.js":
     /*!*******************************************!*\
       !*** ./resources/js/custom/lazyimages.js ***!
@@ -20096,7 +20384,6 @@ if (token) {
             document.querySelectorAll('img').forEach(function (img) {
                 if (img.dataset.src) {
                     if (isVisible(img)) {
-                        console.log(img);
                         img.src = img.dataset.src;
                         img.removeAttribute('data-src');
                     }
@@ -20112,7 +20399,8 @@ if (token) {
             return topVisible || bottomVisible;
         };
 
-        /***/ }),
+        /***/
+    }),
 
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\

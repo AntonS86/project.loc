@@ -180,7 +180,6 @@
 <script src="{{asset('js/custom.js')}}"></script>
 
 @stack('paginate')
-@stack('clientLetter')
 @stack('share')
 @stack('workMessage')
 </body>

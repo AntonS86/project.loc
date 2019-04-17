@@ -26,7 +26,7 @@ class SendMailRequest extends FormRequest
         return [
             'name'    => 'required|string|min:2|max:30',
             'phone'   => 'regex:/^\+?[78]?[0-9]{10}$/',
-            'message' => 'required|string|min:5|max:300'
+            'message' => 'required|string|min:5|max:500'
         ];
     }
 }

@@ -53,7 +53,7 @@ Route::get('contacts', 'ContactController@index')->name('contacts');
 Route::get('searcharticles', 'SearchController@searchArticles')->name('searchArticlesAjax');
 
 /*-------------парсинг--новостей---------------*/
-Route::get('hoovernews', 'HooverNewsController@index')->name('hoovernews');
+//Route::get('hoovernews', 'HooverNewsController@index')->name('hoovernews');
 
 
 /*--------------админ-------------------------*/

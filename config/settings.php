@@ -2,6 +2,7 @@
 
 return [
     'email'             => env('MAIL_ADMIN'),
+    'catClientEmail'    => 'Другое',
     'lastArticlesLimit' => 5,
     'adminPagination'   => 20,
     'pagination'        => 10,

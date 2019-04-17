@@ -90,11 +90,15 @@
 /*!*********************************************!*\
   !*** ./resources/js/custom/ClientLetter.js ***!
   \*********************************************/
-/*! no exports provided */
+    /*! exports provided: clientLetter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+        __webpack_require__.d(__webpack_exports__, "clientLetter", function () {
+            return clientLetter;
+        });
 /* harmony import */ var _Notify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Notify */ "./resources/js/custom/Notify.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -117,7 +121,7 @@ function () {
     this.form = document.querySelector(id);
 
     if (this.form == null) {
-      throw new Error('Form not found / ${id}');
+        return false;
     }
 
     this.notify = new _Notify__WEBPACK_IMPORTED_MODULE_0__["default"]();
@@ -126,6 +130,7 @@ function () {
     this.name;
     this.phone;
     this.message;
+      this.run();
   }
 
   _createClass(ClientLetter, [{
@@ -220,7 +225,7 @@ function () {
       }).then(function (response) {
         self.notify.infoMessage('Ваше сообщение успешно отправленно');
 
-        self._inputClean();
+          self._inputClean(response);
 
         self.button.disabled = false;
       }).catch(function (error) {
@@ -245,8 +250,12 @@ function () {
      */
 
   }, {
-    key: "_inputClean",
-    value: function _inputClean() {
+    key    : "_inputClean",
+      value: function _inputClean(response) {
+          if (!(response.status === 200 && response.data === true)) {
+              this.notify.alertMessage('Проблемы на сервере, попробуйте позже');
+          }
+
       this.form.querySelector('input[name="name"]').value = '';
       this.form.querySelector('input[name="phone"]').value = '';
       this.form.querySelector('textarea[name="message"]').value = '';
@@ -256,8 +265,7 @@ function () {
   return ClientLetter;
 }();
 
-var letter = new ClientLetter('#sendmail');
-letter.run();
+        var clientLetter = new ClientLetter('#sendmail');
 
 /***/ }),
 
