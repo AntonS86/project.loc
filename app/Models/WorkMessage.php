@@ -14,7 +14,7 @@ class WorkMessage extends Model
      */
     public function work(): BelongsTo
     {
-        return $this->belongsTo('App\Models\Works');
+        return $this->belongsTo('App\Models\Work');
     }
 
     /**

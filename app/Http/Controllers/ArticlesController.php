@@ -6,7 +6,7 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Http\Requests\ArticlesSearch;
 use App\Models\Keyword;
-use App\Models\Works;
+use App\Models\Work;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Repositories\ArticleRepository;
@@ -132,7 +132,7 @@ class ArticlesController extends SiteController
      */
     private function addictedContent(): void
     {
-        $this->varOutput['works']           = Works::get();
+        $this->varOutput['works']           = Work::get();
         $this->varOutput['popularKeywords'] = $this->keywordRepository->getPopular();
         $this->varOutput['lastArticles']    = $this->articleRepository->getLastArticles();
     }

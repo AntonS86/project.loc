@@ -1,29 +1,29 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Works;
+use App\Models\Work;
 
 class WorksSeeder extends Seeder
 {
     public function run()
     {
-        Works::create([
+        Work::create([
             'name' => 'Купить'
         ]);
 
-        Works::create([
+        Work::create([
             'name' => 'Продать'
         ]);
 
-        Works::create([
+        Work::create([
             'name' => 'Аренда'
         ]);
 
-        Works::create([
+        Work::create([
             'name' => 'Авто'
         ]);
 
-        Works::create([
+        Work::create([
             'name' => 'Другое'
         ]);
     }
