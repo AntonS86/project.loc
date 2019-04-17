@@ -2,8 +2,8 @@ export let lazyImage = () => {
     document.querySelectorAll('img').forEach(img => {
         if (img.dataset.src) {
             if (isVisible(img)) {
-                img.src = img.dataset.src;
-                img.removeAttribute('data-src');
+                img.src    = img.dataset.src;
+                img.onload = () => img.removeAttribute('data-src');
             }
         }
     });

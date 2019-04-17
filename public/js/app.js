@@ -20385,7 +20385,10 @@ if (token) {
                 if (img.dataset.src) {
                     if (isVisible(img)) {
                         img.src = img.dataset.src;
-                        img.removeAttribute('data-src');
+
+                        img.onload = function () {
+                            return img.removeAttribute('data-src');
+                        };
                     }
                 }
             });

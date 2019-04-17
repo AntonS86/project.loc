@@ -28,3 +28,13 @@ a:hover, .link-dark:hover {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+img {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+img[data-src] {
+    opacity: 0;
+}
+

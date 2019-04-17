@@ -10,7 +10,7 @@
                 @if (isset($article->images) && isset($article->images[0]))
                     <div class="row grid-space-10">
                         <div class="col-lg-6">
-                            <img src="" data-src="{{$article->images[0]->asset_path}}" alt="{{$article->title}}"
+                            <img data-src="{{$article->images[0]->asset_path}}" alt="{{$article->title}}"
                                  title="{{$article->title}}" class="img-many-articles mx-auto d-block">
                         </div>
                         <div class="col-lg-6">
