@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Database\Eloquent\Collection;
 use App\Http\Requests\ArticleRequest;
 use App\Models\Image;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 
@@ -44,32 +45,30 @@ class ArticleRepository extends Repository
     public function getArticles(string $alias): LengthAwarePaginator
     {
         $catId = $this->getCategoryId($alias);
+        if (! $catId) {
+            throw new ModelNotFoundException("No categories with alias: $alias");
+        }
 
-        $articles = $this->model
-            ->preview()
-            ->fullContent()
-            ->when($catId, function ($query, $catId) {
-                return $query->whereIn('category_id', $catId);
-            })->published()->latest('published_at')->paginate(config('settings.pagination'));
+        return $this->model->preview()->fullContent()
+                           ->when($catId, function ($query, $catId) {
+                               return $query->whereIn('category_id', $catId);
+                           })->published()->latest('published_at')->paginate(config('settings.pagination'));
 
-        return $articles;
     }
 
     /**
-     * @param string|null $alias
+     * @param string $alias
      *
      * @return array|null
      */
-    private function getCategoryId(string $alias): array
+    private function getCategoryId(string $alias): ?array
     {
         $categories = Category::withChildren($alias)->first();
-        if (is_null($categories)) abort(404);
+        if (is_null($categories)) return null;
 
         $categoriesId[] = $categories->id;
         $categories->children->each(function ($item) use (&$categoriesId) {
-            if ($item->id) {
-                $categoriesId[] = $item->id;
-            }
+            $categoriesId[] = $item->id;
         });
 
         return $categoriesId;
@@ -97,10 +96,10 @@ class ArticleRepository extends Repository
     {
 
         $articles = $this->model->preview()->addSelect('keywords.name as keyword_name')
-                                      ->join('article_keyword', 'articles.id', '=', 'article_keyword.article_id')
-                                      ->join('keywords', 'article_keyword.keyword_id', '=', 'keywords.id')
-                                      ->where('keywords.alias', $keyword)->fullContent()->published()
-                                      ->latest('published_at')->paginate(config('settings.pagination'));
+                                ->join('article_keyword', 'articles.id', '=', 'article_keyword.article_id')
+                                ->join('keywords', 'article_keyword.keyword_id', '=', 'keywords.id')
+                                ->where('keywords.alias', $keyword)->fullContent()->published()
+                                ->latest('published_at')->paginate(config('settings.pagination'));
 
         if ($articles->isEmpty()) abort(404);
         return $articles;

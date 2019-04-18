@@ -8,6 +8,7 @@ use App\Models\Image;
 use App\Repositories\ArticleRepository;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -17,9 +18,9 @@ use Symfony\Component\DomCrawler\Crawler;
 class HooverNewsServices
 {
 
-    private const FEED_URL      = 'https://news.ners.ru/rss';
-    private const CATEGORY      = 7;
-    private const CATEGORY_NAME = 'news';
+    private const FEED_URL       = 'https://news.ners.ru/rss';
+    private const CATEGORY       = 7;
+    private const CATEGORY_ALIAS = 'novosti';
 
     /**
      * @var Client
@@ -48,8 +49,16 @@ class HooverNewsServices
      */
     public function getNews(): void
     {
-        $this->parsing();
-        print 'Success';
+        Log::info(self::FEED_URL . '||begin||');
+        foreach ($this->parsingRss() as $data) {
+
+            $response = $this->client->get($data['link']);
+            $body     = (string)$response->getBody();
+
+            [$data['image'], $data['text']] = $this->parsingContent($body);
+            $this->save($data);
+        }
+        Log::info(self::FEED_URL . '||finished||success||');
     }
 
 
@@ -58,7 +67,7 @@ class HooverNewsServices
      */
     private function parsingRss(): \Generator
     {
-        $article = $this->articleRepository->getArticlesForParsingNews(self::CATEGORY_NAME);
+        $article = $this->articleRepository->getArticlesForParsingNews(self::CATEGORY_ALIAS);
 
         $response = $this->client->get(self::FEED_URL);
         $body     = (string)$response->getBody();
@@ -73,7 +82,7 @@ class HooverNewsServices
             $category    = (string)$node->category;
             $pubDate     = (string)$node->pubDate;
 
-            if ($article->published_at > Carbon::parse($pubDate)) break;
+            if ($article && $article->published_at > Carbon::parse($pubDate)) break;
 
             yield [
                 'title'       => $title,
@@ -84,20 +93,6 @@ class HooverNewsServices
         }
     }
 
-    /**
-     * @return void
-     */
-    private function parsing(): void
-    {
-        foreach ($this->parsingRss() as $data) {
-
-            $response = $this->client->get($data['link']);
-            $body     = (string)$response->getBody();
-
-            [$data['image'], $data['text']] = $this->parsingContent($body);
-            $this->save($data);
-        }
-    }
 
     /**
      * @param array $data
@@ -106,6 +101,7 @@ class HooverNewsServices
      */
     private function save(array $data): void
     {
+        Log::info(self::FEED_URL . '||saving article||');
         $category = Category::firstOrCreate(
             ['title' => $data['category']],
             ['parent' => self::CATEGORY]
@@ -123,14 +119,13 @@ class HooverNewsServices
 
         if ($data['image']) {
 
-            $image           = Image::firstOrCreate(
-                ['pathname'     => $data['image']],
-                ['type'         => 'url', 'title' => 'Y']
+            $image = Image::firstOrCreate(
+                ['path' => $data['image']]
             );
 
-            $article->images()->save($image);
+            $article->images()->save($image, ['title' => 'Y']);
         }
-
+        Log::info(self::FEED_URL . '||saved article||');
     }
 
     /**
