@@ -27,10 +27,6 @@ class RouteServiceProvider extends ServiceProvider
 
         parent::boot();
 
-       /*  Route::bind('article', function ($value) {
-            return \Corp\Article::where('alias', $value)->first() ?? abort(404);
-        }); */
-
         Route::model('article', \App\Models\Article::class);
     }
 

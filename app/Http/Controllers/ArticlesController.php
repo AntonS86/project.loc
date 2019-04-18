@@ -32,33 +32,12 @@ class ArticlesController extends SiteController
 
 
     /**
-     * @param Request     $request
-     * @param string|null $catAlias
-     *
-     * @return \Illuminate\Http\JsonResponse|View
-     * @throws \Throwable
-     */
-    public function index(Request $request, string $catAlias)
-    {
-        $this->varOutput['articles'] = $this->articleRepository->getArticles($catAlias);
-        if ($request->ajax()) {
-            $html = view('many_articles', $this->varOutput)->render();
-            return response()->json(['success' => true, 'articles' => $html]);
-        }
-        $this->addictedContent();
-        $this->varOutput['categories'] = Category::where('alias', $catAlias)->first();
-
-        return $this->renderOutput();
-
-    }
-
-    /**
      * @param Request $request
      *
      * @return \Illuminate\Http\JsonResponse|void
      * @throws \Throwable
      */
-    public function all(Request $request)
+    public function index(Request $request)
     {
         $this->varOutput['articles'] = Article::preview()->fullContent()
                                               ->published()
@@ -73,6 +52,26 @@ class ArticlesController extends SiteController
         return $this->renderOutput();
     }
 
+
+    /**
+     * @param Request $request
+     * @param string  $catAlias
+     *
+     * @return \Illuminate\Http\JsonResponse|void
+     * @throws \Throwable
+     */
+    public function category(Request $request, string $catAlias)
+    {
+        $this->varOutput['articles'] = $this->articleRepository->getArticles($catAlias);
+        if ($request->ajax()) {
+            $html = view('many_articles', $this->varOutput)->render();
+            return response()->json(['success' => true, 'articles' => $html]);
+        }
+        $this->addictedContent();
+        $this->varOutput['categories'] = Category::where('alias', $catAlias)->first();
+
+        return $this->renderOutput();
+    }
 
     /**
      * @param Request     $request

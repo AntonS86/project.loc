@@ -32,7 +32,7 @@
                     <div class="footer-content">
                         <h2 class="title">{{ trans('text.contact_us') }}</h2>
 
-                        <form class="margin-clear" id="sendmail" method="post" action="{{ route('sendMail') }}">
+                        <form class="margin-clear" id="sendmail" method="post" action="{{ route('sendmail.create') }}">
                             {{ csrf_field() }}
                             <div class="form-group has-feedback mb-10">
                                 <label class="sr-only" for="name">{{ trans('text.name') }}</label>

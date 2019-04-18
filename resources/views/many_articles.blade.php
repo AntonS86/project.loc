@@ -28,7 +28,7 @@
 							</span>
                                     <span class="post-info">
                                 <i class="fa fa-chain"></i> <a
-                                            href="{{ route('articlesCategory', ['cat_alias' => $article->category->alias])}}"
+                                            href="{{ $article->category->path }}"
                                             class="default">{{$article->category->title}}</a>
                             </span>
                                 </div>

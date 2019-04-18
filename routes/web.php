@@ -15,27 +15,15 @@ Route::resource('/', 'IndexController', [
     'names' => ['index' => 'home']
 ]);
 
-Route::resource('sendmail', 'SendMailController', [
-    'only'  => ['store'],
-    'names' => ['store' => 'sendMail']
-]);
 
+Route::post('sendmail', 'SendMailController@store')->name('sendmail.create');
+Route::post('work-message', 'WorkMessageController@create')->name('workmessage.create');
 
-Route::post('work-message', 'WorkMessageController@create')->name('workMessage');
-
+/*---------------------image-uploader*/
 Route::post('images-uploader', 'ImagesController@createMany')->name('imagesUploader');
 Route::post('image-uploader', 'ImagesController@createOne')->name('imageUploader');
 
 /* ---------------------article--------------------------*/
-
-Route::get('category/{cat_alias}', 'ArticlesController@index')->name('articlesCategory')->where('cat_alias', '[\w-]+');
-
-
-Route::get('keyword/{keyword_alias}', 'ArticlesController@keyword')->name('articlesKeyword')->where('keyword_alias', '[\w-]+');
-
-Route::get('all-article', 'ArticlesController@all')->name('articlesAll');
-
-Route::get('search', 'ArticlesController@search')->name('searchArticles');
 
 Route::resource('articles', 'ArticlesController', [
     'only'       => ['index', 'show'],
@@ -44,16 +32,21 @@ Route::resource('articles', 'ArticlesController', [
     ]
 ]);
 
+Route::get('category/{cat_alias}', 'ArticlesController@category')->name('articles.category')->where('cat_alias', '[\w-]+');
+
+Route::get('keyword/{keyword_alias}', 'ArticlesController@keyword')->name('articlesKeyword')->where('keyword_alias', '[\w-]+');
+
+Route::get('search', 'ArticlesController@search')->name('articles.search');
+
+
 /*---------------------Contact----------------------*/
 
 Route::get('contacts', 'ContactController@index')->name('contacts');
 
 
 /*-------------поиск-по-новостям-и-статьям-ajax-----*/
-Route::get('searcharticles', 'SearchController@searchArticles')->name('searchArticlesAjax');
+Route::get('searcharticles', 'SearchController@searchArticles')->name('search.articles_ajax');
 
-/*-------------парсинг--новостей---------------*/
-Route::get('hoovernews', 'HooverNewsController@index')->name('hoovernews');
 
 
 /*--------------админ-------------------------*/

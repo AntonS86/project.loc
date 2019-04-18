@@ -15,7 +15,7 @@
         </span>
                 <span>
             <i class="fa fa-chain"></i> <a
-                        href="{{ route('articlesCategory', ['cat_alias' => $oneArticle->category->alias])}}"
+                        href="{{$oneArticle->category->path}}"
                         class="default">{{$oneArticle->category->title}}</a>
         </span>
             </div>

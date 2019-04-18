@@ -37,7 +37,8 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="contact-form">
-                            <form class="margin-clear" id="sendmail" method="post" action="{{ route('sendMail') }}">
+                            <form class="margin-clear" id="sendmail" method="post"
+                                  action="{{ route('sendmail.create') }}">
                                 <div class="form-group has-feedback">
                                     <label for="name">{{ trans('text.name') }}</label>
                                     <input type="text" class="form-control" id="name" name="name" placeholder="{{ trans('text.name') }}" required>

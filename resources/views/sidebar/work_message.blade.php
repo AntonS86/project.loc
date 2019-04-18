@@ -1,7 +1,7 @@
 <div class="block clearfix">
     <h3 class="title">{{trans('text.apply')}}</h3>
     <div class="separator-2"></div>
-    <form action="{{route('workMessage')}}" method="post" enctype="multipart/form-data" id="form-work-message">
+    <form action="{{route('workmessage.create')}}" method="post" enctype="multipart/form-data" id="form-work-message">
         {{ csrf_field() }}
         <div class="form-group">
             <label for="mes-work">{{trans('text.works')}}</label>

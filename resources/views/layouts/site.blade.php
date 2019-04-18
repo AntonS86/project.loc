@@ -130,8 +130,8 @@
                                 <ul id="search-list" class="dropdown-menu dropdown-menu-right dropdown-animation"
                                     aria-labelledby="header-drop-1">
                                     <li>
-                                        <form role="search" method="get" action="{{route('searchArticles')}}"
-                                              data-action="{{route('searchArticlesAjax')}}"
+                                        <form role="search" method="get" action="{{route('articles.search')}}"
+                                              data-action="{{route('search.articles_ajax')}}"
                                               class="search-box margin-clear">
                                             <div class="form-group has-feedback">
                                                 <input type="text" class="form-control"

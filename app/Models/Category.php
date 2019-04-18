@@ -37,7 +37,7 @@ class Category extends Model
 
     public function getPathAttribute()
     {
-        return route('articlesCategory', ['cat_alias' => $this->alias]);
+        return route('articles.category', ['cat_alias' => $this->alias]);
     }
 
 

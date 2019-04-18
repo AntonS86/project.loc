@@ -32,7 +32,7 @@
         @endforeach
 
         <div class="text-right space-top">
-            <a href="{{route('articlesAll')}}" class="link-dark"><i
+            <a href="{{route('articles.index')}}" class="link-dark"><i
                     class="fa fa-angle-double-right pl-1 pr-1"></i>{{title_case(trans('text.more'))}}</a>
         </div>
     </div>
