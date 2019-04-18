@@ -82,9 +82,9 @@ class ArticleRepository extends Repository
     public function getArticlesForParsingNews(string $alias): ?Article
     {
         $catId = $this->getCategoryId($alias);
-        return $this->model->select('published_at')
+        return $this->model->select('created_at')
                            ->whereIn('category_id', $catId)->published()
-                           ->latest('published_at')->first();
+                           ->latest('created_at')->first();
     }
 
     /**

@@ -1,74 +1,60 @@
 <?php
 
-namespace App\Services\Hoovers;
 
-use App\Models\Article;
-use App\Models\Category;
-use App\Models\Image;
-use App\Repositories\ArticleRepository;
+namespace App\Services\Parsers;
+
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\DomCrawler\Crawler;
 
-/**
- * Class HooverNewsServices
- * @package App\Services\Hoovers
- */
-class HooverNewsServices
+class NersParser implements DataProviderInterface
 {
-
-    private const FEED_URL       = 'https://news.ners.ru/rss';
-    private const CATEGORY       = 7;
-    private const CATEGORY_ALIAS = 'novosti';
+    /**
+     *
+     */
+    private const FEED_URL = 'https://news.ners.ru/rss';
 
     /**
      * @var Client
      */
     private $client;
 
-    /**
-     * @var ArticleRepository
-     */
-    private $articleRepository;
-
-    /**
-     * HooverNewsServices constructor.
-     *
-     * @param Client $client
-     */
     public function __construct()
     {
-        $this->client            = new Client(['cookie' => true]);
-        $this->articleRepository = new ArticleRepository(new Article());
+        $this->client = new Client(['cookie' => true]);
     }
 
-
     /**
-     * @return void
+     * @param \DateTime $lastDate
+     *
+     * @return array
      */
-    public function getNews(): void
+    public function getLast(\DateTime $lastDate): array
     {
         Log::info(self::FEED_URL . '||begin||');
-        foreach ($this->parsingRss() as $data) {
+        $result = [];
+        foreach ($this->parsingRss($lastDate) as $data) {
 
             $response = $this->client->get($data['link']);
             $body     = (string)$response->getBody();
 
             [$data['image'], $data['text']] = $this->parsingContent($body);
-            $this->save($data);
+            //$this->save($data);
+            $result[] = $data;
         }
         Log::info(self::FEED_URL . '||finished||success||');
+        return $result;
     }
 
 
     /**
+     * @param \DateTime $lastDate
+     *
      * @return \Generator
      */
-    private function parsingRss(): \Generator
+    private function parsingRss(\DateTime $lastDate): \Generator
     {
-        $article = $this->articleRepository->getArticlesForParsingNews(self::CATEGORY_ALIAS);
-
         $response = $this->client->get(self::FEED_URL);
         $body     = (string)$response->getBody();
 
@@ -82,7 +68,7 @@ class HooverNewsServices
             $category    = (string)$node->category;
             $pubDate     = (string)$node->pubDate;
 
-            if ($article && $article->created_at > Carbon::parse($pubDate)) break;
+            if ($lastDate > Carbon::parse($pubDate)) break;
 
             yield [
                 'title'       => $title,
@@ -93,40 +79,6 @@ class HooverNewsServices
         }
     }
 
-
-    /**
-     * @param array $data
-     *
-     * @return void
-     */
-    private function save(array $data): void
-    {
-        Log::info(self::FEED_URL . '||saving article||');
-        $category = Category::firstOrCreate(
-            ['title' => $data['category']],
-            ['parent' => self::CATEGORY]
-        );
-
-
-        $article              = new Article();
-        $article->title       = $data['title'];
-        $article->desc        = $data['description'];
-        $article->meta_desc   = $data['description'];
-        $article->text        = $data['text'];
-        $article->status      = 'published';
-        $article->category_id = $category->id;
-        $article->save();
-
-        if ($data['image']) {
-
-            $image = Image::firstOrCreate(
-                ['path' => $data['image']]
-            );
-
-            $article->images()->save($image, ['title' => 'Y']);
-        }
-        Log::info(self::FEED_URL . '||saved article||');
-    }
 
     /**
      * @param string $body
@@ -194,7 +146,7 @@ class HooverNewsServices
         $content = $crawler->filter('#news_view .text > p');
 
         if ($content->count()) {
-            $content = $content->each(function (Crawler $node, $i) {
+            $content = $content->each(function (Crawler $node) {
                 return $node->html();
             });
         } else {
