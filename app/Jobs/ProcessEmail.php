@@ -30,7 +30,7 @@ class ProcessEmail implements ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param WorkMessage $workMessage
      */
     public function __construct(WorkMessage $workMessage)
     {
