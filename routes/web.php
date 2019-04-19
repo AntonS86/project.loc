@@ -49,7 +49,7 @@ Route::get('searcharticles', 'SearchController@searchArticles')->name('search.ar
 
 
 /*--------------тестовый-контроллер--------------------*/
-Route::any('callback', 'TestController@test');
+Route::get('test', 'TestController@test');
 
 
 
