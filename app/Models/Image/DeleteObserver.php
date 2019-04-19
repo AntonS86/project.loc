@@ -5,7 +5,7 @@ namespace App\Models\Image;
 
 use App\Models\Image;
 
-class ImageObserver
+class DeleteObserver
 {
 
     /**
@@ -13,7 +13,7 @@ class ImageObserver
      *
      * @return void
      */
-    public function deleting(Image $image)
+    public function deleting(Image $image): void
     {
         if (file_exists(public_path($image->asset_path))) {
             unlink(public_path($image->asset_path));

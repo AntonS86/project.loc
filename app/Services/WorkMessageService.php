@@ -5,7 +5,6 @@ namespace App\Services;
 
 
 use App\Jobs\ProcessEmail;
-use App\Mail\WorkMessageMail;
 use App\Models\Phone;
 use App\Models\WorkMessage;
 
@@ -29,11 +28,15 @@ class WorkMessageService
             $workMessage->images()->attach($inputs['images']);
         }
 
-        ProcessEmail::dispatch($workMessage);
         return $result;
     }
 
-    private function getPhoneId(string $phone)
+    /**
+     * @param string $phone
+     *
+     * @return int
+     */
+    private function getPhoneId(string $phone): int
     {
         $ph = new Phone();
         return $ph->firstOrCreate(

@@ -8,12 +8,18 @@ use App\Models\Category;
 
 class SlugObserver
 {
-    public function creating(Category $category)
+    /**
+     * @param Category $category
+     */
+    public function creating(Category $category): void
     {
         $category->alias = Str::slug($category->title);
     }
 
-    public function updating(Category $category)
+    /**
+     * @param Category $category
+     */
+    public function updating(Category $category): void
     {
         $category->alias = Str::slug($category->title);
     }

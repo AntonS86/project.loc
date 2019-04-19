@@ -6,6 +6,7 @@ namespace App\Providers;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Image;
+use App\Models\WorkMessage;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -38,7 +39,9 @@ class EventServiceProvider extends ServiceProvider
 
         Category::observe(\App\Models\Category\SlugObserver::class);
 
-        Image::observe(\App\Models\Image\ImageObserver::class);
+        Image::observe(\App\Models\Image\DeleteObserver::class);
+
+        WorkMessage::observe(\App\Models\WorkMessage\QueueObserver::class);
 
         parent::boot();
 
