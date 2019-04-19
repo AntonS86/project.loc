@@ -48,6 +48,10 @@ Route::get('contacts', 'ContactController@index')->name('contacts');
 Route::get('searcharticles', 'SearchController@searchArticles')->name('search.articles_ajax');
 
 
+/*--------------тестовый-контроллер--------------------*/
+Route::post('test', 'TestController@test');
+
+
 
 /*--------------админ-------------------------*/
 Auth::routes(['register' => false]);
