@@ -36,6 +36,7 @@ class EventServiceProvider extends ServiceProvider
         Article::observe(\App\Models\Article\SlugObserver::class);
         Article::observe(\App\Models\Article\PublishedObserver::class);
         Article::observe(\App\Models\Article\DeleteObserver::class);
+        Article::observe(\App\Models\Article\PostingObserver::class);
 
         Category::observe(\App\Models\Category\SlugObserver::class);
 

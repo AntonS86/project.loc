@@ -9,7 +9,6 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class ProcessEmail implements ShouldQueue
@@ -30,7 +29,7 @@ class ProcessEmail implements ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param WorkMessage $workMessage
      */
     public function __construct(WorkMessage $workMessage)
     {
