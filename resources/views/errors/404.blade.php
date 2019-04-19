@@ -20,7 +20,7 @@
                 <h1 class="page-title extra-large"><span class="text-default">404</span></h1>
                 <h3 class="mt-4">Ooops! Страничка не найдена</h3>
                 <p class="lead">Запрашиваемый URL не найден на этом сервере. Убедитесь, что адрес веб-сайта, отображаемый в адресной строке вашего браузера, написан и отформатирован правильно.</p>
-                <form role="search" method="get" action="{{route('searchArticles')}}">
+                <form role="search" method="get" action="{{route('articles.search')}}">
                     <div class="form-group has-feedback">
                         <input type="text" class="form-control" name="search" placeholder="{{trans('text.search')}}">
                         <i class="fa fa-search form-control-feedback"></i>
