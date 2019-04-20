@@ -23,7 +23,7 @@
         <div class="blogpost-content">
             @if (isset($oneArticle->images) && isset($oneArticle->images[0]))
                 <div class="mb-5">
-                    <img src="{{$oneArticle->images[0]->asset_path}}" alt="{{$oneArticle->title}}"
+                    <img data-src="{{$oneArticle->images[0]->asset_path}}" alt="{{$oneArticle->title}}"
                          alt="{{$oneArticle->title}}" class="img-fluid mx-auto d-block">
                 </div>
             @endif

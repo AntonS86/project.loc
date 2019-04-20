@@ -8,7 +8,7 @@
                 @if (isset($lastArticle->images) && isset($lastArticle->images[0]))
                     <div class="d-flex pr-2">
                         <div class="overlay-container">
-                            <img class="media-object" src="{{$lastArticle->images[0]->asset_path}}"
+                            <img class="media-object" data-src="{{$lastArticle->images[0]->asset_path}}"
                                  alt="{{$lastArticle->title}}" title="{{$lastArticle->title}}">
                             <a href="{{route('articles.show', ['alias' => $lastArticle->alias])}}"
                                class="overlay-link small"><i class="fa fa-link"></i></a>
