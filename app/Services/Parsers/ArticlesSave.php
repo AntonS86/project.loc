@@ -17,25 +17,24 @@ class ArticlesSave implements ContentSaveInterface
 
     /**
      * @param array $data
-     *
-     * @return bool
      */
-    public function save(array $data): bool
+    public function saveHandler(array $data): void
     {
         Log::info('ArticleSave||begin||');
 
         foreach ($data as $content) {
-            $this->saveHandler($content);
+            $this->save($content);
         }
 
         Log::info('ArticleSave||end||');
-        return true;
     }
 
     /**
      * @param array $data
+     *
+     * @return bool
      */
-    private function saveHandler(Array $data): void
+    public function save(Array $data): bool
     {
         $category = Category::firstOrCreate(
             ['title' => $data['category']],
@@ -49,7 +48,7 @@ class ArticlesSave implements ContentSaveInterface
         $article->text        = $data['text'];
         $article->status      = 'published';
         $article->category_id = $category->id;
-        $article->save();
+        $result               = $article->save();
 
         if ($data['image']) {
 
@@ -59,5 +58,7 @@ class ArticlesSave implements ContentSaveInterface
 
             $article->images()->save($image, ['title' => 'Y']);
         }
+        Log::info('ArticleSave||id: ' . $article->id . '||');
+        return $result;
     }
 }

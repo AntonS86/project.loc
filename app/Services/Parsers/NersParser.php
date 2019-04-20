@@ -8,7 +8,7 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\DomCrawler\Crawler;
 
-class NersParser implements DataProviderInterface
+class NersParser implements ParserInterface
 {
     /**
      *
@@ -37,10 +37,10 @@ class NersParser implements DataProviderInterface
         foreach ($this->parsingRss($lastDate) as $data) {
 
             $response = $this->client->get($data['link']);
-
+            Log::info($data['link'] . '|' . $response->getStatusCode() . '|');
             if ($response->getStatusCode() !== 200) continue;
 
-            $body     = (string)$response->getBody();
+            $body = (string)$response->getBody();
 
             [$data['image'], $data['text']] = $this->parsingContent($body);
             //$this->save($data);
@@ -60,7 +60,7 @@ class NersParser implements DataProviderInterface
     {
         $response = $this->client->get(self::FEED_URL);
         if ($response->getStatusCode() !== 200) return;
-        $body     = (string)$response->getBody();
+        $body = (string)$response->getBody();
 
         $rss = new \SimpleXMLElement($body);
 

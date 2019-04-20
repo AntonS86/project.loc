@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         App\Providers\PostingServiceProvider::class,
+        App\Providers\ParserServiceProvider::class
 
     ],
 

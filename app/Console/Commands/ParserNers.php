@@ -6,6 +6,7 @@ use App\Repositories\ArticleRepository;
 use App\Services\Parsers\ArticlesSave;
 use App\Services\Parsers\NersParser;
 use Illuminate\Console\Command;
+use App\Services\Parsers\ParserInterface;
 
 class ParserNers extends Command
 {
@@ -39,11 +40,11 @@ class ParserNers extends Command
      *
      * @throws \Exception
      */
-    public function handle(NersParser $nersParser, ArticlesSave $articlesSave, ArticleRepository $aRep)
+    public function handle(ParserInterface $nersParser, ArticlesSave $articlesSave, ArticleRepository $aRep)
     {
         $lastArticle = $aRep->getArticlesForParsingNews($articlesSave::CATEGORY_ALIAS);
         $date        = $lastArticle ? $lastArticle->created_at : new \DateTime('2000');
         $data        = $nersParser->getLast($date);
-        $articlesSave->save($data);
+        $articlesSave->saveHandler($data);
     }
 }

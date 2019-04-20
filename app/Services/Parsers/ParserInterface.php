@@ -4,7 +4,7 @@
 namespace App\Services\Parsers;
 
 
-interface DataProviderInterface
+interface ParserInterface
 {
     /**
      * @param \DateTime $lastDate
