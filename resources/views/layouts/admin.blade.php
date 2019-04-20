@@ -42,7 +42,7 @@
 
 </head>
 
-<body class=" ">
+<body class="page-loader-3">
 
 <div class="scrollToTop circle"><i class="fa fa-angle-up"></i></div>
 

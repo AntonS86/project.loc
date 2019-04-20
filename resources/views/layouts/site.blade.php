@@ -41,14 +41,7 @@
     <link href="{{asset('css/custom.css')}}" rel="stylesheet">
 </head>
 
-<body class="page-loader-3 pace-done">
-<div class="pace pace-inactive">
-    <div class="pace-progress" data-progress-text="100%" data-progress="99"
-         style="transform: translate3d(100%, 0px, 0px);">
-        <div class="pace-progress-inner"></div>
-    </div>
-    <div class="pace-activity"></div>
-</div>
+<body class="page-loader-3">
 
 <div class="scrollToTop circle"><i class="fa fa-angle-up"></i></div>
 
