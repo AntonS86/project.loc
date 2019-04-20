@@ -45,6 +45,7 @@ class ProcessPosting implements ShouldQueue
      */
     public function handle(PostingInterface $vkPosting)
     {
+        Log::info('|posting VK - start|');
         $query    = (new VkArticle($this->article))->postLink()->toArray();
         $response = $vkPosting->send($query);
         Log::info($response);
