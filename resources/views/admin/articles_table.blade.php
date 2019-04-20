@@ -35,6 +35,4 @@
 
 	@endif
 </div>
-@push('paginate')
-    <script src="{{asset('js/PaginateArticles.js')}}"></script>
-@endpush
+

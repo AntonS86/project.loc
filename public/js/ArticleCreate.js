@@ -82,7 +82,7 @@
 /******/
 /******/ 	// Load entry module and return exports
     /******/
-    return __webpack_require__(__webpack_require__.s = 5);
+    return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1005,7 +1005,7 @@ var quill = new Quill('#editor', {
 
 /***/ }),
 
-    /***/ 5:
+    /***/ 2:
 /*!*****************************************************!*\
   !*** multi ./resources/js/Article/ArticleCreate.js ***!
   \*****************************************************/

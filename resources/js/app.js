@@ -1,3 +1,4 @@
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -46,3 +47,12 @@ lazyImage();
 window.addEventListener('scroll', lazyImage);
 
 import clientLetter from "./custom/ClientLetter";
+
+import Share from './custom/Share';
+
+new Share().share();
+
+import PaginateArticles from "./Article/PaginateArticles";
+
+new PaginateArticles().paginate();
+

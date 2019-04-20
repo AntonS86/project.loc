@@ -1,15 +1,18 @@
 import Notify from '../custom/Notify';
 
-class PaginateArticles {
+export default class PaginateArticles {
 
     constructor() {
         this._notify = new Notify();
         this._main   = document.querySelector('.main');
-        if (! this._main) throw new Error('Pagination error');
         this._link;
     }
 
+    /**
+     *
+     */
     paginate() {
+        if (!this._main) return;
         this._main.addEventListener('click', (event) => {
             this._link = event.target.closest('#pagination a');
             if (this._link && this._link.tagName == 'A') {
@@ -42,9 +45,8 @@ class PaginateArticles {
     }
 
     _uplift(y) {
-        //window.scrollTo(0, y);
         $('html, body').animate({scrollTop: y}, 'slow');
     }
 }
 
-new PaginateArticles().paginate();
+

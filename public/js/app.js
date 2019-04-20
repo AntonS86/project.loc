@@ -19966,6 +19966,118 @@ function () {
 
 /***/ }),
 
+    /***/ "./resources/js/Article/PaginateArticles.js":
+    /*!**************************************************!*\
+      !*** ./resources/js/Article/PaginateArticles.js ***!
+      \**************************************************/
+    /*! exports provided: default */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+        __webpack_require__.d(__webpack_exports__, "default", function () {
+            return PaginateArticles;
+        });
+        /* harmony import */
+        var _custom_Notify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../custom/Notify */ "./resources/js/custom/Notify.js");
+
+        function _classCallCheck(instance, Constructor) {
+            if (!(instance instanceof Constructor)) {
+                throw new TypeError("Cannot call a class as a function");
+            }
+        }
+
+        function _defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+                var descriptor          = props[i];
+                descriptor.enumerable   = descriptor.enumerable || false;
+                descriptor.configurable = true;
+                if ("value" in descriptor) descriptor.writable = true;
+                Object.defineProperty(target, descriptor.key, descriptor);
+            }
+        }
+
+        function _createClass(Constructor, protoProps, staticProps) {
+            if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) _defineProperties(Constructor, staticProps);
+            return Constructor;
+        }
+
+
+        var PaginateArticles =
+                /*#__PURE__*/
+                function () {
+                    function PaginateArticles() {
+                        _classCallCheck(this, PaginateArticles);
+
+                        this._notify = new _custom_Notify__WEBPACK_IMPORTED_MODULE_0__["default"]();
+                        this._main   = document.querySelector('.main');
+                        this._link;
+                    }
+
+                    /**
+                     *
+                     */
+
+
+                    _createClass(PaginateArticles, [{
+                        key  : "paginate",
+                        value: function paginate() {
+                            var _this = this;
+
+                            if (!this._main) return;
+
+                            this._main.addEventListener('click', function (event) {
+                                _this._link = event.target.closest('#pagination a');
+
+                                if (_this._link && _this._link.tagName == 'A') {
+                                    _this._request();
+
+                                    event.preventDefault();
+                                }
+                            });
+                        }
+                    }, {
+                        key  : "_request",
+                        value: function _request() {
+                            var self = this;
+                            axios.get(this._link.href).then(function (response) {
+                                self._builder(response.data.articles);
+                            }).catch(function (error) {
+                                console.log(error);
+
+                                self._notify.alertMessage('Технические работы на сервере');
+                            });
+                        }
+                    }, {
+                        key  : "_builder",
+                        value: function _builder(response) {
+                            var oldArticles = this._main.querySelector('#articles');
+
+                            this._uplift(oldArticles.offsetTop);
+
+                            var template       = document.createElement('template');
+                            template.innerHTML = response.trim();
+                            var articles       = template.content.querySelector('#articles');
+                            oldArticles.parentElement.replaceChild(articles, oldArticles);
+                        }
+                    }, {
+                        key  : "_uplift",
+                        value: function _uplift(y) {
+                            $('html, body').animate({
+                                scrollTop: y
+                            }, 'slow');
+                        }
+                    }]);
+
+                    return PaginateArticles;
+                }();
+
+
+        /***/
+    }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -19980,6 +20092,10 @@ __webpack_require__.r(__webpack_exports__);
         var _custom_lazyimages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./custom/lazyimages */ "./resources/js/custom/lazyimages.js");
         /* harmony import */
         var _custom_ClientLetter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./custom/ClientLetter */ "./resources/js/custom/ClientLetter.js");
+        /* harmony import */
+        var _custom_Share__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./custom/Share */ "./resources/js/custom/Share.js");
+        /* harmony import */
+        var _Article_PaginateArticles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Article/PaginateArticles */ "./resources/js/Article/PaginateArticles.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -20020,6 +20136,10 @@ new _Article_ArticlesSearch__WEBPACK_IMPORTED_MODULE_0__["default"]().search();
         Object(_custom_lazyimages__WEBPACK_IMPORTED_MODULE_1__["lazyImage"])();
         window.addEventListener('scroll', _custom_lazyimages__WEBPACK_IMPORTED_MODULE_1__["lazyImage"]);
 
+
+        new _custom_Share__WEBPACK_IMPORTED_MODULE_3__["default"]().share();
+
+        new _Article_PaginateArticles__WEBPACK_IMPORTED_MODULE_4__["default"]().paginate();
 
 /***/ }),
 
@@ -20361,6 +20481,91 @@ if (token) {
                     }]);
 
                     return Notify;
+                }();
+
+
+        /***/
+    }),
+
+    /***/ "./resources/js/custom/Share.js":
+    /*!**************************************!*\
+      !*** ./resources/js/custom/Share.js ***!
+      \**************************************/
+    /*! exports provided: default */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+        __webpack_require__.d(__webpack_exports__, "default", function () {
+            return Share;
+        });
+
+        function _classCallCheck(instance, Constructor) {
+            if (!(instance instanceof Constructor)) {
+                throw new TypeError("Cannot call a class as a function");
+            }
+        }
+
+        function _defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+                var descriptor          = props[i];
+                descriptor.enumerable   = descriptor.enumerable || false;
+                descriptor.configurable = true;
+                if ("value" in descriptor) descriptor.writable = true;
+                Object.defineProperty(target, descriptor.key, descriptor);
+            }
+        }
+
+        function _createClass(Constructor, protoProps, staticProps) {
+            if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) _defineProperties(Constructor, staticProps);
+            return Constructor;
+        }
+
+        var Share =
+                /*#__PURE__*/
+                function () {
+                    function Share() {
+                        _classCallCheck(this, Share);
+
+                        this.width        = 600;
+                        this.heigth       = 500;
+                        this.top          = 100;
+                        this.left         = document.documentElement.clientWidth / 2 - this.width / 2;
+                        this.selector     = '#share';
+                        this.shareElement = null;
+                    }
+
+                    _createClass(Share, [{
+                        key  : "share",
+                        value: function share() {
+                            this.shareElement = document.querySelector(this.selector);
+                            if (!this.shareElement) return false;
+
+                            this._listener();
+                        }
+                    }, {
+                        key  : "_listener",
+                        value: function _listener() {
+                            var _this = this;
+
+                            this.shareElement.addEventListener('click', function (event) {
+                                event.preventDefault();
+                                var link = event.target.closest('a');
+                                if (!link) return false;
+
+                                _this._popUp(link);
+                            });
+                        }
+                    }, {
+                        key  : "_popUp",
+                        value: function _popUp(link) {
+                            window.open(link.href, 'Поделиться', "width=".concat(this.width, ", \n                height=").concat(this.heigth, ", top=").concat(this.top, ", left=").concat(this.left));
+                        }
+                    }]);
+
+                    return Share;
                 }();
 
 

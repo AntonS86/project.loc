@@ -12,9 +12,6 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .js('resources/js/custom/ClientLetter.js', 'public/js')
-    .js('resources/js/custom/Share.js', 'public/js')
-    .js('resources/js/Article/PaginateArticles.js', 'public/js')
     .js('resources/js/WorkMessage/WorkMessageHandler.js', 'public/js')
     .js('resources/js/Article/ArticleCreate.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');

@@ -1,4 +1,4 @@
-class Share {
+export default class Share {
     constructor() {
         this.width        = 600;
         this.heigth       = 500;
@@ -29,5 +29,3 @@ class Share {
     }
 }
 
-
-new Share().share();

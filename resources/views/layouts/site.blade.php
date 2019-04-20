@@ -18,7 +18,7 @@
     <meta property="og:locale" content="ru_RU">
     <meta name="csrf-token" content="{{csrf_token()}}">
 
-    <link rel="shortcut icon" href="{{asset('images/favicon.ico')}}">
+    <link rel="shortcut icon" href="{{asset('images/favicon.png')}}">
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
@@ -179,8 +179,6 @@
 <!-- Custom Scripts -->
 <script src="{{asset('js/custom.js')}}"></script>
 
-@stack('paginate')
-@stack('share')
 @stack('workMessage')
 </body>
 </html>

@@ -1,8 +1,5 @@
 {
     "/js/ArticleCreate.js": "/js/ArticleCreate.js",
-    "/js/ClientLetter.js": "/js/ClientLetter.js",
-    "/js/PaginateArticles.js": "/js/PaginateArticles.js",
-    "/js/Share.js": "/js/Share.js",
     "/js/WorkMessageHandler.js": "/js/WorkMessageHandler.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css"

@@ -65,6 +65,4 @@
     <h1 class="page-title">Нет статей для отображения</h1>
     <div class="separator-2"></div>
 @endif
-@push('paginate')
-    <script src="{{asset('js/PaginateArticles.js')}}"></script>
-@endpush
+

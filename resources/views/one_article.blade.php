@@ -54,6 +54,3 @@
         </footer>
     </article>
 @endif
-@push('share')
-    <script src="{{asset('js/Share.js')}}"></script>
-@endpush

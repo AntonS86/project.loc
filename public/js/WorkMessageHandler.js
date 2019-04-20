@@ -82,7 +82,7 @@
 /******/
 /******/ 	// Load entry module and return exports
     /******/
-    return __webpack_require__(__webpack_require__.s = 4);
+    return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -731,7 +731,7 @@ function () {
 
 /***/ }),
 
-    /***/ 4:
+    /***/ 1:
 /*!**************************************************************!*\
   !*** multi ./resources/js/WorkMessage/WorkMessageHandler.js ***!
   \**************************************************************/
