@@ -39,10 +39,7 @@ class ArticlesController extends SiteController
      */
     public function index(Request $request)
     {
-        $this->varOutput['articles'] = Article::preview()->fullContent()
-                                              ->published()
-                                              ->latest('published_at')
-                                              ->paginate(config('settings.pagination'));
+        $this->varOutput['articles'] = $this->articleRepository->getAllArticles();
         if ($request->ajax()) {
             $html = view('many_articles', $this->varOutput)->render();
             return response()->json(['success' => true, 'articles' => $html]);

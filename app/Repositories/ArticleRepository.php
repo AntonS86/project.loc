@@ -15,12 +15,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class ArticleRepository extends Repository
 {
 
-    /**
-     * путь к папке с изображениями статьи
-     *
-     * @var string
-     */
-    private $pathImages = 'images' . DIRECTORY_SEPARATOR . '/articles';
 
     /**
      * коллекция со статьями
@@ -142,6 +136,19 @@ class ArticleRepository extends Repository
                            ->latest('created_at')->paginate(config('settings.adminPagination'));
     }
 
+
+    /**
+     * Возвращает все статьи
+     * @return Article
+     */
+    public function getAllArticles(): LengthAwarePaginator
+    {
+        return $this->model->preview()->fullContent()
+                           ->published()
+                           ->latest('published_at')
+                           ->paginate(config('settings.pagination'));
+    }
+
     /**
      * for ajax
      *
@@ -157,6 +164,13 @@ class ArticleRepository extends Repository
                            ->latest('published_at')->take(10)->get();
     }
 
+    /**
+     * поиск статей
+     *
+     * @param string $query
+     *
+     * @return LengthAwarePaginator
+     */
     public function searchFullArticles(string $query): LengthAwarePaginator
     {
         return $this->model->preview()->search($query)->fullContent()
