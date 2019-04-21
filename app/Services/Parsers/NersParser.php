@@ -51,7 +51,7 @@ class NersParser implements ParserInterface
 
             $response = $this->client->get($data['link'], [
                 'headers' => $this->headers,
-                'delay'   => random_int(1000, 10000),
+                'delay'   => random_int(3000, 5000),
             ]);
             Log::info($data['link'] . '|' . $response->getStatusCode() . '|');
             if ($response->getStatusCode() !== 200) continue;
@@ -76,7 +76,7 @@ class NersParser implements ParserInterface
     {
         $response = $this->client->get(self::FEED_URL, [
             'headers' => $this->headers,
-            'delay'   => random_int(1000, 10000),
+            'delay'   => random_int(3000, 5000),
         ]);
         if ($response->getStatusCode() !== 200) return;
         $body = (string)$response->getBody();
