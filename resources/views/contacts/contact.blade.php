@@ -1,11 +1,7 @@
 @extends('layouts.site')
 
-@section('header_top')
-    @include('header_top')
-@endsection
-
-@section('menu')
-    @include('menu')
+@section('header')
+    @include('header')
 @endsection
 
 @section('page_content')

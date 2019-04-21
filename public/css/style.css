@@ -463,7 +463,7 @@ tbody {
 }
 
 .fullscreen-bg {
-  background: url("../images/fullscreen-bg.jpg") 50% 0px no-repeat;
+    background: url("../images/components/grid.jpg") 50% 0px no-repeat;
   position: fixed;
   top: 0;
   left: 0;
