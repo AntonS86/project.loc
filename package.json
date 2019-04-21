@@ -26,6 +26,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "grunt": "^1.0.4"
+        "grunt": "^1.0.4",
+        "pace-js": "^1.0.2"
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
 use App\Models\Category;
 use App\Http\Requests\ArticlesSearch;
 use App\Models\Keyword;
