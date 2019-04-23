@@ -402,7 +402,6 @@ img.mfp-img {
         position: fixed;
         box-sizing: border-box;
     }
-
     .mfp-img-mobile .mfp-bottom-bar:empty {
         padding: 0;
     }
@@ -446,7 +445,6 @@ img.mfp-img {
         padding-right: 6px;
     }
 }
-
 @charset "UTF-8";
 
 /*!
@@ -4053,7 +4051,6 @@ img.mfp-img {
         transition: none !important;
     }
 }
-
 /*!
 Animate.css - http://daneden.me/animate
 Licensed under the MIT license - http://opensource.org/licenses/MIT
@@ -4203,57 +4200,46 @@ Copyright (c) 2014 Daniel Eden
     -webkit-animation-delay: 0.5s;
     animation-delay: 0.5s;
 }
-
 .hc-animation-delay-750 {
     -webkit-animation-delay: 0.750s;
     animation-delay: 0.750s;
 }
-
 .hc-animation-delay-1000 {
     -webkit-animation-delay: 1s;
     animation-delay: 1s;
 }
-
 .hc-animation-delay-1250 {
     -webkit-animation-delay: 1.25s;
     animation-delay: 1.25s;
 }
-
 .hc-animation-delay-1500 {
     -webkit-animation-delay: 1.5s;
     animation-delay: 1.5s;
 }
-
 .hc-animation-delay-1750 {
     -webkit-animation-delay: 1.75s;
     animation-delay: 1.75s;
 }
-
 .hc-animation-delay-2000 {
     -webkit-animation-delay: 2s;
     animation-delay: 2s;
 }
-
 .hc-animation-delay-2250 {
     -webkit-animation-delay: 2.25s;
     animation-delay: 2.25s;
 }
-
 .hc-animation-delay-2500 {
     -webkit-animation-delay: 2.5s;
     animation-delay: 2.5s;
 }
-
 .hc-animation-delay-2750 {
     -webkit-animation-delay: 2.75s;
     animation-delay: 2.75s;
 }
-
 .hc-animation-delay-3000 {
     -webkit-animation-delay: 3s;
     animation-delay: 3s;
 }
-
 @charset "UTF-8";
 
 /*!
