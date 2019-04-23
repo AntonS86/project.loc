@@ -20,7 +20,7 @@
 
     <link rel="shortcut icon" href="{{asset('images/favicon.png')}}">
 
-
+    @include('components.analytics');
     @stack('slider-css')
 
     <link href="{{asset('plugins/slick/slick.css')}}" rel="stylesheet">
