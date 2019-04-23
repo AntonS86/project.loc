@@ -5,7 +5,7 @@
 
     <!-- banner start -->
     <!-- ================ -->
-    <div class="pv-40 dark-translucent-bg">
+    <div class="pv-40">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-auto">

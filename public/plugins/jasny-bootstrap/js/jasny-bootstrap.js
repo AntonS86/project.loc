@@ -161,7 +161,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Jasny Bootstrap\'s JavaScr
   }
   
   OffCanvas.prototype.getCanvasElements = function() {
-    // Return a set containing the canvas plus all fixed elements
+      // Return a set containing the canvas plus all fixed element
     var canvas = this.options.canvas ? $(this.options.canvas) : this.$element
     
     var fixed_elements = canvas.find('*').filter(function() {

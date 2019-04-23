@@ -1,4 +1,4 @@
-export let lazyImage = () => {
+let lazyImage = () => {
     document.querySelectorAll('img').forEach(img => {
         if (img.dataset.src) {
             if (isVisible(img)) {
@@ -17,3 +17,6 @@ let isVisible = (elem) => {
     let bottomVisible = coords.bottom < windowHeight && coords.bottom > 0;
     return topVisible || bottomVisible;
 };
+
+lazyImage();
+window.addEventListener('scroll', lazyImage);

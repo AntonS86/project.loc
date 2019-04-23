@@ -3,19 +3,30 @@
 namespace App\Http\Controllers\Admin;
 
 
-use App\Services\MenuService;
+use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 
-class IndexController extends AdminController
+class IndexController extends Controller
 {
-    public function __construct(MenuService $menuService)
+    /**
+     * @var string
+     */
+    protected $template;
+
+    /**
+     * IndexController constructor.
+     */
+    public function __construct()
     {
-        $this->menuService = $menuService;
-        $this->template    = 'admin.index';
+        $this->template = 'new_admin.index';
     }
 
 
-    public function index()
+    /**
+     * @return View
+     */
+    public function index(): View
     {
-        return $this->renderOutput();
+        return view($this->template);
     }
 }

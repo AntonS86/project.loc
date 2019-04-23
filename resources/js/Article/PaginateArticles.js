@@ -1,6 +1,6 @@
 import Notify from '../custom/Notify';
 
-export default class PaginateArticles {
+class PaginateArticles {
 
     constructor() {
         this._notify = new Notify();
@@ -49,4 +49,6 @@ export default class PaginateArticles {
     }
 }
 
+
+export default new PaginateArticles().paginate();
 

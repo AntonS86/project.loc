@@ -1499,7 +1499,7 @@ h5 + .separator {
   }
 }
 
-/*hide elements*/
+/*hide element*/
 .hidden-xs-up {
   display: none !important;
 }

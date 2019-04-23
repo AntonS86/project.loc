@@ -1378,7 +1378,7 @@
 
 
     $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
-      // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
+        // preventDefault only for <a> element (which change the URL) not inside the collapsible element
       if (event.currentTarget.tagName === 'A') {
         event.preventDefault();
       }
@@ -2666,7 +2666,7 @@
         var _this = this;
 
         if ($$$1(this.element).css('display') === 'none') {
-          throw new Error('Please use show on visible elements');
+            throw new Error('Please use show on visible element');
         }
 
         var showEvent = $$$1.Event(this.constructor.Event.SHOW);

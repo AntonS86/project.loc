@@ -68,7 +68,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], fu
     Route::delete('categories', 'Admin\CategoriesController@destroy')->name('categories.destroy');
 
     /*----------редактор внешнего вида, слайдеров, меню------------------*/
-    Route::get('elements', 'Admin\ElementsController@index')->name('elements.index');
+    Route::get('element', 'Admin\ElementsController@index')->name('element.index');
 
     /*-----------редактирование статей------------------*/
     Route::resource('articles', 'Admin\ArticlesController');

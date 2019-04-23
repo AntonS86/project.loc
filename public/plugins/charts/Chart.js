@@ -1700,7 +1700,7 @@ require(56)(Chart);
 require(57)(Chart);
 require(58)(Chart);
 
-// Controllers must be loaded after elements
+// Controllers must be loaded after element
 // See Chart.core.datasetController.dataElementType
 require(15)(Chart);
 require(16)(Chart);
@@ -4161,7 +4161,7 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Reset the elements of all datasets
+         * Reset the element of all datasets
 		 * @private
 		 */
 		resetElements: function() {
@@ -4222,7 +4222,7 @@ module.exports = function(Chart) {
 
 			me.updateDatasets();
 
-			// Need to reset tooltip in case it is displayed with elements that are removed
+            // Need to reset tooltip in case it is displayed with element that are removed
 			// after update.
 			me.tooltip.initialize();
 
@@ -4687,7 +4687,7 @@ module.exports = function(Chart) {
 				// If we have an update that was triggered, we need to do a normal render
 				me.render(bufferedRequest);
 			} else if (changed && !me.animating) {
-				// If entering, leaving, or changing elements, animate the change via pivot
+                // If entering, leaving, or changing element, animate the change via pivot
 				me.stop();
 
 				// We only need to render at this point. Updating will cause scales to be
@@ -5861,7 +5861,7 @@ function getRelativePosition(e, chart) {
 }
 
 /**
- * Helper function to traverse all of the visible elements in the chart
+ * Helper function to traverse all of the visible element in the chart
  * @param chart {chart} the chart
  * @param handler {Function} the callback to execute for each visible item
  */
@@ -5886,7 +5886,7 @@ function parseVisibleItems(chart, handler) {
 
 /**
  * Helper function to get the items that intersect the event position
- * @param items {ChartElement[]} elements to filter
+ * @param items {ChartElement[]} element to filter
  * @param position {Point} the point to be nearest to
  * @return {ChartElement[]} the nearest items
  */
@@ -5904,7 +5904,7 @@ function getIntersectItems(chart, position) {
 
 /**
  * Helper function to get the items nearest to the event position considering all visible items in teh chart
- * @param chart {Chart} the chart to look at elements from
+ * @param chart {Chart} the chart to look at element from
  * @param position {Point} the point to be nearest to
  * @param intersect {Boolean} if true, only consider items that intersect the position
  * @param distanceMetric {Function} function to provide the distance between points
@@ -6023,7 +6023,7 @@ module.exports = {
 		 * @param chart {chart} the chart we are returning items from
 		 * @param e {Event} the event we are find things at
 		 * @param options {IInteractionOptions} options to use during interaction
-		 * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
+         * @return {Chart.Element[]} Array of element that are under the point. If none are found, an empty array is returned
 		 */
 		index: indexMode,
 
@@ -6034,7 +6034,7 @@ module.exports = {
 		 * @param chart {chart} the chart we are returning items from
 		 * @param e {Event} the event we are find things at
 		 * @param options {IInteractionOptions} options to use during interaction
-		 * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
+         * @return {Chart.Element[]} Array of element that are under the point. If none are found, an empty array is returned
 		 */
 		dataset: function(chart, e, options) {
 			var position = getRelativePosition(e, chart);
@@ -6060,12 +6060,12 @@ module.exports = {
 		},
 
 		/**
-		 * Point mode returns all elements that hit test based on the event position
+         * Point mode returns all element that hit test based on the event position
 		 * of the event
 		 * @function Chart.Interaction.modes.intersect
 		 * @param chart {chart} the chart we are returning items from
 		 * @param e {Event} the event we are find things at
-		 * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
+         * @return {Chart.Element[]} Array of element that are under the point. If none are found, an empty array is returned
 		 */
 		point: function(chart, e) {
 			var position = getRelativePosition(e, chart);
@@ -6078,7 +6078,7 @@ module.exports = {
 		 * @param chart {chart} the chart we are returning items from
 		 * @param e {Event} the event we are find things at
 		 * @param options {IInteractionOptions} options to use
-		 * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
+         * @return {Chart.Element[]} Array of element that are under the point. If none are found, an empty array is returned
 		 */
 		nearest: function(chart, e, options) {
 			var position = getRelativePosition(e, chart);
@@ -6107,12 +6107,12 @@ module.exports = {
 		},
 
 		/**
-		 * x mode returns the elements that hit-test at the current x coordinate
+         * x mode returns the element that hit-test at the current x coordinate
 		 * @function Chart.Interaction.modes.x
 		 * @param chart {chart} the chart we are returning items from
 		 * @param e {Event} the event we are find things at
 		 * @param options {IInteractionOptions} options to use
-		 * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
+         * @return {Chart.Element[]} Array of element that are under the point. If none are found, an empty array is returned
 		 */
 		x: function(chart, e, options) {
 			var position = getRelativePosition(e, chart);
@@ -6138,12 +6138,12 @@ module.exports = {
 		},
 
 		/**
-		 * y mode returns the elements that hit-test at the current y coordinate
+         * y mode returns the element that hit-test at the current y coordinate
 		 * @function Chart.Interaction.modes.y
 		 * @param chart {chart} the chart we are returning items from
 		 * @param e {Event} the event we are find things at
 		 * @param options {IInteractionOptions} options to use
-		 * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
+         * @return {Chart.Element[]} Array of element that are under the point. If none are found, an empty array is returned
 		 */
 		y: function(chart, e, options) {
 			var position = getRelativePosition(e, chart);
@@ -8963,9 +8963,9 @@ module.exports = function(Chart) {
 	 */
 	Chart.Tooltip.positioners = {
 		/**
-		 * Average mode places the tooltip at the average position of the elements shown
+         * Average mode places the tooltip at the average position of the element shown
 		 * @function Chart.Tooltip.positioners.average
-		 * @param elements {ChartElement[]} the elements being displayed in the tooltip
+         * @param elements {ChartElement[]} the element being displayed in the tooltip
 		 * @returns {Point} tooltip position
 		 */
 		average: function(elements) {
@@ -8997,7 +8997,7 @@ module.exports = function(Chart) {
 		/**
 		 * Gets the tooltip position nearest of the item nearest to the event position
 		 * @function Chart.Tooltip.positioners.nearest
-		 * @param elements {Chart.Element[]} the tooltip elements
+         * @param elements {Chart.Element[]} the tooltip element
 		 * @param eventPosition {Point} the position of the event in canvas coordinates
 		 * @returns {Point} the tooltip position
 		 */
@@ -10578,7 +10578,7 @@ function initCanvas(canvas, config) {
 	};
 
 	// Force canvas to display as block to avoid extra space caused by inline
-	// elements, which would interfere with the responsive resize process.
+    // element, which would interfere with the responsive resize process.
 	// https://github.com/chartjs/Chart.js/issues/2538
 	style.display = style.display || 'block';
 

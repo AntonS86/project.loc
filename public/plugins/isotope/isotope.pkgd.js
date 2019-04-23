@@ -267,7 +267,7 @@ return EvEmitter;
 
 /*!
  * getSize v2.0.2
- * measure size of elements
+ * measure size of element
  * MIT license
  */
 
@@ -1480,7 +1480,7 @@ Outlayer.compatOptions = {
 proto._create = function() {
   // get items from children
   this.reloadItems();
-  // elements that affect layout, but are not laid out
+    // element that affect layout, but are not laid out
   this.stamps = [];
   this.stamp( this.options.stamp );
   // set container style
@@ -1495,13 +1495,13 @@ proto._create = function() {
 
 // goes through all children again and gets bricks in proper order
 proto.reloadItems = function() {
-  // collection of item elements
+    // collection of item element
   this.items = this._itemize( this.element.children );
 };
 
 
 /**
- * turn elements into Outlayer.Items to be used in layout
+ * turn element into Outlayer.Items to be used in layout
  * @param {Array or NodeList or HTMLElement} elems
  * @returns {Array} items - collection of new Outlayer Items
  */
@@ -1522,17 +1522,17 @@ proto._itemize = function( elems ) {
 };
 
 /**
- * get item elements to be used in layout
+ * get item element to be used in layout
  * @param {Array or NodeList or HTMLElement} elems
- * @returns {Array} items - item elements
+ * @returns {Array} items - item element
  */
 proto._filterFindItemElements = function( elems ) {
   return utils.filterFindElements( elems, this.options.itemSelector );
 };
 
 /**
- * getter method for getting item elements
- * @returns {Array} elems - collection of item elements
+ * getter method for getting item element
+ * @returns {Array} elems - collection of item element
  */
 proto.getItemElements = function() {
   return this.items.map( function( item ) {
@@ -1603,7 +1603,7 @@ proto._getMeasurement = function( measurement, size ) {
 };
 
 /**
- * layout a collection of item elements
+ * layout a collection of item element
  * @api public
  */
 proto.layoutItems = function( items, isInstant ) {
@@ -1840,7 +1840,7 @@ proto.unignore = function( elem ) {
 };
 
 /**
- * adds elements to stamps
+ * adds element to stamps
  * @param {NodeList, Array, Element, or String} elems
  */
 proto.stamp = function( elems ) {
@@ -1855,7 +1855,7 @@ proto.stamp = function( elems ) {
 };
 
 /**
- * removes elements to stamps
+ * removes element to stamps
  * @param {NodeList, Array, or Element} elems
  */
 proto.unstamp = function( elems ) {
@@ -1865,14 +1865,14 @@ proto.unstamp = function( elems ) {
   }
 
   elems.forEach( function( elem ) {
-    // filter out removed stamp elements
+      // filter out removed stamp element
     utils.removeFrom( this.stamps, elem );
     this.unignore( elem );
   }, this );
 };
 
 /**
- * finds child elements
+ * finds child element
  * @param {NodeList, Array, Element, or String} elems
  * @returns {Array} elems
  */
@@ -2001,7 +2001,7 @@ proto.addItems = function( elems ) {
 };
 
 /**
- * Layout newly-appended item elements
+ * Layout newly-appended item element
  * @param {Array or NodeList or Element} elems
  */
 proto.appended = function( elems ) {
@@ -2015,7 +2015,7 @@ proto.appended = function( elems ) {
 };
 
 /**
- * Layout prepended elements
+ * Layout prepended element
  * @param {Array or NodeList or Element} elems
  */
 proto.prepended = function( elems ) {
@@ -2069,7 +2069,7 @@ proto.hide = function( items ) {
 };
 
 /**
- * reveal item elements
+ * reveal item element
  * @param {Array}, {Element}, {NodeList} items
  */
 proto.revealItemElements = function( elems ) {
@@ -2078,7 +2078,7 @@ proto.revealItemElements = function( elems ) {
 };
 
 /**
- * hide item elements
+ * hide item element
  * @param {Array}, {Element}, {NodeList} items
  */
 proto.hideItemElements = function( elems ) {
@@ -3465,7 +3465,7 @@ var trim = String.prototype.trim ?
   };
 
   /**
-   * Filter, sort, and layout newly-appended item elements
+   * Filter, sort, and layout newly-appended item element
    * @param {Array or NodeList or Element} elems
    */
   proto.insert = function( elems ) {
@@ -3473,7 +3473,7 @@ var trim = String.prototype.trim ?
     if ( !items.length ) {
       return;
     }
-    // append item elements
+      // append item element
     var i, item;
     var len = items.length;
     for ( i=0; i < len; i++ ) {
@@ -3544,8 +3544,8 @@ var trim = String.prototype.trim ?
   // ----- helper methods ----- //
 
   /**
-   * getter method for getting filtered item elements
-   * @returns {Array} elems - collection of item elements
+   * getter method for getting filtered item element
+   * @returns {Array} elems - collection of item element
    */
   proto.getFilteredItemElements = function() {
     return this.filteredItems.map( function( item ) {

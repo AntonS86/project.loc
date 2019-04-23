@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -37,14 +36,12 @@ require('./bootstrap');
 require('bootstrap');*/
 
 require('bootstrap-notify');
-
-
+require('./custom/lazyimages');
+require('./Article/PaginateArticles');
 import ArticlesSearch from "./Article/ArticlesSearch";
+
 (new ArticlesSearch).search();
 
-import {lazyImage} from "./custom/lazyimages";
-lazyImage();
-window.addEventListener('scroll', lazyImage);
 
 import clientLetter from "./custom/ClientLetter";
 
@@ -52,7 +49,5 @@ import Share from './custom/Share';
 
 new Share().share();
 
-import PaginateArticles from "./Article/PaginateArticles";
 
-new PaginateArticles().paginate();
 

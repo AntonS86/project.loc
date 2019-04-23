@@ -1377,7 +1377,7 @@
 
 
     $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
-      // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
+        // preventDefault only for <a> element (which change the URL) not inside the collapsible element
       if (event.currentTarget.tagName === 'A') {
         event.preventDefault();
       }
@@ -1411,7 +1411,7 @@
   }($);
 
   /**!
-   * @fileOverview Kickass library to create and place poppers near their reference elements.
+   * @fileOverview Kickass library to create and place poppers near their reference element.
    * @version 1.14.3
    * @license
    * Copyright (c) 2016 Federico Zivolo and contributors
@@ -1598,7 +1598,7 @@
 
     // NOTE: 1 DOM access here
     var offsetParent = element.offsetParent;
-    // Skip hidden elements which don't have an offsetParent
+      // Skip hidden element which don't have an offsetParent
     while (offsetParent === noOffsetParent && element.nextElementSibling) {
       offsetParent = (element = element.nextElementSibling).offsetParent;
     }
@@ -1651,7 +1651,7 @@
    * @returns {Element} common offset parent
    */
   function findCommonOffsetParent(element1, element2) {
-    // This check is needed to avoid errors in case one of the elements isn't defined for any reason
+      // This check is needed to avoid errors in case one of the element isn't defined for any reason
     if (!element1 || !element1.nodeType || !element2 || !element2.nodeType) {
       return document.documentElement;
     }
@@ -1991,7 +1991,7 @@
    */
 
   function getFixedPositionOffsetParent(element) {
-    // This check is needed to avoid errors in case one of the elements isn't defined for any reason
+      // This check is needed to avoid errors in case one of the element isn't defined for any reason
     if (!element || !element.parentElement || isIE()) {
       return document.documentElement;
     }
@@ -2051,7 +2051,7 @@
         boundaries.left += offsets.left - offsets.marginLeft;
         boundaries.right = width + offsets.left;
       } else {
-        // for all the other DOM elements, this one is good
+          // for all the other DOM element, this one is good
         boundaries = offsets;
       }
     }
@@ -3689,7 +3689,7 @@
    * @property {Object} data.styles Any CSS property defined here will be applied to the popper, it expects the JavaScript nomenclature (eg. `marginBottom`)
    * @property {Object} data.arrowStyles Any CSS property defined here will be applied to the popper arrow, it expects the JavaScript nomenclature (eg. `marginBottom`)
    * @property {Object} data.boundaries Offsets of the popper boundaries
-   * @property {Object} data.offsets The measurements of popper, reference and arrow elements.
+   * @property {Object} data.offsets The measurements of popper, reference and arrow element.
    * @property {Object} data.offsets.popper `top`, `left`, `width`, `height` values
    * @property {Object} data.offsets.reference `top`, `left`, `width`, `height` values
    * @property {Object} data.offsets.arrow] `top` and `left` offsets, only one of them will be different from 0
@@ -3807,7 +3807,7 @@
         scrollParents: []
       };
 
-      // get reference and popper elements (allow jQuery wrappers)
+        // get reference and popper element (allow jQuery wrappers)
       this.reference = reference && reference.jquery ? reference[0] : reference;
       this.popper = popper && popper.jquery ? popper[0] : popper;
 
@@ -5183,7 +5183,7 @@
         var _this = this;
 
         if ($$$1(this.element).css('display') === 'none') {
-          throw new Error('Please use show on visible elements');
+            throw new Error('Please use show on visible element');
         }
 
         var showEvent = $$$1.Event(this.constructor.Event.SHOW);

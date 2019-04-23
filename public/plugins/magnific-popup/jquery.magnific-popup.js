@@ -431,7 +431,7 @@ MagnificPopup.prototype = {
 		_document.off('keyup' + EVENT_NS + ' focusin' + EVENT_NS);
 		mfp.ev.off(EVENT_NS);
 
-		// clean up DOM elements that aren't removed
+        // clean up DOM element that aren't removed
 		mfp.wrap.attr('class', 'mfp-wrap').removeAttr('style');
 		mfp.bgOverlay.attr('class', 'mfp-bg');
 		mfp.container.attr('class', 'mfp-container');
@@ -1209,7 +1209,7 @@ $.magnificPopup.registerModule('image', {
 		},
 
 		/**
-		 * Function that loops until the image has size to display elements that rely on it asap
+         * Function that loops until the image has size to display element that rely on it asap
 		 */
 		findImageSize: function(item) {
 

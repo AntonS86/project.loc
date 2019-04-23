@@ -518,7 +518,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	
 	    /**
-	     * If using input elements, bind focus in order to
+         * If using input element, bind focus in order to
 	     * start and stop the animation
 	     * @private
 	     */

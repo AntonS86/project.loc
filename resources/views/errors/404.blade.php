@@ -1,12 +1,9 @@
 @extends('layouts.site')
 
-@section('header_top')
-    @include('header_top')
+@section('header')
+    @include('header')
 @endsection
 
-@section('menu')
-    @include('menu')
-@endsection
 
 @section('page_content')
 <section class="main-container light-gray-bg text-center margin-clear">
