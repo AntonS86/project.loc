@@ -16,6 +16,7 @@ export default class ImageWorkMessage {
      *
      */
     send() {
+        if (!this._inputFile) return false;
         this._imageDelete();
         this._inputEvent();
     }

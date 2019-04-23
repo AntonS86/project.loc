@@ -17,6 +17,8 @@ class WorkMessageHandler {
      *
      */
     send() {
+        if (!this._form) return false;
+
         this._form.addEventListener('submit', (e) => {
             e.preventDefault();
             let data = this._inputValue();
@@ -104,3 +106,4 @@ class WorkMessageHandler {
 new WorkMessageHandler().send();
 
 new ImageWorkMessage('#images-uploader').send();
+

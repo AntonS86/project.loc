@@ -69,6 +69,4 @@
 <!-- Custom Scripts -->
 <script src="{{asset('js/custom.js')}}"></script>
 
-{{--@stack('workMessage')--}}
-
 </html>

@@ -6690,8 +6690,8 @@ var isWindow = function isWindow( obj ) {
 
 
 	var preservedScriptAttributes = {
-		type    : true,
-		src     : true,
+        type    : true,
+        src     : true,
         nonce   : true,
 		noModule: true
 	};
@@ -6700,7 +6700,7 @@ var isWindow = function isWindow( obj ) {
 		doc = doc || document;
 
         var i, val,
-            script = doc.createElement( "script" );
+            script = doc.createElement("script");
 
 		script.text = code;
 		if ( node ) {
@@ -6746,7 +6746,7 @@ var
     version = "3.4.0",
 
     // Define a local copy of jQuery
-    jQuery  = function( selector, context ) {
+    jQuery  = function (selector, context) {
 
 		// The jQuery object is actually just the init constructor 'enhanced'
 		// Need init if jQuery is called (just allow error to be thrown if not included)
@@ -7154,7 +7154,7 @@ var i,
     tokenCache             = createCache(),
     compilerCache          = createCache(),
     nonnativeSelectorCache = createCache(),
-    sortOrder              = function( a, b ) {
+    sortOrder              = function (a, b) {
 		if ( a === b ) {
 			hasDuplicate = true;
 		}
@@ -7170,7 +7170,7 @@ var i,
     slice                  = arr.slice,
     // Use a stripped-down indexOf as it's faster than native
     // https://jsperf.com/thor-indexof-vs-for/5
-    indexOf                = function( list, elem ) {
+    indexOf                = function (list, elem) {
 		var i = 0,
 			len = list.length;
 		for ( ; i < len; i++ ) {
@@ -7181,18 +7181,18 @@ var i,
 		return -1;
 	},
 
-    booleans = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",
+    booleans               = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",
 
     // Regular expressions
 
     // http://www.w3.org/TR/css3-selectors/#whitespace
-    whitespace = "[\\x20\\t\\r\\n\\f]",
+    whitespace             = "[\\x20\\t\\r\\n\\f]",
 
     // http://www.w3.org/TR/CSS21/syndata.html#value-def-identifier
-    identifier = "(?:\\\\.|[\\w-]|[^\0-\\xa0])+",
+    identifier             = "(?:\\\\.|[\\w-]|[^\0-\\xa0])+",
 
     // Attribute selectors: http://www.w3.org/TR/selectors/#attribute-selectors
-    attributes = "\\[" + whitespace + "*(" + identifier + ")(?:" + whitespace +
+    attributes             = "\\[" + whitespace + "*(" + identifier + ")(?:" + whitespace +
 		// Operator (capture 2)
 		"*([*^$|!~]?=)" + whitespace +
 		// "Attribute values must be CSS identifiers [capture 5] or strings [capture 3 or capture 4]"
@@ -7210,15 +7210,15 @@ var i,
 		")\\)|)",
 
     // Leading and non-escaped trailing whitespace, capturing some non-whitespace characters preceding the latter
-    rwhitespace            = new RegExp( whitespace + "+", "g" ),
-    rtrim                  = new RegExp( "^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace + "+$", "g" ),
+    rwhitespace            = new RegExp(whitespace + "+", "g"),
+    rtrim                  = new RegExp("^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace + "+$", "g"),
 
-    rcomma                 = new RegExp( "^" + whitespace + "*," + whitespace + "*" ),
-    rcombinators           = new RegExp( "^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace + "*" ),
+    rcomma                 = new RegExp("^" + whitespace + "*," + whitespace + "*"),
+    rcombinators           = new RegExp("^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace + "*"),
     rdescend               = new RegExp(whitespace + "|>"),
 
-    rpseudo                = new RegExp( pseudos ),
-    ridentifier            = new RegExp( "^" + identifier + "$" ),
+    rpseudo                = new RegExp(pseudos),
+    ridentifier            = new RegExp("^" + identifier + "$"),
 
     matchExpr              = {
 		"ID": new RegExp( "^#(" + identifier + ")" ),
@@ -7249,8 +7249,8 @@ var i,
 
     // CSS escapes
     // http://www.w3.org/TR/CSS21/syndata.html#escaped-characters
-    runescape              = new RegExp( "\\\\([\\da-f]{1,6}" + whitespace + "?|(" + whitespace + ")|.)", "ig" ),
-    funescape              = function( _, escaped, escapedWhitespace ) {
+    runescape              = new RegExp("\\\\([\\da-f]{1,6}" + whitespace + "?|(" + whitespace + ")|.)", "ig"),
+    funescape              = function (_, escaped, escapedWhitespace) {
 		var high = "0x" + escaped - 0x10000;
 		// NaN means non-codepoint
 		// Support: Firefox<24
@@ -7266,8 +7266,8 @@ var i,
 
     // CSS string/identifier serialization
     // https://drafts.csswg.org/cssom/#common-serializing-idioms
-    rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g,
-    fcssescape             = function( ch, asCodePoint ) {
+    rcssescape             = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g,
+    fcssescape             = function (ch, asCodePoint) {
 		if ( asCodePoint ) {
 
 			// U+0000 NULL becomes U+FFFD REPLACEMENT CHARACTER
@@ -7287,7 +7287,7 @@ var i,
     // See setDocument()
     // Removing the function wrapper causes a "Permission Denied"
     // error in IE
-    unloadHandler          = function() {
+    unloadHandler          = function () {
 		setDocument();
 	},
 
@@ -11158,7 +11158,7 @@ function adjustCSS( elem, prop, valueParts, tween ) {
 				return jQuery.css( elem, prop, "" );
 			},
         initial       = currentValue(),
-        unit          = valueParts && valueParts[ 3 ] || ( jQuery.cssNumber[ prop ] ? "" : "px" ),
+        unit          = valueParts && valueParts[3] || (jQuery.cssNumber[prop] ? "" : "px"),
 
         // Starting value computation is required for potential unit mismatches
         initialInUnit = elem.nodeType &&
@@ -11383,9 +11383,9 @@ var rhtml = /<|&#?\w+;/;
 function buildFragment( elems, context, scripts, selection, ignored ) {
     var elem, tmp, tag, wrap, attached, j,
         fragment = context.createDocumentFragment(),
-        nodes = [],
-        i = 0,
-        l = elems.length;
+        nodes    = [],
+        i        = 0,
+        l        = elems.length;
 
 	for ( ; i < l; i++ ) {
 		elem = elems[ i ];
@@ -12188,36 +12188,36 @@ jQuery.Event.prototype = {
 
 // Includes all common event props including KeyEvent and MouseEvent specific props
 jQuery.each( {
-	altKey        : true,
-	bubbles       : true,
-	cancelable    : true,
+    altKey        : true,
+    bubbles       : true,
+    cancelable    : true,
 	changedTouches: true,
-	ctrlKey       : true,
-	detail        : true,
-	eventPhase    : true,
-	metaKey       : true,
-	pageX         : true,
-	pageY         : true,
-	shiftKey      : true,
-	view          : true,
-	"char"        : true,
+    ctrlKey       : true,
+    detail        : true,
+    eventPhase    : true,
+    metaKey       : true,
+    pageX         : true,
+    pageY         : true,
+    shiftKey      : true,
+    view          : true,
+    "char"        : true,
     code          : true,
-	charCode      : true,
-	key           : true,
-	keyCode       : true,
-	button        : true,
-	buttons       : true,
-	clientX       : true,
-	clientY       : true,
-	offsetX       : true,
-	offsetY       : true,
-	pointerId     : true,
-	pointerType   : true,
-	screenX       : true,
-	screenY       : true,
-	targetTouches : true,
-	toElement     : true,
-	touches       : true,
+    charCode      : true,
+    key           : true,
+    keyCode       : true,
+    button        : true,
+    buttons       : true,
+    clientX       : true,
+    clientY       : true,
+    offsetX       : true,
+    offsetY       : true,
+    pointerId     : true,
+    pointerType   : true,
+    screenX       : true,
+    screenY       : true,
+    targetTouches : true,
+    toElement     : true,
+    touches       : true,
 
 	which: function( event ) {
 		var button = event.button;
@@ -12570,7 +12570,7 @@ jQuery.extend( {
 
 	clone: function( elem, dataAndEvents, deepDataAndEvents ) {
 		var i, l, srcElements, destElements,
-            clone  = elem.cloneNode( true ),
+            clone  = elem.cloneNode(true),
             inPage = isAttached(elem);
 
 		// Fix IE cloning issues
@@ -13126,7 +13126,7 @@ function boxModelAdjustment( elem, dimension, box, isBorderBox, styles, computed
 function getWidthOrHeight( elem, dimension, extra ) {
 
 	// Start with computed style
-	var styles           = getStyles( elem ),
+    var styles           = getStyles(elem),
 
         // To avoid forcing a reflow, only fetch boxSizing if we need it (gh-4322).
         // Fake content-box until we know it's needed to know the true value.
@@ -13135,7 +13135,7 @@ function getWidthOrHeight( elem, dimension, extra ) {
             jQuery.css(elem, "boxSizing", false, styles) === "border-box",
         valueIsBorderBox = isBorderBox,
 
-        val              = curCSS( elem, dimension, styles ),
+        val              = curCSS(elem, dimension, styles),
         offsetProp       = "offset" + dimension[0].toUpperCase() + dimension.slice(1);
 
 	// Support: Firefox <=54
@@ -13210,11 +13210,11 @@ jQuery.extend( {
 	// Don't automatically add "px" to these possibly-unitless properties
 	cssNumber: {
 		"animationIterationCount": true,
-		"columnCount"            : true,
-		"fillOpacity"            : true,
-		"flexGrow"               : true,
-		"flexShrink"             : true,
-		"fontWeight"             : true,
+        "columnCount"            : true,
+        "fillOpacity"            : true,
+        "flexGrow"               : true,
+        "flexShrink"             : true,
+        "fontWeight"             : true,
         "gridArea"               : true,
         "gridColumn"             : true,
         "gridColumnEnd"          : true,
@@ -13222,13 +13222,13 @@ jQuery.extend( {
         "gridRow"                : true,
         "gridRowEnd"             : true,
         "gridRowStart"           : true,
-		"lineHeight"             : true,
-		"opacity"                : true,
-		"order"                  : true,
-		"orphans"                : true,
-		"widows"                 : true,
-		"zIndex"                 : true,
-		"zoom"                   : true
+        "lineHeight"             : true,
+        "opacity"                : true,
+        "order"                  : true,
+        "orphans"                : true,
+        "widows"                 : true,
+        "zIndex"                 : true,
+        "zoom"                   : true
 	},
 
 	// Add in properties whose names you wish to fix before
@@ -13378,7 +13378,7 @@ jQuery.each( [ "height", "width" ], function( i, dimension ) {
 
 		set: function( elem, value, extra ) {
 			var matches,
-				styles = getStyles( elem ),
+                styles = getStyles( elem ),
 
                 // Only read styles.position if the test has a chance to fail
                 // to avoid forcing a reflow.
@@ -20358,6 +20358,8 @@ function () {
                     _createClass(ImageWorkMessage, [{
                         key  : "send",
                         value: function send() {
+                            if (!this._inputFile) return false;
+
                             this._imageDelete();
 
                             this._inputEvent();
@@ -20594,6 +20596,8 @@ __webpack_require__.r(__webpack_exports__);
                         key  : "send",
                         value: function send() {
                             var _this = this;
+
+                            if (!this._form) return false;
 
                             this._form.addEventListener('submit', function (e) {
                                 e.preventDefault();
