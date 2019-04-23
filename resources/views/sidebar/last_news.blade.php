@@ -1,5 +1,5 @@
 @if (isset($lastArticles) && !$lastArticles->isEmpty())
-    <div class="block clearfix">
+    <div id="last-articles" class="block clearfix">
         <h3 class="title">{{title_case(trans('text.last_news'))}}</h3>
         <div class="separator-2"></div>
         @foreach($lastArticles as $lastArticle)
@@ -11,7 +11,7 @@
                             <img class="media-object" data-src="{{$lastArticle->images[0]->asset_path}}"
                                  alt="{{$lastArticle->title}}" title="{{$lastArticle->title}}">
                             <a href="{{route('articles.show', ['alias' => $lastArticle->alias])}}"
-                               class="overlay-link small"><i class="fa fa-link"></i></a>
+                               class="overlay-link small"></a>
                         </div>
                     </div>
                 @endif

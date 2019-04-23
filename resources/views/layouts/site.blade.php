@@ -20,25 +20,14 @@
 
     <link rel="shortcut icon" href="{{asset('images/favicon.png')}}">
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
-
-    <link href="{{asset('fonts/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
-    <link href="{{asset('css/app.css')}}" rel="stylesheet">
-
-    <link href="{{asset('plugins/magnific-popup/magnific-popup.css')}}" rel="stylesheet">
 
     @stack('slider-css')
-    <link href="{{asset('css/animations.css')}}" rel="stylesheet">
+
     <link href="{{asset('plugins/slick/slick.css')}}" rel="stylesheet">
 
-    <link href="{{asset('css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('css/app.css')}}" rel="stylesheet">
     <link href="{{asset('css/typography-scheme-3.css')}}" rel="stylesheet">
-    <link href="{{asset('css/skins/light_blue.css')}}" rel="stylesheet">
-    <link href="{{asset('css/custom.css')}}" rel="stylesheet">
+    <link href="{{asset('css/light_blue.css')}}" rel="stylesheet">
 </head>
 
 <body class="page-loader-3">
@@ -80,6 +69,6 @@
 <!-- Custom Scripts -->
 <script src="{{asset('js/custom.js')}}"></script>
 
-@stack('workMessage')
+{{--@stack('workMessage')--}}
 
 </html>

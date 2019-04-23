@@ -1,4 +1,4 @@
-export default class ArticlesSearch {
+class ArticlesSearch {
 
     constructor() {
         this._querystring = '';
@@ -77,9 +77,10 @@ export default class ArticlesSearch {
         let a = document.createElement('a');
         a.href = link;
         a.innerHTML = title;
-        a.classList.add('text-dark');
         li.appendChild(a);
         li.classList.add('py-1');
         this._searchList.appendChild(li);
     }
 }
+
+(new ArticlesSearch).search();

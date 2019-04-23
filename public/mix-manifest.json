@@ -1,8 +1,8 @@
 {
-    "/js/ArticleCreate.js": "/js/ArticleCreate.js",
-    "/js/WorkMessageHandler.js": "/js/WorkMessageHandler.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/css/typography-scheme-3.css": "/css/typography-scheme-3.css",
+    "/css/light_blue.css": "/css/light_blue.css",
     "/css/app_admin.css": "/css/app_admin.css",
     "/js/app_admin.js": "/js/app_admin.js"
 }

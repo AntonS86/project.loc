@@ -38,16 +38,14 @@ require('bootstrap');*/
 require('bootstrap-notify');
 require('./custom/lazyimages');
 require('./Article/PaginateArticles');
-import ArticlesSearch from "./Article/ArticlesSearch";
+require('./Article/ArticlesSearch');
+require('./custom/Share');
+require('./custom/ClientLetter');
+require('./WorkMessage/WorkMessageHandler');
 
-(new ArticlesSearch).search();
 
 
-import clientLetter from "./custom/ClientLetter";
 
-import Share from './custom/Share';
-
-new Share().share();
 
 
 

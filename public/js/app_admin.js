@@ -3848,7 +3848,7 @@
 
 
             $(document).on(Event$3.CLICK_DATA_API, Selector$3.DATA_TOGGLE, function (event) {
-                // preventDefault only for <a> element (which change the URL) not inside the collapsible element
+                // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
                 if (event.currentTarget.tagName === 'A') {
                     event.preventDefault();
                 }
@@ -5303,7 +5303,7 @@
                             var _this = this;
 
                             if ($(this.element).css('display') === 'none') {
-                                throw new Error('Please use show on visible element');
+                                throw new Error('Please use show on visible elements');
                             }
 
                             var showEvent = $.Event(this.constructor.Event.SHOW);
@@ -8826,7 +8826,7 @@
                     lastTop   = null,
                     rows      = [];
 
-                // group element by their top position
+                // group elements by their top position
                 $elements.each(function () {
                     var $that   = $(this),
                         top     = $that.offset().top - _parse($that.css('margin-top')),
@@ -8890,10 +8890,10 @@
                 if (opts.remove) {
                     var that = this;
 
-                    // remove fixed height from all selected element
+                    // remove fixed height from all selected elements
                     this.css(opts.property, '');
 
-                    // remove selected element from all groups
+                    // remove selected elements from all groups
                     $.each(matchHeight._groups, function (key, group) {
                         group.elements = group.elements.not(that);
                     });
@@ -8935,7 +8935,7 @@
 
             /*
     *  matchHeight._apply
-    *  apply matchHeight to given element
+    *  apply matchHeight to given elements
     */
 
             matchHeight._apply = function (elements, options) {
@@ -8962,7 +8962,7 @@
                 // get rows if using byRow, otherwise assume one row
                 if (opts.byRow && !opts.target) {
 
-                    // must first force an arbitrary equal height so floating element break evenly
+                    // must first force an arbitrary equal height so floating elements break evenly
                     $elements.each(function () {
                         var $that   = $(this),
                             display = $that.css('display');
@@ -9042,7 +9042,7 @@
                         targetHeight = opts.target.outerHeight(false);
                     }
 
-                    // iterate the row and apply the height to all element
+                    // iterate the row and apply the height to all elements
                     $row.each(function () {
                         var $that           = $(this),
                             verticalPadding = 0;
@@ -9079,13 +9079,13 @@
 
             /*
     *  matchHeight._applyDataApi
-    *  applies matchHeight to all element with a data-match-height attribute
+    *  applies matchHeight to all elements with a data-match-height attribute
     */
 
             matchHeight._applyDataApi = function () {
                 var groups = {};
 
-                // generate groups by their groupId set by element using data-match-height
+                // generate groups by their groupId set by elements using data-match-height
                 $('[data-match-height], [data-mh]').each(function () {
                     var $this   = $(this),
                         groupId = $this.attr('data-mh') || $this.attr('data-match-height');
@@ -9254,7 +9254,7 @@
             var isFunction = function isFunction(obj) {
 
                 // Support: Chrome <=57, Firefox <=52
-                // In some browsers, typeof returns "function" for HTML <object> element
+                // In some browsers, typeof returns "function" for HTML <object> elements
                 // (i.e., `typeof document.createElement( "object" ) === "function"`).
                 // We don't want to classify *any* DOM node as a function.
                 return typeof obj === "function" && typeof obj.nodeType !== "number";
@@ -9339,7 +9339,7 @@
                 // Get the whole matched element set as a clean array
                 get: function (num) {
 
-                    // Return all the element in a clean array
+                    // Return all the elements in a clean array
                     if (num == null) {
                         return slice.call(this);
                     }
@@ -9348,7 +9348,7 @@
                     return num < 0 ? this[num + this.length] : this[num];
                 },
 
-                // Take an array of element and push it onto the stack
+                // Take an array of elements and push it onto the stack
                 // (returning the new matched element set)
                 pushStack: function (elems) {
 
@@ -9933,7 +9933,7 @@
 
                                                     // Support: IE, Opera, Webkit
                                                     // TODO: identify versions
-                                                    // getElementById can match element by name instead of ID
+                                                    // getElementById can match elements by name instead of ID
                                                     if (elem.id === m) {
                                                         results.push(elem);
                                                         return results;
@@ -9947,7 +9947,7 @@
 
                                                 // Support: IE, Opera, Webkit
                                                 // TODO: identify versions
-                                                // getElementById can match element by name instead of ID
+                                                // getElementById can match elements by name instead of ID
                                                 if (newContext && (elem = newContext.getElementById(m)) &&
                                                     contains(context, elem) &&
                                                     elem.id === m) {
@@ -9983,7 +9983,7 @@
                                             // qSA looks outside Element context, which is not what we want
                                             // Thanks to Andrew Dupont for this workaround technique
                                             // Support: IE <=8
-                                            // Exclude object element
+                                            // Exclude object elements
                                         } else if (context.nodeName.toLowerCase() !== "object") {
 
                                             // Capture the context ID, setting it first if necessary
@@ -10151,21 +10151,21 @@
                             // Known :disabled false positives: fieldset[disabled] > legend:nth-of-type(n+2) :can-disable
                             return function (elem) {
 
-                                // Only certain element can match :enabled or :disabled
+                                // Only certain elements can match :enabled or :disabled
                                 // https://html.spec.whatwg.org/multipage/scripting.html#selector-enabled
                                 // https://html.spec.whatwg.org/multipage/scripting.html#selector-disabled
                                 if ("form" in elem) {
 
-                                    // Check for inherited disabledness on relevant non-disabled element:
-                                    // * listed form-associated element in a disabled fieldset
+                                    // Check for inherited disabledness on relevant non-disabled elements:
+                                    // * listed form-associated elements in a disabled fieldset
                                     //   https://html.spec.whatwg.org/multipage/forms.html#category-listed
                                     //   https://html.spec.whatwg.org/multipage/forms.html#concept-fe-disabled
-                                    // * option element in a disabled optgroup
+                                    // * option elements in a disabled optgroup
                                     //   https://html.spec.whatwg.org/multipage/forms.html#concept-option-disabled
-                                    // All such element have a "form" property.
+                                    // All such elements have a "form" property.
                                     if (elem.parentNode && elem.disabled === false) {
 
-                                        // Option element defer to a parent optgroup if present
+                                        // Option elements defer to a parent optgroup if present
                                         if ("label" in elem) {
                                             if ("label" in elem.parentNode) {
                                                 return elem.parentNode.disabled === disabled;
@@ -10186,14 +10186,14 @@
 
                                     return elem.disabled === disabled;
 
-                                    // Try to winnow out element that can't be disabled before trusting the disabled property.
+                                    // Try to winnow out elements that can't be disabled before trusting the disabled property.
                                     // Some victims get caught in our net (label, legend, menu, track), but it shouldn't
                                     // even exist on them, let alone have a boolean value.
                                 } else if ("label" in elem) {
                                     return elem.disabled === disabled;
                                 }
 
-                                // Remaining element are neither :enabled nor :disabled
+                                // Remaining elements are neither :enabled nor :disabled
                                 return false;
                             };
                         }
@@ -10210,7 +10210,7 @@
                                         matchIndexes = fn([], seed.length, argument),
                                         i            = matchIndexes.length;
 
-                                    // Match element found at the specified indexes
+                                    // Match elements found at the specified indexes
                                     while (i--) {
                                         if (seed[(j = matchIndexes[i])]) {
                                             seed[j] = !(matches[j] = seed[j]);
@@ -10292,7 +10292,7 @@
                             /* getElement(s)By*
 	---------------------------------------------------------------------- */
 
-                            // Check if getElementsByTagName("*") returns only element
+                            // Check if getElementsByTagName("*") returns only elements
                             support.getElementsByTagName = assert(function (el) {
                                 el.appendChild(document.createComment(""));
                                 return !el.getElementsByTagName("*").length;
@@ -10302,7 +10302,7 @@
                             support.getElementsByClassName = rnative.test(document.getElementsByClassName);
 
                             // Support: IE<10
-                            // Check if getElementById returns element by name
+                            // Check if getElementById returns elements by name
                             // The broken getElementById methods don't pick up programmatically-set names,
                             // so use a roundabout getElementsByName test
                             support.getById = assert(function (el) {
@@ -10451,7 +10451,7 @@
                                         rbuggyQSA.push("~=");
                                     }
 
-                                    // Webkit/Opera - :checked should return selected option element
+                                    // Webkit/Opera - :checked should return selected option elements
                                     // http://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
                                     // IE8 throws error here and will not see later tests
                                     if (!el.querySelectorAll(":checked").length) {
@@ -10482,7 +10482,7 @@
                                         rbuggyQSA.push("name" + whitespace + "*[*^$|!~]?=");
                                     }
 
-                                    // FF 3.5 - :enabled/:disabled and hidden element (hidden element are still enabled)
+                                    // FF 3.5 - :enabled/:disabled and hidden elements (hidden elements are still enabled)
                                     // IE8 throws error here and will not see later tests
                                     if (el.querySelectorAll(":enabled").length !== 2) {
                                         rbuggyQSA.push(":enabled", ":disabled");
@@ -10775,7 +10775,7 @@
                                     ret += getText(node);
                                 }
                             } else if (nodeType === 1 || nodeType === 9 || nodeType === 11) {
-                                // Use textContent for element
+                                // Use textContent for elements
                                 // innerText usage removed for consistency of new lines (jQuery #11153)
                                 if (typeof elem.textContent === "string") {
                                     return elem.textContent;
@@ -11118,7 +11118,7 @@
                                                 unmatched = matcher(seed, null, xml, []),
                                                 i         = seed.length;
 
-                                            // Match element unmatched by `matcher`
+                                            // Match elements unmatched by `matcher`
                                             while (i--) {
                                                 if ((elem = unmatched[i])) {
                                                     seed[i] = !(matches[i] = elem);
@@ -11194,7 +11194,7 @@
                                 "disabled": createDisabledPseudo(true),
 
                                 "checked": function (elem) {
-                                    // In CSS3, :checked should return both checked and selected element
+                                    // In CSS3, :checked should return both checked and selected elements
                                     // http://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
                                     var nodeName = elem.nodeName.toLowerCase();
                                     return (nodeName === "input" && !!elem.checked) || (nodeName === "option" && !!elem.selected);
@@ -11411,7 +11411,7 @@
                                     return false;
                                 } :
 
-                                // Check against all ancestor/preceding element
+                                // Check against all ancestor/preceding elements
                                 function (elem, context, xml) {
                                     var oldCache, uniqueCache, outerCache,
                                         newCache = [dirruns, doneName];
@@ -11439,10 +11439,10 @@
                                                 } else if ((oldCache = uniqueCache[key]) &&
                                                     oldCache[0] === dirruns && oldCache[1] === doneName) {
 
-                                                    // Assign to newCache so results back-propagate to previous element
+                                                    // Assign to newCache so results back-propagate to previous elements
                                                     return (newCache[2] = oldCache[2]);
                                                 } else {
-                                                    // Reuse newcache so results back-propagate to previous element
+                                                    // Reuse newcache so results back-propagate to previous elements
                                                     uniqueCache[key] = newCache;
 
                                                     // A match means we're done; a fail means we have to keep checking
@@ -11514,7 +11514,7 @@
                                     postMap     = [],
                                     preexisting = results.length,
 
-                                    // Get initial element from seed or context
+                                    // Get initial elements from seed or context
                                     elems       = seed || multipleContexts(selector || "*", context.nodeType ? [context] : context, []),
 
                                     // Prefilter to get matcher input, preserving a map for seed-results synchronization
@@ -11543,7 +11543,7 @@
                                     temp = condense(matcherOut, postMap);
                                     postFilter(temp, [], context, xml);
 
-                                    // Un-match failing element by moving them back to matcherIn
+                                    // Un-match failing elements by moving them back to matcherIn
                                     i = temp.length;
                                     while (i--) {
                                         if ((elem = temp[i])) {
@@ -11567,7 +11567,7 @@
                                             postFinder(null, (matcherOut = []), temp, xml);
                                         }
 
-                                        // Move matched element from seed to results to keep them synchronized
+                                        // Move matched elements from seed to results to keep them synchronized
                                         i = matcherOut.length;
                                         while (i--) {
                                             if ((elem = matcherOut[i]) &&
@@ -11578,7 +11578,7 @@
                                         }
                                     }
 
-                                    // Add element to results, through postFinder if defined
+                                    // Add elements to results, through postFinder if defined
                                 } else {
                                     matcherOut = condense(
                                         matcherOut === results ?
@@ -11601,7 +11601,7 @@
                                 implicitRelative = leadingRelative || Expr.relative[" "],
                                 i                = leadingRelative ? 1 : 0,
 
-                                // The foundational matcher ensures that element are reachable from top-level context(s)
+                                // The foundational matcher ensures that elements are reachable from top-level context(s)
                                 matchContext     = addCombinator(function (elem) {
                                     return elem === checkContext;
                                 }, implicitRelative, true),
@@ -11662,7 +11662,7 @@
                                         unmatched     = seed && [],
                                         setMatched    = [],
                                         contextBackup = outermostContext,
-                                        // We must always have either seed element or outermost context
+                                        // We must always have either seed elements or outermost context
                                         elems         = seed || byElement && Expr.find["TAG"]("*", outermost),
                                         // Use integer dirruns iff this is the outermost matcher
                                         dirrunsUnique = (dirruns += contextBackup == null ? 1 : Math.random() || 0.1),
@@ -11672,9 +11672,9 @@
                                         outermostContext = context === document || context || outermost;
                                     }
 
-                                    // Add element passing elementMatchers directly to results
+                                    // Add elements passing elementMatchers directly to results
                                     // Support: IE<9, Safari
-                                    // Tolerate NodeList properties (IE: "length"; Safari: <number>) matching element by id
+                                    // Tolerate NodeList properties (IE: "length"; Safari: <number>) matching elements by id
                                     for (; i !== len && (elem = elems[i]) != null; i++) {
                                         if (byElement && elem) {
                                             j = 0;
@@ -11693,7 +11693,7 @@
                                             }
                                         }
 
-                                        // Track unmatched element for set filters
+                                        // Track unmatched elements for set filters
                                         if (bySet) {
                                             // They will have gone through all possible matchers
                                             if ((elem = !matcher && elem)) {
@@ -11707,13 +11707,13 @@
                                         }
                                     }
 
-                                    // `i` is now the count of element visited above, and adding it to `matchedCount`
+                                    // `i` is now the count of elements visited above, and adding it to `matchedCount`
                                     // makes the latter nonnegative.
                                     matchedCount += i;
 
-                                    // Apply set filters to unmatched element
-                                    // NOTE: This can be skipped if there are no unmatched element (i.e., `matchedCount`
-                                    // equals `i`), unless we didn't visit _any_ element in the above loop because we have
+                                    // Apply set filters to unmatched elements
+                                    // NOTE: This can be skipped if there are no unmatched elements (i.e., `matchedCount`
+                                    // equals `i`), unless we didn't visit _any_ elements in the above loop because we have
                                     // no element matchers and no seed.
                                     // Incrementing an initially-string "0" `i` allows `i` to remain a string only in that
                                     // case, which will result in a "00" `matchedCount` that differs from `i` but is also
@@ -11800,7 +11800,7 @@
                          *  selector function built with Sizzle.compile
                          * @param {Element} context
                          * @param {Array} [results]
-                         * @param {Array} [seed] A set of element to match against
+                         * @param {Array} [seed] A set of elements to match against
                          */
                         select = Sizzle.select = function (selector, context, results, seed) {
                             var i, tokens, token, type, find,
@@ -11992,6 +11992,7 @@
             var rsingleTag = (/^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i);
 
 
+
 // Implement the identical functionality for filter and not
             function winnow(elements, qualifier, not) {
                 if (isFunction(qualifier)) {
@@ -12007,7 +12008,7 @@
                     });
                 }
 
-                // Arraylike of element (jQuery, arguments, Array)
+                // Arraylike of elements (jQuery, arguments, Array)
                 if (typeof qualifier !== "string") {
                     return jQuery.grep(elements, function (elem) {
                         return (indexOf.call(qualifier, elem) > -1) !== not;
@@ -12238,7 +12239,7 @@
                                 if (cur.nodeType < 11 && (targets ?
                                     targets.index(cur) > -1 :
 
-                                    // Don't pass non-element to Sizzle
+                                    // Don't pass non-elements to Sizzle
                                     cur.nodeType === 1 &&
                                     jQuery.find.matchesSelector(cur, selectors))) {
 
@@ -12372,6 +12373,7 @@
                 };
             });
             var rnothtmlwhite = (/[^\x20\t\r\n\f]+/g);
+
 
 
 // Convert String-formatted options into Object-formatted ones
@@ -12981,7 +12983,7 @@
                         }
                     }
 
-                    // Multiple arguments are aggregated like Promise.all array element
+                    // Multiple arguments are aggregated like Promise.all array elements
                     while (i--) {
                         adoptValue(resolveValues[i], updateFunc(i), master.reject);
                     }
@@ -13010,6 +13012,8 @@
                     throw error;
                 });
             };
+
+
 
 
 // The deferred used on DOM ready
@@ -13087,6 +13091,8 @@
                 // A fallback to window.onload, that will always work
                 window.addEventListener("load", completed);
             }
+
+
 
 
 // Multifunctional method to get and set values of a collection
@@ -13334,6 +13340,7 @@
             var dataUser = new Data();
 
 
+
 //	Implementation Summary
 //
 //	1. Enforce API surface and semantic compatibility with 1.9.x branch
@@ -13436,7 +13443,7 @@
                                 while (i--) {
 
                                     // Support: IE 11 only
-                                    // The attrs element can be null (#14894)
+                                    // The attrs elements can be null (#14894)
                                     if (attrs[i]) {
                                         name = attrs[i].name;
                                         if (name.indexOf("data-") === 0) {
@@ -13656,7 +13663,7 @@
 
                     // Otherwise, check computed style
                     // Support: Firefox <=43 - 45
-                    // Disconnected element can have computed display: none, so first confirm that elem is
+                    // Disconnected elements can have computed display: none, so first confirm that elem is
                     // in the document.
                     jQuery.contains(elem.ownerDocument, elem) &&
 
@@ -13780,7 +13787,7 @@
                     index  = 0,
                     length = elements.length;
 
-                // Determine new display value for element that need to change
+                // Determine new display value for elements that need to change
                 for (; index < length; index++) {
                     elem = elements[index];
                     if (!elem.style) {
@@ -13790,7 +13797,7 @@
                     display = elem.style.display;
                     if (show) {
 
-                        // Since we force visibility upon cascade-hidden element, an immediate (and slow)
+                        // Since we force visibility upon cascade-hidden elements, an immediate (and slow)
                         // check is required in this first loop unless we have a nonempty display value (either
                         // inline or about-to-be-restored)
                         if (display === "none") {
@@ -13812,7 +13819,7 @@
                     }
                 }
 
-                // Set the display of the element in a second loop to avoid constant reflow
+                // Set the display of the elements in a second loop to avoid constant reflow
                 for (index = 0; index < length; index++) {
                     if (values[index] != null) {
                         elements[index].style.display = values[index];
@@ -13850,15 +13857,16 @@
             var rscriptType = (/^$|^module$|\/(?:java|ecma)script/i);
 
 
+
 // We have to close these tags to support XHTML (#13200)
             var wrapMap = {
 
                 // Support: IE <=9 only
                 option: [1, "<select multiple='multiple'>", "</select>"],
 
-                // XHTML parsers do not magically insert element in the
+                // XHTML parsers do not magically insert elements in the
                 // same way that tag soup parsers do. So we cannot shorten
-                // this by omitting <tbody> or other required element.
+                // this by omitting <tbody> or other required elements.
                 thead: [1, "<table>", "</table>"],
                 col  : [2, "<table><colgroup>", "</colgroup></table>"],
                 tr   : [2, "<table><tbody>", "</tbody></table>"],
@@ -13972,7 +13980,7 @@
                 i = 0;
                 while ((elem = nodes[i++])) {
 
-                    // Skip element already in the context collection (trac-4087)
+                    // Skip elements already in the context collection (trac-4087)
                     if (selection && jQuery.inArray(elem, selection) > -1) {
                         if (ignored) {
                             ignored.push(elem);
@@ -14397,8 +14405,8 @@
 
                         for (; cur !== this; cur = cur.parentNode || this) {
 
-                            // Don't check non-element (#13208)
-                            // Don't process clicks on disabled element (#6911, #8165, #11382, #11764)
+                            // Don't check non-elements (#13208)
+                            // Don't process clicks on disabled elements (#6911, #8165, #11382, #11764)
                             if (cur.nodeType === 1 && !(event.type === "click" && cur.disabled === true)) {
                                 matchedHandlers  = [];
                                 matchedSelectors = {};
@@ -14792,7 +14800,7 @@
                 return elem;
             }
 
-// Replace/restore the type attribute of script element for safe DOM manipulation
+// Replace/restore the type attribute of script elements for safe DOM manipulation
             function disableScript(elem) {
                 elem.type = (elem.getAttribute("type") !== null) + "/" + elem.type;
                 return elem;
@@ -14889,7 +14897,7 @@
                         fragment = first;
                     }
 
-                    // Require either new content or an interest in ignored element to invoke the callback
+                    // Require either new content or an interest in ignored elements to invoke the callback
                     if (first || ignored) {
                         scripts    = jQuery.map(getAll(fragment, "script"), disableScript);
                         hasScripts = scripts.length;
@@ -15221,8 +15229,8 @@
             var getStyles = function (elem) {
 
                 // Support: IE <=11 only, Firefox <=30 (#15098, #14150)
-                // IE throws on element created in popups
-                // FF meanwhile throws on frame element through "defaultView.getComputedStyle"
+                // IE throws on elements created in popups
+                // FF meanwhile throws on frame elements through "defaultView.getComputedStyle"
                 var view = elem.ownerDocument.defaultView;
 
                 if (!view || !view.opener) {
@@ -15266,7 +15274,7 @@
                     pixelBoxStylesVal = roundPixelMeasures(divStyle.right) === 36;
 
                     // Support: IE 9 - 11 only
-                    // Detect misreporting of content dimensions for box-sizing:border-box element
+                    // Detect misreporting of content dimensions for box-sizing:border-box elements
                     boxSizingReliableVal = roundPixelMeasures(divStyle.width) === 36;
 
                     // Support: IE 9 only
@@ -15332,7 +15340,7 @@
                     // Support: Firefox 51+
                     // Retrieving style before computed somehow
                     // fixes an issue with getting wrong values
-                    // on detached element
+                    // on detached elements
                     style = elem.style;
 
                 computed = computed || getStyles(elem);
@@ -15545,7 +15553,7 @@
                     (support.boxSizingReliable() || val === elem.style[dimension]);
 
                 // Fall back to offsetWidth/offsetHeight when value is "auto"
-                // This happens for inline element with no explicit setting (gh-3571)
+                // This happens for inline elements with no explicit setting (gh-3571)
                 // Support: Android <=4.1 - 4.3 only
                 // Also use offsetWidth/offsetHeight for misreported inline dimensions (gh-3602)
                 if (val === "auto" ||
@@ -15734,7 +15742,7 @@
                     get: function (elem, computed, extra) {
                         if (computed) {
 
-                            // Certain element can have dimension info if we invisibly show them
+                            // Certain elements can have dimension info if we invisibly show them
                             // but it must have a current display style that would benefit
                             return rdisplayswap.test(jQuery.css(elem, "display")) &&
 
@@ -16123,7 +16131,7 @@
                         }
                     }
 
-                    // Animate inline element as inline-block
+                    // Animate inline elements as inline-block
                     if (display === "inline" || display === "inline-block" && restoreDisplay != null) {
                         if (jQuery.css(elem, "float") === "none") {
 
@@ -16170,7 +16178,7 @@
                             dataShow.hidden = !hidden;
                         }
 
-                        // Show element before animating them
+                        // Show elements before animating them
                         if (hidden) {
                             showHide([elem], true);
                         }
@@ -16453,7 +16461,7 @@
             jQuery.fn.extend({
                 fadeTo : function (speed, to, easing, callback) {
 
-                    // Show any hidden element after setting opacity to 0
+                    // Show any hidden elements after setting opacity to 0
                     return this.filter(isHiddenWithinTree).css("opacity", 0).show()
 
                     // Animate to the value specified
@@ -17312,6 +17320,8 @@
             });
 
 
+
+
 // Return jQuery for attributes-only inclusion
 
 
@@ -17551,6 +17561,7 @@
             var rquery = (/\?/);
 
 
+
 // Cross-browser xml parsing
             jQuery.parseXML = function (data) {
                 var xml;
@@ -17617,7 +17628,7 @@
                 }
             }
 
-// Serialize an array of form element or a set of
+// Serialize an array of form elements or a set of
 // key/values into a query string
             jQuery.param = function (a, traditional) {
                 var prefix,
@@ -17633,10 +17644,10 @@
                             encodeURIComponent(value == null ? "" : value);
                     };
 
-                // If an array was passed in, assume that it is an array of form element.
+                // If an array was passed in, assume that it is an array of form elements.
                 if (Array.isArray(a) || (a.jquery && !jQuery.isPlainObject(a))) {
 
-                    // Serialize the form element
+                    // Serialize the form elements
                     jQuery.each(a, function () {
                         add(this.name, this.value);
                     });
@@ -17661,7 +17672,7 @@
                 serializeArray: function () {
                     return this.map(function () {
 
-                        // Can add propHook for "element" to filter or add form element
+                        // Can add propHook for "elements" to filter or add form elements
                         var elements = jQuery.prop(this, "elements");
                         return elements ? jQuery.makeArray(elements) : this;
                     })
@@ -18553,7 +18564,7 @@
                             html = html.call(this[0]);
                         }
 
-                        // The element to wrap the target around
+                        // The elements to wrap the target around
                         wrap = jQuery(html, this[0].ownerDocument).eq(0).clone(true);
 
                         if (this[0].parentNode) {
@@ -18781,6 +18792,8 @@
             });
 
 
+
+
 // Prevent auto-execution of scripts when no explicit dataType was provided (See gh-2432)
             jQuery.ajaxPrefilter(function (s) {
                 if (s.crossDomain) {
@@ -18943,6 +18956,8 @@
             });
 
 
+
+
 // Support: Safari 8 only
 // In Safari 8 documents created via document.implementation.createHTMLDocument
 // collapse sibling forms: the second one becomes a child of the first one.
@@ -18978,7 +18993,7 @@
                         context = document.implementation.createHTMLDocument("");
 
                         // Set the base href for the created document
-                        // so any parsed element with URLs
+                        // so any parsed elements with URLs
                         // are based on the document's URL (gh-2965)
                         base      = context.createElement("base");
                         base.href = document.location.href;
@@ -19031,7 +19046,7 @@
                     type = "POST";
                 }
 
-                // If we have element to modify, make the request
+                // If we have elements to modify, make the request
                 if (self.length > 0) {
                     jQuery.ajax({
                         url: url,
@@ -19049,7 +19064,7 @@
 
                         self.html(selector ?
 
-                            // If a selector was specified, locate the right element in a dummy div
+                            // If a selector was specified, locate the right elements in a dummy div
                             // Exclude scripts to avoid IE 'Permission Denied' errors
                             jQuery("<div>").append(jQuery.parseHTML(responseText)).find(selector) :
 
@@ -19068,6 +19083,8 @@
 
                 return this;
             };
+
+
 
 
 // Attach a bunch of functions for handling common AJAX events
@@ -19165,7 +19182,7 @@
                         return;
                     }
 
-                    // Return zeros for disconnected and hidden (display: none) element (gh-2310)
+                    // Return zeros for disconnected and hidden (display: none) elements (gh-2310)
                     // Support: IE <=11 only
                     // Running getBoundingClientRect on a
                     // disconnected node in IE throws an error
@@ -19193,7 +19210,7 @@
                         elem         = this[0],
                         parentOffset = {top: 0, left: 0};
 
-                    // position:fixed element are offset from the viewport, which itself always has zero offset
+                    // position:fixed elements are offset from the viewport, which itself always has zero offset
                     if (jQuery.css(elem, "position") === "fixed") {
 
                         // Assume position:fixed implies availability of getBoundingClientRect
@@ -19454,6 +19471,8 @@
                     // subtraction forces infinities to NaN
                     !isNaN(obj - parseFloat(obj));
             };
+
+
 
 
 // Register as a named AMD module, since jQuery can be concatenated with other
@@ -37500,7 +37519,7 @@
         /* WEBPACK VAR INJECTION */
         (function (global) {
             /**!
-             * @fileOverview Kickass library to create and place poppers near their reference element.
+             * @fileOverview Kickass library to create and place poppers near their reference elements.
              * @version 1.14.7
              * @license
              * Copyright (c) 2016 Federico Zivolo and contributors
@@ -37688,7 +37707,7 @@
 
                 // NOTE: 1 DOM access here
                 var offsetParent = element.offsetParent || null;
-                // Skip hidden element which don't have an offsetParent
+                // Skip hidden elements which don't have an offsetParent
                 while (offsetParent === noOffsetParent && element.nextElementSibling) {
                     offsetParent = (element = element.nextElementSibling).offsetParent;
                 }
@@ -37741,7 +37760,7 @@
              * @returns {Element} common offset parent
              */
             function findCommonOffsetParent(element1, element2) {
-                // This check is needed to avoid errors in case one of the element isn't defined for any reason
+                // This check is needed to avoid errors in case one of the elements isn't defined for any reason
                 if (!element1 || !element1.nodeType || !element2 || !element2.nodeType) {
                     return document.documentElement;
                 }
@@ -38083,7 +38102,7 @@
              */
 
             function getFixedPositionOffsetParent(element) {
-                // This check is needed to avoid errors in case one of the element isn't defined for any reason
+                // This check is needed to avoid errors in case one of the elements isn't defined for any reason
                 if (!element || !element.parentElement || isIE()) {
                     return document.documentElement;
                 }
@@ -38143,7 +38162,7 @@
                         boundaries.left += offsets.left - offsets.marginLeft;
                         boundaries.right  = width + offsets.left;
                     } else {
-                        // for all the other DOM element, this one is good
+                        // for all the other DOM elements, this one is good
                         boundaries = offsets;
                     }
                 }
@@ -39837,7 +39856,7 @@
              * @property {Object} data.styles Any CSS property defined here will be applied to the popper. It expects the JavaScript nomenclature (eg. `marginBottom`)
              * @property {Object} data.arrowStyles Any CSS property defined here will be applied to the popper arrow. It expects the JavaScript nomenclature (eg. `marginBottom`)
              * @property {Object} data.boundaries Offsets of the popper boundaries
-             * @property {Object} data.offsets The measurements of popper, reference and arrow element
+             * @property {Object} data.offsets The measurements of popper, reference and arrow elements
              * @property {Object} data.offsets.popper `top`, `left`, `width`, `height` values
              * @property {Object} data.offsets.reference `top`, `left`, `width`, `height` values
              * @property {Object} data.offsets.arrow] `top` and `left` offsets, only one of them will be different from 0
@@ -39957,7 +39976,7 @@
                         scrollParents: []
                     };
 
-                    // get reference and popper element (allow jQuery wrappers)
+                    // get reference and popper elements (allow jQuery wrappers)
                     this.reference = reference && reference.jquery ? reference[0] : reference;
                     this.popper    = popper && popper.jquery ? popper[0] : popper;
 
@@ -41217,7 +41236,7 @@
                         }(_parchment2.default.Embed);
 
                         BlockEmbed.scope = _parchment2.default.Scope.BLOCK_BLOT;
-// It is important for cursor behavior BlockEmbeds use tags that are block level element
+// It is important for cursor behavior BlockEmbeds use tags that are block level elements
 
 
                         var Block = function (_Parchment$Block) {
@@ -44080,7 +44099,7 @@
 
                         function contains(parent, descendant) {
                             try {
-                                // Firefox inserts inaccessible nodes around video element
+                                // Firefox inserts inaccessible nodes around video elements
                                 descendant.parentNode;
                             } catch (e) {
                                 return false;
@@ -49046,7 +49065,6 @@
                         Object.defineProperty(exports, "__esModule", {value: true});
                         var format_1 = __webpack_require__(18);
                         var Registry = __webpack_require__(1);
-
 // Shallow object comparison
                         function isEqual(obj1, obj2) {
                             if (Object.keys(obj1).length !== Object.keys(obj2).length)
@@ -49615,7 +49633,7 @@
                             var v_length     = 2 * max_d;
                             var v1           = new Array(v_length);
                             var v2           = new Array(v_length);
-                            // Setting all element to -1 is faster in Chrome & Firefox than mixing
+                            // Setting all elements to -1 is faster in Chrome & Firefox than mixing
                             // integers and undefined.
                             for (var x = 0; x < v_length; x++) {
                                 v1[x] = -1;
@@ -50169,7 +50187,7 @@
  *
  * @param {Array} diffs Array of diff tuples.
  * @param {Int} start Position of the first element to merge (diffs[start] is also merged with diffs[start - 1]).
- * @param {Int} length Number of consecutive element to check.
+ * @param {Int} length Number of consecutive elements to check.
  * @return {Array} Array of merged diff tuples.
  */
                         function merge_tuples(diffs, start, length) {

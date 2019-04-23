@@ -6,7 +6,7 @@
 
     <article class="blogpost full">
         <header>
-            <div class="post-info mb-4">
+            <div class="post-info mb-2">
         <span class="post-date">
             <i class="fa fa-calendar-o pr-1"></i>
             <span class="day">{{$oneArticle->published_at->format('d')}}</span>
@@ -22,13 +22,13 @@
         </header>
         <div class="blogpost-content">
             @if (isset($oneArticle->images) && isset($oneArticle->images[0]))
-                <div class="mb-5">
+                <div class="mb-3">
                     <img data-src="{{$oneArticle->images[0]->asset_path}}" alt="{{$oneArticle->title}}"
-                         alt="{{$oneArticle->title}}" class="img-fluid mx-auto d-block">
+                         alt="{{$oneArticle->title}}">
                 </div>
             @endif
             {{--<h3 class="my-4">{{$oneArticle->title}}</h3>--}}
-            <p class="large">{{$oneArticle->desc}}</p>
+            <h3 class="mb-3">{{$oneArticle->desc}}</h3>
             {!! $oneArticle->text !!}
         </div>
         <footer class="clearfix">

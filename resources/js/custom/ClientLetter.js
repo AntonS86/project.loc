@@ -131,5 +131,5 @@ class ClientLetter {
     }
 }
 
-export let clientLetter = new ClientLetter('#sendmail');
+new ClientLetter('#sendmail');
 

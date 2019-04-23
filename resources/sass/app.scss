@@ -1,17 +1,22 @@
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-
-// Variables
-@import 'variables';
+@import url("https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i,800,800i");
+@import url("https://fonts.googleapis.com/css?family=Pacifico");
+@import url("https://fonts.googleapis.com/css?family=PT+Serif");
 
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import '~font-awesome/scss/font-awesome';
+@import '~magnific-popup/dist/magnific-popup.css';
+@import 'site/scc/animations.css';
+@import './site/style';
+@import './site/custom';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
+
+
+
 
 

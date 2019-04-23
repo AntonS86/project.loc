@@ -11,7 +11,7 @@
                     <div class="row grid-space-10">
                         <div class="col-lg-6">
                             <img data-src="{{$article->images[0]->asset_path}}" alt="{{$article->title}}"
-                                 title="{{$article->title}}" class="img-many-articles mx-auto d-block">
+                                 title="{{$article->title}}">
                         </div>
                         <div class="col-lg-6">
                             @endif
@@ -28,8 +28,7 @@
 							</span>
                                     <span class="post-info">
                                 <i class="fa fa-chain"></i> <a
-                                            href="{{ $article->category->path }}"
-                                            class="default">{{$article->category->title}}</a>
+                                            href="{{ $article->category->path }}">{{$article->category->title}}</a>
                             </span>
                                 </div>
 
