@@ -13378,7 +13378,7 @@ jQuery.each( [ "height", "width" ], function( i, dimension ) {
 
 		set: function( elem, value, extra ) {
 			var matches,
-                styles = getStyles( elem ),
+                styles             = getStyles(elem),
 
                 // Only read styles.position if the test has a chance to fail
                 // to avoid forcing a reflow.

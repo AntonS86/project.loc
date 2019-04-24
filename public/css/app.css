@@ -18388,47 +18388,47 @@ tbody {
 ---------------------------------- */
 
 .background-img-1 {
-    background: url(/images/image_contacts.jpeg?495a92114762e62e0e63da44829a5de3) 50% 0px no-repeat;
+    background: url("/images/contacts/image_contacts.jpeg") 50% 0px no-repeat;
 }
 
 .background-img-2 {
-    background: url(/images/image_contacts.jpeg?495a92114762e62e0e63da44829a5de3) 50% 0px no-repeat;
+    background: url("/images/contacts/image_contacts.jpeg") 50% 0px no-repeat;
 }
 
 .background-img-3 {
-    background: url(/images/image_contacts.jpeg?495a92114762e62e0e63da44829a5de3) 50% 0px no-repeat;
+    background: url("/images/contacts/image_contacts.jpeg") 50% 0px no-repeat;
 }
 
 .background-img-4 {
-    background: url(/images/image_contacts.jpeg?495a92114762e62e0e63da44829a5de3) 50% 0px no-repeat;
+    background: url("/images/contacts/image_contacts.jpeg") 50% 0px no-repeat;
 }
 
 .background-img-5 {
-    background: url(/images/image_contacts.jpeg?495a92114762e62e0e63da44829a5de3) 50% 0px no-repeat;
+    background: url("/images/contacts/image_contacts.jpeg") 50% 0px no-repeat;
 }
 
 .background-img-6 {
-    background: url(/images/image_contacts.jpeg?495a92114762e62e0e63da44829a5de3) 50% 0px no-repeat;
+    background: url("/images/contacts/image_contacts.jpeg") 50% 0px no-repeat;
 }
 
 .background-img-7 {
-    background: url(/images/image_contacts.jpeg?495a92114762e62e0e63da44829a5de3) 50% 0px no-repeat;
+    background: url("/images/contacts/image_contacts.jpeg") 50% 0px no-repeat;
 }
 
 .background-img-8 {
-    background: url(/images/image_contacts.jpeg?495a92114762e62e0e63da44829a5de3) 50% 0px no-repeat;
+    background: url("/images/contacts/image_contacts.jpeg") 50% 0px no-repeat;
 }
 
 .background-img-9 {
-    background: url(/images/image_contacts.jpeg?495a92114762e62e0e63da44829a5de3) 50% 0px no-repeat;
+    background: url("/images/contacts/image_contacts.jpeg") 50% 0px no-repeat;
 }
 
 .background-img-10 {
-    background: url(/images/image_contacts.jpeg?495a92114762e62e0e63da44829a5de3) 50% 0px no-repeat;
+    background: url("/images/contacts/image_contacts.jpeg") 50% 0px no-repeat;
 }
 
 .fullscreen-bg {
-    background: url(/images/grid.jpg?207f68120123a7bd754901727e09551f) 50% 0px no-repeat;
+    background: url("/images/components/grid.jpg") 50% 0px no-repeat;
     position: fixed;
     top: 0;
     left: 0;
