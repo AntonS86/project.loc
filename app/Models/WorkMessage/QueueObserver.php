@@ -14,7 +14,7 @@ class QueueObserver
      *
      * @param WorkMessage $workMessage
      */
-    public function saved(WorkMessage $workMessage): void
+    public function created(WorkMessage $workMessage): void
     {
         ProcessEmail::dispatch($workMessage);
     }

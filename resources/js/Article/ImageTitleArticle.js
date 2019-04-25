@@ -13,6 +13,7 @@ export default class ImageTitleArticle {
 
 
     inputEvent() {
+        if (!this._titleImage) return;
         this._titleImage.addEventListener('change', (e) => {
             let images = e.target.files;
             if (this._imgVal.imageValidate(images)) {

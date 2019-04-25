@@ -17,6 +17,7 @@ class CreateWorkMessagesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('message');
+            $table->tinyInteger('read')->default(0);
             $table->timestamps();
         });
     }

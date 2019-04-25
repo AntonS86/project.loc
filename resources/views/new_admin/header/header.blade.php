@@ -19,7 +19,7 @@
                 @component('new_admin.header.notification')
                 @endcomponent
 
-                @component('new_admin.header.messages')
+                @component('new_admin.header.messages', ['messages' => $messages])
                 @endcomponent
 
             </div>

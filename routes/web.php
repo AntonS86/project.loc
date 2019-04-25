@@ -17,7 +17,9 @@ Route::resource('/', 'IndexController', [
 
 
 Route::post('sendmail', 'SendMailController@store')->name('sendmail.create');
+
 Route::post('work-message', 'WorkMessageController@create')->name('workmessage.create');
+Route::put('work-message/{workmessage}', 'WorkMessageController@update')->name('workmessage.update')->where('workmessage', '[0-9]+');
 
 /*---------------------image-uploader*/
 Route::post('images-uploader', 'ImagesController@createMany')->name('imagesUploader');
@@ -59,7 +61,7 @@ Auth::routes(['register' => false]);
 Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', [
         'uses' => 'Admin\IndexController@index',
-        'as'   => 'adminIndex'
+        'as'   => 'admin.index'
     ]);
 
     /*-----------редактирование категорий---------------*/

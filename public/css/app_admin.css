@@ -11746,7 +11746,8 @@ button.bg-dark:focus {
     display: flex !important;
 }
 
-.d-inline-flex {
+.d-inline-flex,
+.meg .img-preview {
     display: inline-flex !important;
 }
 
@@ -11999,7 +12000,8 @@ button.bg-dark:focus {
     flex-direction: column-reverse !important;
 }
 
-.flex-wrap {
+.flex-wrap,
+.meg .img-preview {
     flex-wrap: wrap !important;
 }
 
@@ -21978,6 +21980,18 @@ footer.site-footer .footer-inner a {
 .article-row img {
     width: 100px;
     height: 70px;
+}
+
+.meg .img-preview .preview {
+    margin: 2px;
+    width: 100px;
+    height: 100px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+div[aria-labelledby=message] {
+    min-width: 200px;
 }
 
 .ct-label {

@@ -1,0 +1,40 @@
+import ErrorHandler from "./ErrorHandler";
+import Notify from "./Notify";
+
+
+function messageUpdate() {
+    let box = document.querySelector('.messenger-box');
+    if (!box) return;
+
+    box.addEventListener('click', (e) => {
+        e.preventDefault();
+        let button = e.target.closest('.inner-box>button');
+        if (!button) return;
+        let url      = button.dataset.route;
+        let formDate = new FormData();
+        formDate.append('_method', 'PUT');
+        formDate.append('read', 1);
+        send(url, formDate, (response) => {
+            if (response.data) {
+                button.closest('li').remove();
+            } else {
+                new Notify().alertMessage('Ошибка на сервере');
+            }
+        });
+
+    });
+
+}
+
+function send(url, data, foo) {
+    axios.post(url, data)
+        .then((response) => {
+            foo(response);
+        })
+        .catch((error) => {
+            new ErrorHandler().errorNotify(error);
+        });
+}
+
+
+messageUpdate();

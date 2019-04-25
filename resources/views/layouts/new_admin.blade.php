@@ -45,4 +45,5 @@
 
 </body>
 <script src="{{asset('js/app_admin.js')}}"></script>
+@stack('textredactor')
 </html>

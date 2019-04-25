@@ -6,6 +6,7 @@ require('moment');
 require('../custom/lazyimages');
 require('../Article/PaginateArticles');
 
-require('../Article/ArticleCreate');
+require('../custom/message');
+
 
 

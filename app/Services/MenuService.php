@@ -20,7 +20,7 @@ class MenuService
             ],
             (object)[
                 'title' => 'Админка',
-                'path'  => route('admin.adminIndex'),
+                'path'  => route('admin.admin.index'),
                 'icon'  => 'fa fa-briefcase'
             ],
             (object)[

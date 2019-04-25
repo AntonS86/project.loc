@@ -28,6 +28,7 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
 
         Route::model('article', \App\Models\Article::class);
+        Route::model('workmessage', \App\Models\WorkMessage::class);
     }
 
     /**

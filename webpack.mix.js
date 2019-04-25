@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/admin/app_admin.js', 'public/js')
+    .js('resources/js/Article/ArticleCreate.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/site/typography-scheme-3.scss', 'public/css')
     .sass('resources/sass/site/skins/light_blue.scss', 'public/css')

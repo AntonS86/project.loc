@@ -8,6 +8,10 @@
     @include('new_admin.header.header')
 @endsection
 
+@section('page_content')
+    @include('new_admin.index.index_content')
+@endsection
+
 @section('footer')
     @include('new_admin.components.footer')
 @endsection

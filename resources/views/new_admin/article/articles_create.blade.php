@@ -124,3 +124,6 @@
         <h3 class="text-danger">Ошибка: попробуйте перезагрузить страницу или зайти попозже</h3>
     @endif
 </div>
+@push('textredactor')
+    <script src="{{asset('js/ArticleCreate.js')}}"></script>
+@endpush

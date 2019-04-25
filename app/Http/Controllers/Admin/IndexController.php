@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\WorkMessage;
 use Illuminate\View\View;
 
 class IndexController extends Controller
@@ -14,9 +15,18 @@ class IndexController extends Controller
     protected $template;
 
     /**
-     * IndexController constructor.
+     *
+     * @var array
      */
-    public function __construct()
+    private $varOutput = [];
+
+
+    /**
+     * IndexController constructor.
+     *
+     * @param WorkMessage $workMessage
+     */
+    public function __construct(WorkMessage $workMessage)
     {
         $this->template = 'new_admin.index';
     }
@@ -27,6 +37,6 @@ class IndexController extends Controller
      */
     public function index(): View
     {
-        return view($this->template);
+        return view($this->template)->with($this->varOutput);
     }
 }
