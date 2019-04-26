@@ -10,6 +10,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 
 class ProcessPosting implements ShouldQueue
@@ -46,8 +47,16 @@ class ProcessPosting implements ShouldQueue
     public function handle(PostingInterface $vkPosting)
     {
         Log::info('|posting VK - start|');
-        $query    = (new VkArticle($this->article))->postLink()->toArray();
-        $response = $vkPosting->send($query);
-        Log::info($response);
+        $query = (new VkArticle($this->article))->postLink()->toArray();
+        do {
+            $marker   = false;
+            $response = $vkPosting->send($query);
+            Log::info($response);
+            $response = json_decode($response, true);
+            if (Arr::has($response, 'error.error_code') && Arr::get($response, 'error.error_code') === 6) {
+                $marker = true;
+                sleep(1);
+            }
+        } while ($marker);
     }
 }
