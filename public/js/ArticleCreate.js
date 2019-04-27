@@ -10979,7 +10979,6 @@
                         Object.defineProperty(exports, "__esModule", {value: true});
                         var format_1 = __webpack_require__(18);
                         var Registry = __webpack_require__(1);
-
 // Shallow object comparison
                         function isEqual(obj1, obj2) {
                             if (Object.keys(obj1).length !== Object.keys(obj2).length)

@@ -26772,6 +26772,10 @@ img[data-src] {
     height: 50px;
 }
 
+#last-articles a:hover {
+    text-decoration: none;
+}
+
 #search-list {
     background-color: #fcfcfc;
 }
@@ -26783,5 +26787,17 @@ img[data-src] {
 #search-list a:hover {
     text-decoration: none;
     color: #000560;
+}
+
+.blogpost-content p {
+    margin: 0;
+}
+
+.blogpost-content blockquote {
+    margin: 0;
+}
+
+.blogpost-content ol {
+    margin: 0;
 }
 

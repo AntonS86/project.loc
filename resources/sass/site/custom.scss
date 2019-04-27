@@ -44,6 +44,10 @@ img {
         width: 80px;
         height: 50px;
     }
+
+    a:hover {
+        text-decoration: none;
+    }
 }
 
 #search-list {
@@ -56,5 +60,19 @@ img {
             text-decoration: none;
             color: #000560;
         }
+    }
+}
+
+.blogpost-content {
+    p {
+        margin: 0;
+    }
+
+    blockquote {
+        margin: 0;
+    }
+
+    ol {
+        margin: 0;
     }
 }

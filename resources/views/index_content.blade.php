@@ -13,8 +13,7 @@
                         <div class="body">
                             <h4 class="title">{{$offer->title}}</h4>
                             <p>{{$offer->desc}}</p>
-                            <a class="stretched-link" href="{{$offer->path}}">{{trans('text.look')}}<i
-                                    class="pl-1 fa fa-angle-double-right"></i></a>
+                            <a class="stretched-link" href="{{$offer->path}}"></a>
                         </div>
                     </div>
                 </div>

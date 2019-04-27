@@ -5,7 +5,8 @@ namespace App\Services;
 
 
 use App\Models\Category;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
+
 
 class MenuService
 {
@@ -43,14 +44,59 @@ class MenuService
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
-    public function getMenu()
+    public function getMenu(): Collection
     {
         $collection = collect();
         $collection->push((object)['title' => 'Главная', 'path' => route('home')]);
         $collection = $collection->merge(Category::parentWithChildren()->get());
         $collection->push((object)['title' => 'Контакты', 'path' => route('contacts')]);
+
+        $collection->transform(function ($item) {
+            $this->active($item);
+            return $item;
+
+        });
         return $collection;
     }
+
+
+    /**
+     * @param $elem
+     *
+     * @return bool
+     */
+    private function active($elem): bool
+    {
+        $marker       = false;
+        $elem->active = '';
+
+        if ($this->isActive(($elem->path))) {
+            $elem->active = 'active';
+            $marker       = true;
+        }
+
+        if (isset($elem->children) && $elem->children->isNotEmpty()) {
+            foreach ($elem->children as $child) {
+                $marker = $this->active(($child));
+
+                if ($marker) $elem->active = 'active';
+            }
+        }
+        return $marker;
+    }
+
+    /**
+     * @param $path
+     *
+     * @return bool
+     */
+    private function isActive($path): bool
+    {
+        return ($path === url()->current()) ? true : false;
+
+    }
+
+
 }

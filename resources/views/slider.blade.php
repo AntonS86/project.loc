@@ -70,7 +70,8 @@
                                  data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;">
                                 @if (isset($company->phone))
                                 <a href="tel:{{$company->phone}}"
-                                    class="btn btn-default btn-animated margin-clear">{{ trans('text.call_us') }}<i
+                                   class="btn btn-default btn-sm btn-animated margin-clear">{{ trans('text.call_us') }}
+                                    <i
                                         class="fa fa-phone"></i></a>
                                 @endif
                             </div>
