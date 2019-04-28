@@ -38,9 +38,8 @@ Route::get('category/{cat_alias}', 'ArticlesController@category')->name('article
 
 Route::get('keyword/{keyword_alias}', 'ArticlesController@keyword')->name('articlesKeyword')->where('keyword_alias', '[\w-]+');
 
-Route::get('search', 'ArticlesController@search')->name('articles.search');
 
-
+Route::get('market', 'MarketController@index')->name('market');
 /*---------------------Contact----------------------*/
 
 Route::get('contacts', 'ContactController@index')->name('contacts');
@@ -49,6 +48,7 @@ Route::get('contacts', 'ContactController@index')->name('contacts');
 /*-------------поиск-по-новостям-и-статьям-ajax-----*/
 Route::get('searcharticles', 'SearchController@searchArticles')->name('search.articles_ajax');
 
+Route::get('search', 'ArticlesController@search')->name('articles.search');
 
 /*--------------тестовый-контроллер--------------------*/
 Route::any('test', 'TestController@test');

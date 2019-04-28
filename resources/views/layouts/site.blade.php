@@ -64,6 +64,7 @@
 <script src="{{asset('plugins/countTo/jquery.countTo.js')}}"></script>
 
 <script src="{{asset('plugins/pace/pace.min.js')}}"></script>
+@stack('comingsoon')
 <!-- Initialization of Plugins -->
 <script src="{{asset('js/template.js')}}"></script>
 <!-- Custom Scripts -->

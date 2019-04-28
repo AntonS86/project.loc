@@ -4,6 +4,7 @@
 return [
     'apply'                => 'Подать заявку',
     'call_us'              => 'Позвоните нам',
+    'coming_soon'          => 'Скоро Открытие',
     'contact_us'           => 'Напишите Нам',
     'description'          => 'Описание',
     'email_address'        => 'Email',
