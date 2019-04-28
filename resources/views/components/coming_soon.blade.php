@@ -9,7 +9,7 @@
                 <div class="hc-element-invisible" data-animation-effect="fadeIn" data-effect-delay="100">
                     <!-- logo -->
                     <div id="logo" class="logo text-center">
-                        <h3 class="margin-clear"><a href="index.html" class="logo-font link-light">The <span
+                        <h3 class="margin-clear"><a href="{{route('home')}}" class="logo-font link-light">The <span
                                     class="text-default">Project</span></a></h3>
                     </div>
                     <!-- name-and-slogan -->
