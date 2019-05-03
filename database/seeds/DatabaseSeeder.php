@@ -22,6 +22,12 @@ class DatabaseSeeder extends Seeder
         $this->call(WorksSeeder::class);
         $this->call(KeywordsSeeder::class);
         $this->call(ImagesSeeder::class);
+        $this->call(TypesSeeder::class);
+        $this->call(RubricsSeeder::class);
+        $this->call(StreetsSeeder::class);
+        $this->call(RegionsSeeder::class);
+        $this->call(CitiesSeeder::class);
+        $this->call(RealEstatesSeeder::class);
 
     }
 }
