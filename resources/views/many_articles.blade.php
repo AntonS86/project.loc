@@ -4,7 +4,7 @@
 
     <h1 class="page-title">{{$categories->title ?? $keywords->name ?? $search ?? 'Последние новости'}}</h1>
     <div class="separator-2"></div>
-    <div id="articles">
+    <div id="paginate-content">
         @foreach($articles as $article)
             <article class="blogpost">
                 @if (isset($article->images) && isset($article->images[0]))

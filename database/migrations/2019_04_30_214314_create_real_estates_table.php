@@ -23,6 +23,7 @@ class CreateRealEstatesTable extends Migration
             $table->integer('district_id')->unsigned()->nullable();
             $table->integer('village_id')->unsigned()->nullable();
             $table->integer('street_id')->unsigned();
+            $table->string('house_number')->nullable();
             $table->integer('floors')->unsigned()->nullable(); //этажей
             $table->integer('floor')->unsigned()->nullable(); //этаж
             $table->integer('balcony')->unsigned()->nullable(); //балкон

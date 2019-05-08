@@ -56,13 +56,13 @@ class ArticlesController extends Controller
      * @return View
      * @throws \Throwable
      */
-    public function index(Request $request): View
+    public function index(Request $request)
     {
         $this->varOutput['articles'] = $this->articleRepository->getAllArticlesForAdmin();
         if ($request->ajax()) {
 
             $html = view('new_admin.article.articles_table', $this->varOutput)->render();
-            return response()->json(['success' => true, 'articles' => $html]);
+            return response()->json(['success' => true, 'content' => $html]);
         }
         $this->varOutput['categories'] = Category::parentWithChildren()->get();
         return view($this->template)->with($this->varOutput);

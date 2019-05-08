@@ -6,6 +6,7 @@ return [
     'lastArticlesLimit' => 5,
     'adminPagination'   => 20,
     'pagination'        => 10,
+    'market_pagination' => 20,
     'popularTagsLimit'  => 20,
     'imageSave'         => 'images' . '/',
     'thumbsSave'        => 'images' . '/' . 'thumbs' . '/',

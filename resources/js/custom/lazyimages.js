@@ -20,3 +20,19 @@ let isVisible = (elem) => {
 
 lazyImage();
 window.addEventListener('scroll', lazyImage);
+
+
+/**
+ * load images for ads list
+ */
+let imageAds = () => {
+    let container = document.querySelector('.tab-content');
+    if (!container) return;
+    container.addEventListener('mouseover', (e) => {
+        let li = e.target.closest('.slider-li-item');
+        if (!li) return;
+        li.closest('.slider-images').style.backgroundImage = `url(${li.dataset.img})`;
+    });
+};
+
+imageAds();

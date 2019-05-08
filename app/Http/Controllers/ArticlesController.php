@@ -41,7 +41,7 @@ class ArticlesController extends SiteController
         $this->varOutput['articles'] = $this->articleRepository->getAllArticles();
         if ($request->ajax()) {
             $html = view('many_articles', $this->varOutput)->render();
-            return response()->json(['success' => true, 'articles' => $html]);
+            return response()->json(['success' => true, 'content' => $html]);
         }
         $this->addictedContent();
 
@@ -61,7 +61,7 @@ class ArticlesController extends SiteController
         $this->varOutput['articles'] = $this->articleRepository->getArticles($catAlias);
         if ($request->ajax()) {
             $html = view('many_articles', $this->varOutput)->render();
-            return response()->json(['success' => true, 'articles' => $html]);
+            return response()->json(['success' => true, 'content' => $html]);
         }
         $this->addictedContent();
         $this->varOutput['categories'] = Category::where('alias', $catAlias)->first();
@@ -81,7 +81,7 @@ class ArticlesController extends SiteController
         $this->varOutput['articles'] = $this->articleRepository->getArticlesKeyword($keywordAlias);
         if ($request->ajax()) {
             $html = view('many_articles', $this->varOutput)->render();
-            return response()->json(['success' => true, 'articles' => $html]);
+            return response()->json(['success' => true, 'content' => $html]);
         }
         $this->addictedContent();
         $this->varOutput['keywords'] = Keyword::where('alias', $keywordAlias)->first();
@@ -114,7 +114,7 @@ class ArticlesController extends SiteController
         $this->varOutput['articles']->appends($request->only('search'));
         if ($request->ajax()) {
             $html = view('many_articles', $this->varOutput)->render();
-            return response()->json(['success' => true, 'articles' => $html]);
+            return response()->json(['success' => true, 'content' => $html]);
         }
         $this->addictedContent();
         $this->varOutput['search'] = 'Поиск: ' . $request->search;

@@ -37,12 +37,12 @@ require('bootstrap');*/
 
 require('bootstrap-notify');
 require('./custom/lazyimages');
-require('./Article/PaginateArticles');
+require('./custom/paginate');
 require('./Article/ArticlesSearch');
 require('./custom/Share');
 require('./custom/ClientLetter');
-require('./WorkMessage/WorkMessageHandler');
-
+require('./custom/custom');
+require('./market/real_estates');
 
 
 

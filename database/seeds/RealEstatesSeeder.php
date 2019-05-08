@@ -88,6 +88,7 @@ class RealEstatesSeeder extends Seeder
             'city_id'          => $city->id,
             'district_id'      => ($city->districts->random())->id,
             'street_id'        => ($city->streets->random())->id,
+            'house_number'     => $this->generateHouseNumber(),
             'floors'           => $this->floors,
             'floor'            => random_int(1, $this->floors),
             'loggia'           => random_int(0, 1),
@@ -113,6 +114,8 @@ class RealEstatesSeeder extends Seeder
 
 
     /**
+     * комната
+     *
      * @param City $city
      *
      * @throws Exception
@@ -126,6 +129,7 @@ class RealEstatesSeeder extends Seeder
             'city_id'          => $city->id,
             'district_id'      => ($city->districts->random())->id,
             'street_id'        => ($city->streets->random())->id,
+            'house_number'     => $this->generateHouseNumber(),
             'floors'           => $this->floors,
             'floor'            => random_int(1, $this->floors),
             'room'             => 1,
@@ -161,6 +165,7 @@ class RealEstatesSeeder extends Seeder
             'area_id'          => $village->area->id,
             'village_id'       => $village->id,
             'street_id'        => ($village->streets->random())->id,
+            'house_number'     => $this->generateHouseNumber(),
             'floors'           => random_int(1, 2),
             'room'             => random_int(1, 4),
             'land_square'      => random_int(500, 3000),
@@ -183,6 +188,8 @@ class RealEstatesSeeder extends Seeder
     }
 
     /**
+     * дом
+     *
      * @param Village $village
      *
      * @throws Exception
@@ -196,6 +203,7 @@ class RealEstatesSeeder extends Seeder
             'area_id'          => $village->area->id,
             'village_id'       => $village->id,
             'street_id'        => ($village->streets->random())->id,
+            'house_number'     => $this->generateHouseNumber(),
             'floors'           => random_int(1, 2),
             'room'             => random_int(1, 4),
             'land_square'      => random_int(500, 3000),
@@ -218,6 +226,8 @@ class RealEstatesSeeder extends Seeder
     }
 
     /**
+     * участок
+     *
      * @param Village $village
      *
      * @throws Exception
@@ -232,7 +242,6 @@ class RealEstatesSeeder extends Seeder
             'village_id'       => $village->id,
             'street_id'        => ($village->streets->random())->id,
             'floors'           => random_int(1, 2),
-            'room'             => random_int(1, 4),
             'land_square'      => random_int(500, 3000),
             'total_square'     => random_int(40, 100),
             'description'      => $this->faker->text(200),
@@ -269,5 +278,14 @@ class RealEstatesSeeder extends Seeder
             'real_estate_id' => $realEstate->id,
             'value'          => $realEstate->price
         ]);
+    }
+
+    private function generateHouseNumber()
+    {
+        $address = (string)random_int(1, 20);
+        if ($var = random_int(0, 3)) {
+            $address .= 'к' . $var;
+        }
+        return $address;
     }
 }

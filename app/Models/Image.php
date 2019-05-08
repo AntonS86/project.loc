@@ -43,6 +43,14 @@ class Image extends Model
         return $this->belongsToMany('App\Models\WorkMessage');
     }
 
+    /**
+     * @return BelongsToMany
+     */
+    public function realEstates(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Models\RealEstate');
+    }
+
 
     /**
      * @return string

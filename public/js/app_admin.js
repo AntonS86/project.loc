@@ -38980,6 +38980,21 @@
 
         lazyImage();
         window.addEventListener('scroll', lazyImage);
+        /**
+         * load images for ads list
+         */
+
+        var imageAds = function imageAds() {
+            var container = document.querySelector('.tab-content');
+            if (!container) return;
+            container.addEventListener('mouseover', function (e) {
+                var li = e.target.closest('.slider-li-item');
+                if (!li) return;
+                li.closest('.slider-images').style.backgroundImage = "url(".concat(li.dataset.img, ")");
+            });
+        };
+
+        imageAds();
 
         /***/
     }),

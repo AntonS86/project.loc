@@ -1,4 +1,4 @@
-<div id="articles">
+<div id="paginate-content">
     <div class="card">
         <div class="card-header">
             <strong class="card-title">Выбери статью для редактирования</strong>

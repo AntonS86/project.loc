@@ -5,12 +5,12 @@
 @endsection
 
 @section('slider')
-	@include('slider')
+    @include('market.search_component')
 @endsection
 
 
 @section('page_content')
-	@include('index_content')
+    @include('market.content')
 @endsection
 
 @section('action_block')
