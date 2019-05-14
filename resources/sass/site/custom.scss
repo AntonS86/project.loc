@@ -136,6 +136,15 @@ img {
             }
         }
     }
+
+    .wishlist {
+        z-index: 9999;
+        display: block;
+        position: absolute;
+        top: 5px;
+        right: 12px;
+        color: $white;
+    }
 }
 
 .listing-item {

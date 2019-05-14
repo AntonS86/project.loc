@@ -26857,6 +26857,15 @@ img[data-src] {
     display: block;
 }
 
+.slider-images .wishlist {
+    z-index: 9999;
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 12px;
+    color: #fff;
+}
+
 .listing-item .body:hover {
     background-color: rgba(232, 232, 232, 0.8);
     transition: background-color 0.3s;

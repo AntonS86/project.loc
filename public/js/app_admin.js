@@ -38990,7 +38990,7 @@
             container.addEventListener('mouseover', function (e) {
                 var li = e.target.closest('.slider-li-item');
                 if (!li) return;
-                li.closest('.slider-images').style.backgroundImage = li.firstChild.style.backgroundImage;
+                li.closest('.slider-images').style.backgroundImage = li.querySelector('div').style.backgroundImage;
             });
         };
 

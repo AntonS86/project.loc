@@ -1,7 +1,7 @@
 <div class="col-lg-3 col-md-6">
     <div class="listing-item white-bg bordered mb-20">
         @if($realestate->images->isNotEmpty())
-            <div class="slider-images overlay-container"
+            <div class="slider-images"
                  style="background-image: url({{$realestate->images[0]->asset_thumbs_path}})">
                 <ul>
                     @foreach($realestate->images as $image)
@@ -10,24 +10,19 @@
                         </li>
                     @endforeach
                     <li class="slider-li-item">
-                        <div style="background-image: url({{$image->asset_thumbs_path. '12ew3'}})"></div>
+                        <div
+                            style="background-image: url({{$realestate->images[0]->asset_thumbs_path. '12ew3'}})"></div>
                     </li>
                     <li class="slider-li-item">
-                        <div style="background-image: url({{$image->asset_thumbs_path. 'wer'}})"></div>
+                        <div style="background-image: url({{$realestate->images[0]->asset_thumbs_path. 'wer'}})"></div>
                     </li>
                     <li class="slider-li-item">
-                        <div style="background-image: url({{$image->asset_thumbs_path. '1we3'}})"></div>
+                        <div style="background-image: url({{$realestate->images[0]->asset_thumbs_path. '1we3'}})"></div>
                     </li>
                 </ul>
-                {{--<div class="overlay-to-top links">
-                            <span class="small">
-                              <a href="{{route('realestate.fav_toggle', ['realestate' => $realestate->id])}}" data-id="{{$realestate->id}}" data-text="{{trans('text.to_favorites')}}" class="wishlist"><i class="fa {{in_array($realestate->id, $rs_fav_id) ? 'fa-heart' : 'fa-heart-o'}} pr-10"></i><span>{{in_array($realestate->id, $rs_fav_id) ? '' : trans('text.to_favorites')}}</span></a>
-                              <a href="#" class="btn-sm-link"><i class="fa fa-link pr-1"></i>View Details</a>
-                            </span>
-                </div>--}}
-                {{--
-                                <a href="{{route('realestate.fav_toggle', ['realestate' => $realestate->id])}}" data-id="{{$realestate->id}}" class="wishlist"><i class="fa {{in_array($realestate->id, $rs_fav_id) ? 'fa-heart' : 'fa-heart-o'}}"></i></a>
-                --}}
+                <a href="{{route('realestate.fav_toggle', ['realestate' => $realestate->id])}}"
+                   title="{{trans('text.favorite')}}" data-id="{{$realestate->id}}" class="wishlist"><i
+                        class="fa {{in_array($realestate->id, $rs_fav_id) ? 'fa-heart' : 'fa-heart-o'}}"></i></a>
             </div>
         @endif
         <div class="body position-relative">
