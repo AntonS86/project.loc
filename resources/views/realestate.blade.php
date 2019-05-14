@@ -5,7 +5,9 @@
 @endsection
 
 @section('slider')
-    @include('market.search_component')
+    @if (empty($realestate))
+        @include('market.search_component')
+    @endif
 @endsection
 
 
@@ -18,5 +20,5 @@
 @endsection
 
 @section('footer')
-	@include('footer')
+    @include('footer')
 @endsection

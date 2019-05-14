@@ -102,6 +102,15 @@ img {
             margin: 1px;
             align-content: flex-end;
 
+            div {
+                position: absolute;
+                z-index: -1;
+                right: 0;
+                top: 0;
+                left: 0;
+                bottom: 0;
+            }
+
             &::after {
                 content: '';
                 display: none;
@@ -174,5 +183,27 @@ img {
                 }
             }
         }
+    }
+}
+
+#details {
+    dt {
+        font-weight: 400;
+        display: flex;
+        align-items: baseline;
+
+        &::after {
+            content: "";
+            margin: 0 5px;
+            height: 0.3px;
+            background-color: #d9d9d9;
+            flex: 1 1 auto;
+        }
+    }
+}
+
+.wishlist {
+    &:hover {
+        text-decoration: none;
     }
 }

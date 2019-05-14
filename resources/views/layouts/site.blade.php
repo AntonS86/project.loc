@@ -20,7 +20,7 @@
 
     <link rel="shortcut icon" href="{{asset('images/favicon.png')}}">
 
-    @include('components.analytics')
+    {{--@include('components.analytics')--}}
     @stack('slider-css')
 
     <link href="{{asset('plugins/slick/slick.css')}}" rel="stylesheet">
@@ -64,6 +64,7 @@
 <script src="{{asset('plugins/countTo/jquery.countTo.js')}}"></script>
 
 <script src="{{asset('plugins/pace/pace.min.js')}}"></script>
+<script src="{{asset('plugins/slick/slick.min.js')}}"></script>
 @stack('comingsoon')
 <!-- Initialization of Plugins -->
 <script src="{{asset('js/template.js')}}"></script>

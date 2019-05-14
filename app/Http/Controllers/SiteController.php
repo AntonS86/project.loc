@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Company;
+use Illuminate\View\View;
 
 class SiteController extends Controller
 {
@@ -50,9 +51,9 @@ class SiteController extends Controller
     /**
      * метод возвращает массив с данными во view
      *
-     * @return void
+     * @return View
      */
-    public function renderOutput()
+    public function renderOutput(): View
     {
         $this->varOutput['menu']    = $this->menuService->getMenu();
         $this->varOutput['company'] = Company::with('companyLinks')->first();

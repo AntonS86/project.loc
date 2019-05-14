@@ -136,4 +136,71 @@ class RealEstate extends Model
             'images'
         ]);
     }
+
+
+    /**
+     *
+     * @return RealEstate
+     */
+    public function loadFullContent(): RealEstate
+    {
+        return $this->load([
+            'rubric',
+            'region',
+            'city',
+            'street',
+            'district',
+            'area',
+            'village',
+            'prices',
+            'images'
+        ]);
+    }
+
+    /**
+     * @param Builder $query
+     * @param array   $inputs
+     *
+     * @return Builder
+     */
+    public function scopeSearch(Builder $query, array $inputs): Builder
+    {
+        $query->where('rubric_id', $inputs['rubric_id']);
+        if (isset($inputs['type_id'])) {
+            $query->where('type_id', $inputs['type_id']);
+        }
+        if (isset($inputs['street_id'])) {
+            $query->where('street_id', $inputs['street_id']);
+        } elseif (isset($inputs['street_name'])) {
+            $query->whereHas('street', function ($query) use ($inputs) {
+                $query->where('name', 'LIKE', '%' . $inputs['street_name'] . '%');
+            });
+        }
+        $query->orderBy($inputs['sort'], $inputs['sort_by']);
+        return $query;
+    }
+
+    /**
+     *  только опубликованные
+     *
+     * @param Builder $query
+     *
+     * @return Builder
+     */
+    public function scopePublished(Builder $query): Builder
+    {
+        return $query->where('status', 'published');
+    }
+
+    /**
+     * Выборка привязанной модели к маршруту
+     *
+     * @param mixed $value
+     *
+     * @return Model|void|null
+     */
+    public function resolveRouteBinding($value)
+    {
+        return $this->where('id', $value)->published()->first() ?? abort(404);
+    }
 }

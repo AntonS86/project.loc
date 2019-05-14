@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticlesSearch;
 use App\Http\Requests\SearchAddressRequest;
+use App\Models\RealEstate;
 use App\Models\Street;
 use App\Repositories\ArticleRepository;
 use Illuminate\Http\JsonResponse;

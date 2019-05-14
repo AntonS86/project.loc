@@ -26,12 +26,12 @@ window.addEventListener('scroll', lazyImage);
  * load images for ads list
  */
 let imageAds = () => {
-    let container = document.querySelector('.tab-content');
+    let container = document.querySelector('.main');
     if (!container) return;
     container.addEventListener('mouseover', (e) => {
         let li = e.target.closest('.slider-li-item');
         if (!li) return;
-        li.closest('.slider-images').style.backgroundImage = `url(${li.dataset.img})`;
+        li.closest('.slider-images').style.backgroundImage = li.firstChild.style.backgroundImage;
     });
 };
 

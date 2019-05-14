@@ -12,7 +12,8 @@ let searchAddress = (data) => {
     if (!(input && ul && form)) return null;
     let url = form.dataset.search_address;
     input.addEventListener('keyup', (e) => {
-        let value = input.value.trim();
+        form.street_id.value = '';
+        let value            = input.value.trim();
         if (value) {
             axios.post(url, {
                 street_name: value
@@ -21,6 +22,8 @@ let searchAddress = (data) => {
             }).catch((error) => {
                 new ErrorHandler().errorNotify(error);
             });
+        } else {
+            ul.hidden = true;
         }
     });
 
@@ -28,9 +31,10 @@ let searchAddress = (data) => {
     ul.addEventListener('click', (e) => {
         let li = e.target.closest('li');
         if (!(li && li.dataset.id && li.innerHTML.trim())) return null;
-        input.dataset.id = li.dataset.id;
-        input.value      = li.innerHTML.trim();
-        ul.hidden        = true;
+        input.dataset.id     = li.dataset.id;
+        input.value          = li.innerHTML.trim();
+        form.street_id.value = li.dataset.id
+        ul.hidden            = true;
     });
 };
 
@@ -55,7 +59,7 @@ let listBuilder = (response, data) => {
 
 
 searchAddress({
-    form_id : '#search_market',
+    form_id : '#search_realestates',
     input_id: '#street_name',
     ul_id   : '#list-street'
 });

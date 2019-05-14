@@ -35,13 +35,13 @@ class Paginate {
     }
 
     _builder(response) {
-        let oldArticles = this._main.querySelector('#paginate-content');
-        this._uplift(oldArticles.offsetTop);
+        let oldContent = this._main.querySelector('#paginate-content');
+        this._uplift(oldContent.offsetTop);
         let template       = document.createElement('template');
         template.innerHTML = response.trim();
-        let articles       = template.content.querySelector('#paginate-content');
+        let content        = template.content.querySelector('#paginate-content');
 
-        oldArticles.parentElement.replaceChild(articles, oldArticles);
+        oldContent.parentElement.replaceChild(content, oldContent);
     }
 
     _uplift(y) {

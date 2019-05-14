@@ -24,9 +24,11 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::pattern('alias', '[\w-]+');
+        Route::pattern('realestate', '[0-9]+');
 
         parent::boot();
 
+        Route::model('realestate', \App\Models\RealEstate::class);
         Route::model('article', \App\Models\Article::class);
         Route::model('workmessage', \App\Models\WorkMessage::class);
     }

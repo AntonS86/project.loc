@@ -10,11 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('/', 'IndexController', [
-    'only'  => ['index'],
-    'names' => ['index' => 'home']
-]);
 
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', 'IndexController@index')->name('home');
+
+Route::get('realestates/{realestate}', 'RealEstateController@show')->name('realestates.show');
+Route::get('realestates/search', 'RealEstateController@search')->name('realestates.search');
+Route::get('realestate/favorite-toggle/{realestate}', 'RealEstateController@favToggle')->name('realestate.fav_toggle');
 
 Route::post('sendmail', 'SendMailController@store')->name('sendmail.create');
 

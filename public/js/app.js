@@ -20739,44 +20739,85 @@ if (token) {
     /*!***************************************!*\
       !*** ./resources/js/custom/custom.js ***!
       \***************************************/
-    /*! no exports provided */
-    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+    /*! no static exports found */
+    /***/ (function (module, exports) {
 
-        "use strict";
-        __webpack_require__.r(__webpack_exports__);
-        /* harmony import */
-        var _ErrorHandler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ErrorHandler */ "./resources/js/custom/ErrorHandler.js");
-
-        var dataSort = {
-            buttonId: '#button-sort',
-            up      : {
+        var dataSort     = {
+            buttonId  : '#button-sort',
+            form      : '#search_realestates',
+            input_name: 'sort_by',
+            up        : {
                 class: 'fa-arrow-up',
                 sort : 'ASC'
             },
-            down    : {
+            down      : {
                 class: 'fa-arrow-down',
                 sort : 'DESC'
             }
         };
+        /**
+         *
+         * @param obj
+         */
 
         var toggleButton = function toggleButton(obj) {
             var button = document.querySelector(obj.buttonId);
+            var form   = obj.form ? document.querySelector(obj.form) : null;
             if (!button) return;
             button.addEventListener('click', function (e) {
                 e.preventDefault();
 
-                if (button.dataset.sort === obj.down.sort) {
-                    button.dataset.sort = obj.up.sort;
+                if (button.value === obj.down.sort) {
+                    button.value = obj.up.sort;
                 } else {
-                    button.dataset.sort = obj.down.sort;
+                    button.value = obj.down.sort;
                 }
 
+                if (form) form[obj.input_name].value = button.value;
                 button.firstChild.classList.toggle(obj.down.class);
                 button.firstChild.classList.toggle(obj.up.class);
             });
         };
 
         toggleButton(dataSort);
+
+        var wishlist = function wishlist() {
+            var main = document.querySelector('.main');
+            if (!main) return false;
+            main.addEventListener('click', function (e) {
+                var link = e.target.closest('.wishlist');
+                if (!link) return false;
+                e.preventDefault();
+                var span = link.querySelector('span');
+                var text = link.dataset.text || null;
+                axios.get(link.href).then(function (response) {
+                    if (response.status === 200) {
+                        //console.log(response);
+                        if (response.data.indexOf(+link.dataset.id) !== -1) {
+                            classToggle(link.firstChild, 'fa-heart-o', 'fa-heart');
+                            addText(span, '');
+                        } else {
+                            classToggle(link.firstChild, 'fa-heart', 'fa-heart-o');
+                            addText(span, text);
+                        }
+                    }
+                }).catch(function (error) {//console.log(error);
+                });
+            });
+        };
+
+        var classToggle = function classToggle(elem, class1, class2) {
+            elem.classList.remove(class1);
+            elem.classList.add(class2);
+        };
+
+        var addText = function addText(elem, text) {
+            if (elem && text) {
+                elem.innerHTML = text;
+            }
+        };
+
+        wishlist();
 
         /***/
     }),
@@ -20817,12 +20858,12 @@ if (token) {
          */
 
         var imageAds = function imageAds() {
-            var container = document.querySelector('.tab-content');
+            var container = document.querySelector('.main');
             if (!container) return;
             container.addEventListener('mouseover', function (e) {
                 var li = e.target.closest('.slider-li-item');
                 if (!li) return;
-                li.closest('.slider-images').style.backgroundImage = "url(".concat(li.dataset.img, ")");
+                li.closest('.slider-images').style.backgroundImage = li.firstChild.style.backgroundImage;
             });
         };
 
@@ -20914,14 +20955,14 @@ if (token) {
                     }, {
                         key  : "_builder",
                         value: function _builder(response) {
-                            var oldArticles = this._main.querySelector('#paginate-content');
+                            var oldContent = this._main.querySelector('#paginate-content');
 
-                            this._uplift(oldArticles.offsetTop);
+                            this._uplift(oldContent.offsetTop);
 
                             var template       = document.createElement('template');
                             template.innerHTML = response.trim();
-                            var articles       = template.content.querySelector('#paginate-content');
-                            oldArticles.parentElement.replaceChild(articles, oldArticles);
+                            var content        = template.content.querySelector('#paginate-content');
+                            oldContent.parentElement.replaceChild(content, oldContent);
                         }
                     }, {
                         key  : "_uplift",
@@ -20936,7 +20977,6 @@ if (token) {
                 }();
 
         new Paginate().paginate();
-        console.log('!!');
 
         /***/
     }),
@@ -20978,7 +21018,8 @@ if (token) {
             if (!(input && ul && form)) return null;
             var url = form.dataset.search_address;
             input.addEventListener('keyup', function (e) {
-                var value = input.value.trim();
+                form.street_id.value = '';
+                var value            = input.value.trim();
 
                 if (value) {
                     axios.post(url, {
@@ -20988,14 +21029,17 @@ if (token) {
                     }).catch(function (error) {
                         new _custom_ErrorHandler__WEBPACK_IMPORTED_MODULE_0__["default"]().errorNotify(error);
                     });
+                } else {
+                    ul.hidden = true;
                 }
             });
             ul.addEventListener('click', function (e) {
                 var li = e.target.closest('li');
                 if (!(li && li.dataset.id && li.innerHTML.trim())) return null;
-                input.dataset.id = li.dataset.id;
-                input.value      = li.innerHTML.trim();
-                ul.hidden        = true;
+                input.dataset.id     = li.dataset.id;
+                input.value          = li.innerHTML.trim();
+                form.street_id.value = li.dataset.id;
+                ul.hidden            = true;
             });
         };
         /**
@@ -21062,7 +21106,7 @@ if (token) {
         };
 
         searchAddress({
-            form_id : '#search_market',
+            form_id : '#search_realestates',
             input_id: '#street_name',
             ul_id   : '#list-street'
         });

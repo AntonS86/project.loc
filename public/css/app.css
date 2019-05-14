@@ -26829,6 +26829,15 @@ img[data-src] {
     align-content: flex-end;
 }
 
+.slider-images ul li div {
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+}
+
 .slider-images ul li::after {
     content: "";
     display: none;
@@ -26890,5 +26899,23 @@ img[data-src] {
     background-color: #007bff;
     transition: color 0.1s, background-color 0.1s;
     cursor: pointer;
+}
+
+#details dt {
+    font-weight: 400;
+    display: flex;
+    align-items: baseline;
+}
+
+#details dt::after {
+    content: "";
+    margin: 0 5px;
+    height: 0.3px;
+    background-color: #d9d9d9;
+    flex: 1 1 auto;
+}
+
+.wishlist:hover {
+    text-decoration: none;
 }
 
