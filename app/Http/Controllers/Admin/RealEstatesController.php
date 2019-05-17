@@ -71,6 +71,11 @@ class RealEstatesController extends Controller
 
     public function create()
     {
+        return view($this->template)->with($this->varOutput);
+    }
+
+    public function store()
+    {
 
     }
 

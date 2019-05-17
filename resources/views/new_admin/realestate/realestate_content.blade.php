@@ -13,7 +13,7 @@
                 @if(isset($realestates))
                     @include('new_admin.realestate.realestates_table')
                 @else
-                    {{--@include('new_admin.article.articles_create')--}}
+                    @include('new_admin.realestate.realestate_edit')
                 @endif
 
             </div>
@@ -21,7 +21,6 @@
                 @if(isset($realestates))
                     @include('new_admin.realestate.search_realestate')
                 @endif
-
             </div>
         </div>
     </div>

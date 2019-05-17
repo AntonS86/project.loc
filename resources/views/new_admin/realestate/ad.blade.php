@@ -48,7 +48,7 @@
             </div>
             <div class="elements-list clearfix">
                 <p class="my-2">{{$realestate->current_price}} <i class="fa fa-rub"></i></p>
-                <a href="{{route('admin.realestates.show', ['realestate' => $realestate->id])}}" target="_blank"
+                <a href="{{route('admin.realestates.edit', ['realestate' => $realestate->id])}}" target="_blank"
                    class="stretched-link"></a>
             </div>
         </div>
