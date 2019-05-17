@@ -37,6 +37,16 @@ class MenuService
             (object)[
                 'title' => 'Добавить статью',
                 'path'  => route('admin.articles.create'),
+                'icon'  => 'fa fa-file-text-o'
+            ],
+            (object)[
+                'title' => 'Объявления',
+                'path'  => route('admin.realestates.index'),
+                'icon'  => 'fa fa-building'
+            ],
+            (object)[
+                'title' => 'Добавить объявление',
+                'path'  => route('admin.realestates.create'),
                 'icon'  => 'fa fa-plus-square-o'
             ],
 

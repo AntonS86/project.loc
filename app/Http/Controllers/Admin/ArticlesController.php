@@ -21,7 +21,7 @@ class ArticlesController extends Controller
     /**
      * @var string
      */
-    protected $template;
+    private $template;
 
     /**
      * массив с данными
@@ -29,14 +29,14 @@ class ArticlesController extends Controller
      *
      * @var array
      */
-    protected $varOutput = [];
+    private $varOutput = [];
 
     /**
      * объект с данными о статьях
      *
      * @var [type]
      */
-    protected $articleRepository;
+    private $articleRepository;
 
     /**
      * ArticlesController constructor.

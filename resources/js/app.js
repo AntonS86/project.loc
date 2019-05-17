@@ -41,8 +41,9 @@ require('./custom/paginate');
 require('./Article/ArticlesSearch');
 require('./custom/Share');
 require('./custom/ClientLetter');
-require('./custom/custom');
-require('./market/real_estates');
+require('./custom/tuggleSortButton');
+require('./custom/wishlist');
+require('./market/search');
 
 
 

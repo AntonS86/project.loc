@@ -4,9 +4,11 @@ require('./main');
 require('bootstrap-notify');
 require('moment');
 require('../custom/lazyimages');
-require('../Article/PaginateArticles');
-
+require('../custom/paginate');
+require('../custom/tuggleSortButton');
 require('../custom/message');
+require('../market/search');
+require('./search_realestate');
 
 
 

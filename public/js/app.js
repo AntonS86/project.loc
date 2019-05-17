@@ -20236,9 +20236,11 @@ __webpack_require__(/*! bootstrap-notify */ "./node_modules/bootstrap-notify/boo
 
         __webpack_require__(/*! ./custom/ClientLetter */ "./resources/js/custom/ClientLetter.js");
 
-        __webpack_require__(/*! ./custom/custom */ "./resources/js/custom/custom.js");
+        __webpack_require__(/*! ./custom/tuggleSortButton */ "./resources/js/custom/tuggleSortButton.js");
 
-        __webpack_require__(/*! ./market/real_estates */ "./resources/js/market/real_estates.js");
+        __webpack_require__(/*! ./custom/wishlist */ "./resources/js/custom/wishlist.js");
+
+        __webpack_require__(/*! ./market/search */ "./resources/js/market/search.js");
 
 /***/ }),
 
@@ -20735,93 +20737,6 @@ if (token) {
         /***/
     }),
 
-    /***/ "./resources/js/custom/custom.js":
-    /*!***************************************!*\
-      !*** ./resources/js/custom/custom.js ***!
-      \***************************************/
-    /*! no static exports found */
-    /***/ (function (module, exports) {
-
-        var dataSort     = {
-            buttonId  : '#button-sort',
-            form      : '#search_realestates',
-            input_name: 'sort_by',
-            up        : {
-                class: 'fa-arrow-up',
-                sort : 'ASC'
-            },
-            down      : {
-                class: 'fa-arrow-down',
-                sort : 'DESC'
-            }
-        };
-        /**
-         *
-         * @param obj
-         */
-
-        var toggleButton = function toggleButton(obj) {
-            var button = document.querySelector(obj.buttonId);
-            var form   = obj.form ? document.querySelector(obj.form) : null;
-            if (!button) return;
-            button.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                if (button.value === obj.down.sort) {
-                    button.value = obj.up.sort;
-                } else {
-                    button.value = obj.down.sort;
-                }
-
-                if (form) form[obj.input_name].value = button.value;
-                button.firstChild.classList.toggle(obj.down.class);
-                button.firstChild.classList.toggle(obj.up.class);
-            });
-        };
-
-        toggleButton(dataSort);
-
-        var wishlist = function wishlist() {
-            var main = document.querySelector('.main');
-            if (!main) return false;
-            main.addEventListener('click', function (e) {
-                var link = e.target.closest('.wishlist');
-                if (!link) return false;
-                e.preventDefault();
-                var span = link.querySelector('span');
-                var text = link.dataset.text || null;
-                axios.get(link.href).then(function (response) {
-                    if (response.status === 200) {
-                        //console.log(response);
-                        if (response.data.indexOf(+link.dataset.id) !== -1) {
-                            classToggle(link.firstChild, 'fa-heart-o', 'fa-heart');
-                            addText(span, '');
-                        } else {
-                            classToggle(link.firstChild, 'fa-heart', 'fa-heart-o');
-                            addText(span, text);
-                        }
-                    }
-                }).catch(function (error) {//console.log(error);
-                });
-            });
-        };
-
-        var classToggle = function classToggle(elem, class1, class2) {
-            elem.classList.remove(class1);
-            elem.classList.add(class2);
-        };
-
-        var addText = function addText(elem, text) {
-            if (elem && text) {
-                elem.innerHTML = text;
-            }
-        };
-
-        wishlist();
-
-        /***/
-    }),
-
     /***/ "./resources/js/custom/lazyimages.js":
     /*!*******************************************!*\
       !*** ./resources/js/custom/lazyimages.js ***!
@@ -20981,14 +20896,99 @@ if (token) {
         /***/
     }),
 
-    /***/ "./resources/js/market/real_estates.js":
-    /*!*********************************************!*\
-      !*** ./resources/js/market/real_estates.js ***!
-      \*********************************************/
+    /***/ "./resources/js/custom/tuggleSortButton.js":
+    /*!*************************************************!*\
+      !*** ./resources/js/custom/tuggleSortButton.js ***!
+      \*************************************************/
     /*! no static exports found */
-    /***/ (function (module, exports, __webpack_require__) {
+    /***/ (function (module, exports) {
 
-        __webpack_require__(/*! ./search */ "./resources/js/market/search.js");
+        var dataSort     = {
+            buttonId  : '#button-sort',
+            form      : '#search_realestates',
+            input_name: 'sort_by',
+            up        : {
+                class: 'fa-arrow-up',
+                sort : 'ASC'
+            },
+            down      : {
+                class: 'fa-arrow-down',
+                sort : 'DESC'
+            }
+        };
+        /**
+         *
+         * @param obj
+         */
+
+        var toggleButton = function toggleButton(obj) {
+            var button = document.querySelector(obj.buttonId);
+            var form   = obj.form ? document.querySelector(obj.form) : null;
+            if (!button) return;
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                if (button.value === obj.down.sort) {
+                    button.value = obj.up.sort;
+                } else {
+                    button.value = obj.down.sort;
+                }
+
+                if (form) form[obj.input_name].value = button.value;
+                button.firstChild.classList.toggle(obj.down.class);
+                button.firstChild.classList.toggle(obj.up.class);
+            });
+        };
+
+        toggleButton(dataSort);
+
+        /***/
+    }),
+
+    /***/ "./resources/js/custom/wishlist.js":
+    /*!*****************************************!*\
+      !*** ./resources/js/custom/wishlist.js ***!
+      \*****************************************/
+    /*! no static exports found */
+    /***/ (function (module, exports) {
+
+        var wishlist = function wishlist() {
+            var main = document.querySelector('.main');
+            if (!main) return false;
+            main.addEventListener('click', function (e) {
+                var link = e.target.closest('.wishlist');
+                if (!link) return false;
+                e.preventDefault();
+                var span = link.querySelector('span');
+                var text = link.dataset.text || null;
+                axios.get(link.href).then(function (response) {
+                    if (response.status === 200) {
+                        //console.log(response);
+                        if (response.data.indexOf(+link.dataset.id) !== -1) {
+                            classToggle(link.firstChild, 'fa-heart-o', 'fa-heart');
+                            addText(span, '');
+                        } else {
+                            classToggle(link.firstChild, 'fa-heart', 'fa-heart-o');
+                            addText(span, text);
+                        }
+                    }
+                }).catch(function (error) {//console.log(error);
+                });
+            });
+        };
+
+        var classToggle = function classToggle(elem, class1, class2) {
+            elem.classList.remove(class1);
+            elem.classList.add(class2);
+        };
+
+        var addText = function addText(elem, text) {
+            if (elem && text) {
+                elem.innerHTML = text;
+            }
+        };
+
+        wishlist();
 
         /***/
     }),

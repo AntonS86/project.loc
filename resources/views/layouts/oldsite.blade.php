@@ -287,7 +287,7 @@
     <!-- Initialization of Plugins -->
     <script src="{{asset('js/template.js')}}"></script>
     <!-- Custom Scripts -->
-    <script src="{{asset('js/custom.js')}}"></script>
+    <script src="{{asset('tugtuggleSortButton.jstton.js')}}"></script>
     <script src="{{asset('plugins/bootstrap-notify/bootstrap-notify.js')}}"></script>
     <script type="text/javascript" src="{{asset('plugins/rs-plugin-5/js/extensions/revolution.extension.slideanims.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('plugins/rs-plugin-5/js/extensions/revolution.extension.layeranimation.min.js')}}"></script>

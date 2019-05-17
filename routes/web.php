@@ -78,4 +78,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'admin.'], fu
 
     /*-----------редактирование статей------------------*/
     Route::resource('articles', 'Admin\ArticlesController');
+
+    /*-----------редактирование объявлений------------------*/
+    Route::resource('realestates', 'Admin\RealEstatesController');
+    Route::get('realestates/search', 'Admin\RealEstatesController@search')->name('realestates.search');
 });

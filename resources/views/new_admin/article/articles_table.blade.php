@@ -7,7 +7,7 @@
             @if(isset($articles))
                 <div class="table">
                     @foreach($articles as $k => $article)
-                        <div class="article-row {{($k%2 == 0) ? 'bg-light' : ''}}" data-article_id="{{$article->id}}">
+                        <div class="article-row" data-article_id="{{$article->id}}">
                             <div class="col-md-1"><span>{{$article->id}}</span></div>
                             <div class="col-md-2">
                                 <img

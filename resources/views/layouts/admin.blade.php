@@ -146,7 +146,7 @@
 <!-- Initialization of Plugins -->
 <script src="{{asset('js/template.js')}}"></script>
 <!-- Custom Scripts -->
-<script src="{{asset('js/custom.js')}}"></script>
+<script src="{{asset('tuggleSortButton.jstButton.js')}}"></script>
 <script src="{{asset('plugins/pace/pace.min.js')}}"></script>
 
 

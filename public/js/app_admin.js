@@ -38515,116 +38515,6 @@
         /***/
     }),
 
-    /***/ "./resources/js/Article/PaginateArticles.js":
-    /*!**************************************************!*\
-  !*** ./resources/js/Article/PaginateArticles.js ***!
-  \**************************************************/
-    /*! exports provided: default */
-    /***/ (function (module, __webpack_exports__, __webpack_require__) {
-
-        "use strict";
-        __webpack_require__.r(__webpack_exports__);
-        /* harmony import */
-        var _custom_Notify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../custom/Notify */ "./resources/js/custom/Notify.js");
-
-        function _classCallCheck(instance, Constructor) {
-            if (!(instance instanceof Constructor)) {
-                throw new TypeError("Cannot call a class as a function");
-            }
-        }
-
-        function _defineProperties(target, props) {
-            for (var i = 0; i < props.length; i++) {
-                var descriptor          = props[i];
-                descriptor.enumerable   = descriptor.enumerable || false;
-                descriptor.configurable = true;
-                if ("value" in descriptor) descriptor.writable = true;
-                Object.defineProperty(target, descriptor.key, descriptor);
-            }
-        }
-
-        function _createClass(Constructor, protoProps, staticProps) {
-            if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-            if (staticProps) _defineProperties(Constructor, staticProps);
-            return Constructor;
-        }
-
-
-        var PaginateArticles =
-                /*#__PURE__*/
-                function () {
-                    function PaginateArticles() {
-                        _classCallCheck(this, PaginateArticles);
-
-                        this._notify = new _custom_Notify__WEBPACK_IMPORTED_MODULE_0__["default"]();
-                        this._main   = document.querySelector('.main');
-                        this._link;
-                    }
-
-                    /**
-                     *
-                     */
-
-
-                    _createClass(PaginateArticles, [{
-                        key  : "paginate",
-                        value: function paginate() {
-                            var _this = this;
-
-                            if (!this._main) return;
-
-                            this._main.addEventListener('click', function (event) {
-                                _this._link = event.target.closest('#pagination a');
-
-                                if (_this._link && _this._link.tagName == 'A') {
-                                    _this._request();
-
-                                    event.preventDefault();
-                                }
-                            });
-                        }
-                    }, {
-                        key  : "_request",
-                        value: function _request() {
-                            var self = this;
-                            axios.get(this._link.href).then(function (response) {
-                                self._builder(response.data.articles);
-                            }).catch(function (error) {
-                                console.log(error);
-
-                                self._notify.alertMessage('Технические работы на сервере');
-                            });
-                        }
-                    }, {
-                        key  : "_builder",
-                        value: function _builder(response) {
-                            var oldArticles = this._main.querySelector('#articles');
-
-                            this._uplift(oldArticles.offsetTop);
-
-                            var template       = document.createElement('template');
-                            template.innerHTML = response.trim();
-                            var articles       = template.content.querySelector('#articles');
-                            oldArticles.parentElement.replaceChild(articles, oldArticles);
-                        }
-                    }, {
-                        key  : "_uplift",
-                        value: function _uplift(y) {
-                            $('html, body').animate({
-                                scrollTop: y
-                            }, 'slow');
-                        }
-                    }]);
-
-                    return PaginateArticles;
-                }();
-
-        /* harmony default export */
-        __webpack_exports__["default"] = (new PaginateArticles().paginate());
-
-        /***/
-    }),
-
     /***/ "./resources/js/admin/app_admin.js":
     /*!*****************************************!*\
   !*** ./resources/js/admin/app_admin.js ***!
@@ -38644,9 +38534,15 @@
 
         __webpack_require__(/*! ../custom/lazyimages */ "./resources/js/custom/lazyimages.js");
 
-        __webpack_require__(/*! ../Article/PaginateArticles */ "./resources/js/Article/PaginateArticles.js");
+        __webpack_require__(/*! ../custom/paginate */ "./resources/js/custom/paginate.js");
+
+        __webpack_require__(/*! ../custom/tuggleSortButton */ "./resources/js/custom/tuggleSortButton.js");
 
         __webpack_require__(/*! ../custom/message */ "./resources/js/custom/message");
+
+        __webpack_require__(/*! ../market/search */ "./resources/js/market/search.js");
+
+        __webpack_require__(/*! ./search_realestate */ "./resources/js/admin/search_realestate.js");
 
         /***/
     }),
@@ -38727,6 +38623,50 @@
                 }
             });
         });
+
+        /***/
+    }),
+
+    /***/ "./resources/js/admin/search_realestate.js":
+    /*!*************************************************!*\
+  !*** ./resources/js/admin/search_realestate.js ***!
+  \*************************************************/
+    /*! no exports provided */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony import */
+        var _custom_FormSend__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../custom/FormSend */ "./resources/js/custom/FormSend.js");
+        /* harmony import */
+        var _custom_ErrorHandler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../custom/ErrorHandler */ "./resources/js/custom/ErrorHandler.js");
+
+
+        var settings = {
+            form_id   : '#search_realestates',
+            fieldsName: ['_token', 'rubric_id', 'type_id', 'street_name', 'street_id', 'sort', 'sort_by']
+        };
+
+        var searchRealestate = function searchRealestate() {
+            var form = document.querySelector(settings.form_id);
+            if (!form) return false;
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                new _custom_FormSend__WEBPACK_IMPORTED_MODULE_0__["default"](settings).send(function (response) {
+                    if (response.status === 200) {
+                        var oldContent     = document.querySelector('#paginate-content');
+                        var template       = document.createElement('template');
+                        template.innerHTML = response.data.content.trim();
+                        var content        = template.content.querySelector('#paginate-content');
+                        oldContent.parentElement.replaceChild(content, oldContent);
+                    }
+                }, function (error) {
+                    new _custom_ErrorHandler__WEBPACK_IMPORTED_MODULE_1__["default"]().errorNotify(error);
+                });
+            });
+        };
+
+        searchRealestate();
 
         /***/
     }),
@@ -38859,6 +38799,121 @@
                     }]);
 
                     return ErrorHandler;
+                }();
+
+
+        /***/
+    }),
+
+    /***/ "./resources/js/custom/FormSend.js":
+    /*!*****************************************!*\
+  !*** ./resources/js/custom/FormSend.js ***!
+  \*****************************************/
+    /*! exports provided: default */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+        __webpack_require__.d(__webpack_exports__, "default", function () {
+            return FormSearchMarket;
+        });
+
+        function _classCallCheck(instance, Constructor) {
+            if (!(instance instanceof Constructor)) {
+                throw new TypeError("Cannot call a class as a function");
+            }
+        }
+
+        function _defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+                var descriptor          = props[i];
+                descriptor.enumerable   = descriptor.enumerable || false;
+                descriptor.configurable = true;
+                if ("value" in descriptor) descriptor.writable = true;
+                Object.defineProperty(target, descriptor.key, descriptor);
+            }
+        }
+
+        function _createClass(Constructor, protoProps, staticProps) {
+            if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) _defineProperties(Constructor, staticProps);
+            return Constructor;
+        }
+
+        var FormSearchMarket =
+                /*#__PURE__*/
+                function () {
+                    /**
+                     * передается id формы
+                     * @param {object} data
+                     */
+                    function FormSearchMarket(settings) {
+                        _classCallCheck(this, FormSearchMarket);
+
+                        this.settings = settings;
+                        this.form     = document.querySelector(this.settings.form_id);
+                        this.data     = {};
+                    }
+
+                    /**
+                     * @param {function} func
+                     * @return {boolean}
+                     */
+
+
+                    _createClass(FormSearchMarket, [{
+                        key  : "send",
+                        value: function send(funcResp, funcError) {
+                            if (!this.form) return false;
+
+                            this._formHandler();
+
+                            axios({
+                                method: this.settings.method || this.form.method,
+                                url   : this.settings.url || this.form.action,
+                                params: this.data
+                            }).then(function (response) {
+                                return funcResp(response);
+                            }).catch(function (error) {
+                                return funcError(error);
+                            });
+                        }
+                    }, {
+                        key  : "_formHandler",
+                        value: function _formHandler() {
+                            var _iteratorNormalCompletion = true;
+                            var _didIteratorError         = false;
+                            var _iteratorError            = undefined;
+
+                            try {
+                                for (var _iterator = this.settings.fieldsName[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                                    var field = _step.value;
+
+                                    if (this.form[field] && this.form[field].value.trim()) {
+                                        this.data[field] = this.form[field].value.trim();
+                                    } else {
+                                        this.data[field] = null;
+                                    }
+                                }
+                            } catch (err) {
+                                _didIteratorError = true;
+                                _iteratorError    = err;
+                            } finally {
+                                try {
+                                    if (!_iteratorNormalCompletion && _iterator.return != null) {
+                                        _iterator.return();
+                                    }
+                                } finally {
+                                    if (_didIteratorError) {
+                                        throw _iteratorError;
+                                    }
+                                }
+                            }
+                        }
+                    }]);
+
+                    return FormSearchMarket;
                 }();
 
 
@@ -39051,6 +39106,285 @@
 
         messageUpdate();
 
+
+        /***/
+    }),
+
+    /***/ "./resources/js/custom/paginate.js":
+    /*!*****************************************!*\
+  !*** ./resources/js/custom/paginate.js ***!
+  \*****************************************/
+    /*! no exports provided */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony import */
+        var _custom_Notify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../custom/Notify */ "./resources/js/custom/Notify.js");
+
+        function _classCallCheck(instance, Constructor) {
+            if (!(instance instanceof Constructor)) {
+                throw new TypeError("Cannot call a class as a function");
+            }
+        }
+
+        function _defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+                var descriptor          = props[i];
+                descriptor.enumerable   = descriptor.enumerable || false;
+                descriptor.configurable = true;
+                if ("value" in descriptor) descriptor.writable = true;
+                Object.defineProperty(target, descriptor.key, descriptor);
+            }
+        }
+
+        function _createClass(Constructor, protoProps, staticProps) {
+            if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) _defineProperties(Constructor, staticProps);
+            return Constructor;
+        }
+
+
+        var Paginate =
+                /*#__PURE__*/
+                function () {
+                    function Paginate() {
+                        _classCallCheck(this, Paginate);
+
+                        this._notify = new _custom_Notify__WEBPACK_IMPORTED_MODULE_0__["default"]();
+                        this._main   = document.querySelector('.main');
+                        this._link   = null;
+                    }
+
+                    /**
+                     *
+                     */
+
+
+                    _createClass(Paginate, [{
+                        key  : "paginate",
+                        value: function paginate() {
+                            var _this = this;
+
+                            if (!this._main) return;
+
+                            this._main.addEventListener('click', function (event) {
+                                _this._link = event.target.closest('#pagination a');
+
+                                if (_this._link && _this._link.tagName === 'A') {
+                                    _this._request();
+
+                                    event.preventDefault();
+                                }
+                            });
+                        }
+                    }, {
+                        key  : "_request",
+                        value: function _request() {
+                            var self = this;
+                            axios.get(this._link.href).then(function (response) {
+                                self._builder(response.data.content);
+                            }).catch(function (error) {
+                                console.log(error);
+
+                                self._notify.alertMessage('Технические работы на сервере');
+                            });
+                        }
+                    }, {
+                        key  : "_builder",
+                        value: function _builder(response) {
+                            var oldContent = this._main.querySelector('#paginate-content');
+
+                            this._uplift(oldContent.offsetTop);
+
+                            var template       = document.createElement('template');
+                            template.innerHTML = response.trim();
+                            var content        = template.content.querySelector('#paginate-content');
+                            oldContent.parentElement.replaceChild(content, oldContent);
+                        }
+                    }, {
+                        key  : "_uplift",
+                        value: function _uplift(y) {
+                            $('html, body').animate({
+                                scrollTop: y
+                            }, 'slow');
+                        }
+                    }]);
+
+                    return Paginate;
+                }();
+
+        new Paginate().paginate();
+
+        /***/
+    }),
+
+    /***/ "./resources/js/custom/tuggleSortButton.js":
+    /*!*************************************************!*\
+  !*** ./resources/js/custom/tuggleSortButton.js ***!
+  \*************************************************/
+    /*! no static exports found */
+    /***/ (function (module, exports) {
+
+        var dataSort     = {
+            buttonId  : '#button-sort',
+            form      : '#search_realestates',
+            input_name: 'sort_by',
+            up        : {
+                class: 'fa-arrow-up',
+                sort : 'ASC'
+            },
+            down      : {
+                class: 'fa-arrow-down',
+                sort : 'DESC'
+            }
+        };
+        /**
+         *
+         * @param obj
+         */
+
+        var toggleButton = function toggleButton(obj) {
+            var button = document.querySelector(obj.buttonId);
+            var form   = obj.form ? document.querySelector(obj.form) : null;
+            if (!button) return;
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                if (button.value === obj.down.sort) {
+                    button.value = obj.up.sort;
+                } else {
+                    button.value = obj.down.sort;
+                }
+
+                if (form) form[obj.input_name].value = button.value;
+                button.firstChild.classList.toggle(obj.down.class);
+                button.firstChild.classList.toggle(obj.up.class);
+            });
+        };
+
+        toggleButton(dataSort);
+
+        /***/
+    }),
+
+    /***/ "./resources/js/market/search.js":
+    /*!***************************************!*\
+  !*** ./resources/js/market/search.js ***!
+  \***************************************/
+    /*! no exports provided */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony import */
+        var _custom_ErrorHandler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../custom/ErrorHandler */ "./resources/js/custom/ErrorHandler.js");
+
+        /**
+         *
+         * @param data
+         * @return {null}
+         */
+
+        var searchAddress = function searchAddress(data) {
+            var form  = document.querySelector(data.form_id);
+            var input = document.querySelector(data.input_id);
+            var ul    = document.querySelector(data.ul_id);
+            if (!(input && ul && form)) return null;
+            var url = form.dataset.search_address;
+            input.addEventListener('keyup', function (e) {
+                form.street_id.value = '';
+                var value            = input.value.trim();
+
+                if (value) {
+                    axios.post(url, {
+                        street_name: value
+                    }).then(function (response) {
+                        listBuilder(response, data);
+                    }).catch(function (error) {
+                        new _custom_ErrorHandler__WEBPACK_IMPORTED_MODULE_0__["default"]().errorNotify(error);
+                    });
+                } else {
+                    ul.hidden = true;
+                }
+            });
+            ul.addEventListener('click', function (e) {
+                var li = e.target.closest('li');
+                if (!(li && li.dataset.id && li.innerHTML.trim())) return null;
+                input.dataset.id     = li.dataset.id;
+                input.value          = li.innerHTML.trim();
+                form.street_id.value = li.dataset.id;
+                ul.hidden            = true;
+            });
+        };
+        /**
+         * build list ul
+         * @param response
+         * @param data
+         */
+
+
+        var listBuilder   = function listBuilder(response, data) {
+            var ul = document.querySelector(data.ul_id);
+            if (!ul) throw Error(data.ul_id + ' not found, unable to build list');
+
+            if (response.status === 200) {
+                ul.hidden                     = false;
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError         = false;
+                var _iteratorError            = undefined;
+
+                try {
+                    for (var _iterator = ul.children[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var child = _step.value;
+                        child.remove();
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError    = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return != null) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
+
+                var _iteratorNormalCompletion2 = true;
+                var _didIteratorError2         = false;
+                var _iteratorError2            = undefined;
+
+                try {
+                    for (var _iterator2 = response.data[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                        var elem = _step2.value;
+                        ul.insertAdjacentHTML('beforeend', "<li data-id=\"".concat(elem.id, "\">").concat(elem.name, "</li>"));
+                    }
+                } catch (err) {
+                    _didIteratorError2 = true;
+                    _iteratorError2    = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                            _iterator2.return();
+                        }
+                    } finally {
+                        if (_didIteratorError2) {
+                            throw _iteratorError2;
+                        }
+                    }
+                }
+            }
+        };
+
+        searchAddress({
+            form_id : '#search_realestates',
+            input_id: '#street_name',
+            ul_id   : '#list-street'
+        });
 
         /***/
     }),

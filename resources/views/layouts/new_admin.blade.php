@@ -18,7 +18,7 @@
     <link rel="apple-touch-icon" href="{{asset('images/favicon.png')}}">
     <link rel="shortcut icon" href="{{asset('images/favicon.png')}}">
 
-    <link rel="stylesheet" href="{{asset('css/app_admin.css')}}">
+    <link rel="stylesheet" href="{{mix('css/app_admin.css')}}">
 
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
@@ -45,6 +45,6 @@
 </div>
 
 </body>
-<script src="{{asset('js/app_admin.js')}}"></script>
+<script src="{{mix('js/app_admin.js')}}"></script>
 @stack('textredactor')
 </html>
