@@ -398,8 +398,9 @@ header:not(.dark) .dropdown-menu > li.active > a i {
     color: #0c9ec7;
   }
 
-    /* first level item hover and focus states */
-    .header .navbar-nav li > a:hover,
+  /* first level item hover and focus states */
+
+  .header .navbar-nav li > a:hover,
   .header .navbar-nav li > a:focus,
   .header .navbar-nav .active > a,
   .header .navbar-nav .active > a:hover,
@@ -407,14 +408,16 @@ header:not(.dark) .dropdown-menu > li.active > a i {
     color: #0c9ec7;
   }
 
-    /* second level item on hover/focus */
-    .header .navbar-nav .show .dropdown-menu > li > a:hover,
+  /* second level item on hover/focus */
+
+  .header .navbar-nav .show .dropdown-menu > li > a:hover,
   .header .navbar-nav .show .dropdown-menu > li > a:focus {
     color: #0c9ec7;
   }
 
-    /* Arrow for parent menu item */
-    .header .navbar-nav .dropdown.show > .dropdown-toggle::after {
+  /* Arrow for parent menu item */
+
+  .header .navbar-nav .dropdown.show > .dropdown-toggle::after {
     color: #09afdf;
   }
 }

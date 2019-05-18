@@ -12,7 +12,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 body {
@@ -255,7 +255,7 @@ blockquote {
 }
 
 blockquote:after {
-    content: "\201C";
+  content: "\201C";
   width: 25px;
   height: 25px;
   line-height: 36px;
@@ -269,7 +269,7 @@ blockquote:after {
 
 .blockquote:before {
   font-family: "PT Serif", serif;
-    content: "\201C";
+  content: "\201C";
   font-size: 40px;
 }
 

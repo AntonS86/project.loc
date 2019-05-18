@@ -12,7 +12,6 @@ let searchAddress = (data) => {
     if (!(input && ul && form)) return null;
     let url = input.dataset.search_address;
     input.addEventListener('keyup', (e) => {
-        console.log('!!!');
         form.street_id.value = '';
         let value            = input.value.trim();
         if (value) {
@@ -84,4 +83,25 @@ searchAddress({
     form_id : '#form-edit',
     input_id: '#area_name',
     ul_id   : '#list-area'
+});
+
+//Поиск по городу
+searchAddress({
+    form_id : '#form-edit',
+    input_id: '#city_name',
+    ul_id   : '#list-city'
+});
+
+//Поиск по городу
+searchAddress({
+    form_id : '#form-edit',
+    input_id: '#district_name',
+    ul_id   : '#list-district'
+});
+
+//Поиск по деревне
+searchAddress({
+    form_id : '#form-edit',
+    input_id: '#village_name',
+    ul_id   : '#list-village'
 });

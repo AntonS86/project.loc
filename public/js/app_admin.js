@@ -38881,6 +38881,11 @@
                                 return funcError(error);
                             });
                         }
+                        /**
+                         *
+                         * @private
+                         */
+
                     }, {
                         key  : "_formHandler",
                         value: function _formHandler() {
@@ -38892,8 +38897,10 @@
                                 for (var _iterator = this.settings.fieldsName[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                     var field = _step.value;
 
-                                    if (this.form[field] && this.form[field].value.trim()) {
+                                    if (this.form[field] instanceof Node && this.form[field].value.trim()) {
                                         this.data[field] = this.form[field].value.trim();
+                                    } else if (this.form[field] instanceof RadioNodeList) {
+                                        this._radioInputHandler(field);
                                     } else {
                                         this.data[field] = null;
                                     }
@@ -38912,6 +38919,23 @@
                                     }
                                 }
                             }
+                        }
+                        /**
+                         *
+                         * @param field
+                         * @private
+                         */
+
+                    }, {
+                        key  : "_radioInputHandler",
+                        value: function _radioInputHandler(field) {
+                            var radioNode = [];
+                            this.form[field].forEach(function (item) {
+                                if (item.value.trim()) {
+                                    radioNode.push(item.value.trim());
+                                }
+                            });
+                            if (radioNode.length > 0) this.data[field] = radioNode;
                         }
                     }]);
 
@@ -39673,7 +39697,37 @@
         __webpack_require__.r(__webpack_exports__);
         /* harmony import */
         var _ImageUpload__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ImageUpload */ "./resources/js/market/ImageUpload.js");
+        /* harmony import */
+        var _custom_FormSend__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../custom/FormSend */ "./resources/js/custom/FormSend.js");
+        /* harmony import */
+        var _custom_ErrorHandler__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../custom/ErrorHandler */ "./resources/js/custom/ErrorHandler.js");
 
+
+        var settings = {
+            form_id   : '#form-edit',
+            fieldsName: ['_token', 'rubric_id', 'type_id', 'region_name', 'region_id', 'area_name', 'area_id', 'city_name', 'city_id', 'district_name', 'district_id', 'village_name', 'village_id', 'street_name', 'street_id', 'house_number', 'room', 'year', 'floor', 'floors', 'balcony', 'loggia', 'total_square', 'land_square', 'description', 'price', 'cadastral_number', 'status', 'images[]']
+        };
+
+        var searchRealestate = function searchRealestate() {
+            var form = document.querySelector(settings.form_id);
+            if (!form) return false;
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                new _custom_FormSend__WEBPACK_IMPORTED_MODULE_1__["default"](settings).send(function (response) {
+                    if (response.status === 200) {
+                        var oldContent     = document.querySelector('#paginate-content');
+                        var template       = document.createElement('template');
+                        template.innerHTML = response.data.content.trim();
+                        var content        = template.content.querySelector('#paginate-content');
+                        oldContent.parentElement.replaceChild(content, oldContent);
+                    }
+                }, function (error) {
+                    new _custom_ErrorHandler__WEBPACK_IMPORTED_MODULE_2__["default"]().errorNotify(error);
+                });
+            });
+        };
+
+        searchRealestate();
         new _ImageUpload__WEBPACK_IMPORTED_MODULE_0__["default"]('#images-uploader').send();
 
         /***/
@@ -39714,7 +39768,6 @@
             if (!(input && ul && form)) return null;
             var url = input.dataset.search_address;
             input.addEventListener('keyup', function (e) {
-                console.log('!!!');
                 form.street_id.value = '';
                 var value            = input.value.trim();
 
@@ -39822,6 +39875,24 @@
             form_id : '#form-edit',
             input_id: '#area_name',
             ul_id   : '#list-area'
+        }); //Поиск по городу
+
+        searchAddress({
+            form_id : '#form-edit',
+            input_id: '#city_name',
+            ul_id   : '#list-city'
+        }); //Поиск по городу
+
+        searchAddress({
+            form_id : '#form-edit',
+            input_id: '#district_name',
+            ul_id   : '#list-district'
+        }); //Поиск по деревне
+
+        searchAddress({
+            form_id : '#form-edit',
+            input_id: '#village_name',
+            ul_id   : '#list-village'
         });
 
         /***/

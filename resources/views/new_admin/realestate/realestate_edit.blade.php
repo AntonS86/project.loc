@@ -79,6 +79,20 @@
                     </ul>
                 </div>
             </div>
+                <div class="form-group col-sm-6">
+                    <label for="city_name">Округ</label>
+                    <input type="text" name="district_name" class="form-control"
+                           data-search_address="{{route('search.district')}}"
+                           value="{{isset($realestate->district->name) ? $realestate->district->name : ''}}"
+                           placeholder="Город" id="district_name">
+                    <input type="hidden" name="district_id"
+                           value="{{$realestate->district_id ?? ''}}">
+                    <div class="dropdown-div">
+                        <ul id="list-district" class="dropdown-list" hidden>
+
+                        </ul>
+                    </div>
+                </div>
             <div class="form-group col-sm-6">
                 <label for="village_name">Деревня или Сот</label>
                 <input type="text" name="village_name" class="form-control"
