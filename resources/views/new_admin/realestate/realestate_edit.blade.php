@@ -40,6 +40,7 @@
             <div class="form-group col-sm-6">
                 <label for="region_name">Регион</label>
                 <input type="text" name="region_name" class="form-control"
+                       data-search_address="{{route('search.region')}}"
                        value="{{$realestate->region->name ?? ''}}"
                        placeholder="Регион" id="region_name">
                 <input type="hidden" name="region_id"
@@ -53,6 +54,7 @@
             <div class="form-group col-sm-6">
                 <label for="area_name">Район</label>
                 <input type="text" name="area_name" class="form-control"
+                       data-search_address="{{route('search.area')}}"
                        value="{{$realestate->area->name ?? ''}}"
                        placeholder="Район" id="area_name">
                 <input type="hidden" name="area_id"
@@ -66,6 +68,7 @@
             <div class="form-group col-sm-6">
                 <label for="city_name">Город</label>
                 <input type="text" name="city_name" class="form-control"
+                       data-search_address="{{route('search.city')}}"
                        value="{{isset($realestate->city->name) ? $realestate->city->name : ''}}"
                        placeholder="Город" id="city_name">
                 <input type="hidden" name="city_id"
@@ -79,12 +82,13 @@
             <div class="form-group col-sm-6">
                 <label for="village_name">Деревня или Сот</label>
                 <input type="text" name="village_name" class="form-control"
+                       data-search_address="{{route('search.village')}}"
                        value="{{$realestate->village->name ?? ''}}"
                        placeholder="Деревня или Сот" id="village_name">
                 <input type="hidden" name="village_id"
                        value="{{$realestate->village_id ?? ''}}">
                 <div class="dropdown-div">
-                    <ul id="list-city" class="dropdown-list" hidden>
+                    <ul id="list-village" class="dropdown-list" hidden>
 
                     </ul>
                 </div>
@@ -92,12 +96,13 @@
             <div class="form-group col-sm-6">
                 <label for="street_name">Улица</label>
                 <input type="text" name="street_name" class="form-control"
+                       data-search_address="{{route('search.street')}}"
                        value="{{$realestate->street->name ?? ''}}"
                        placeholder="Улица" id="street_name">
                 <input type="hidden" name="street_id"
                        value="{{$realestate->street_id ?? ''}}">
                 <div class="dropdown-div">
-                    <ul id="list-city" class="dropdown-list" hidden>
+                    <ul id="list-street" class="dropdown-list" hidden>
 
                     </ul>
                 </div>
@@ -202,15 +207,15 @@
                 </select>
             </div>
 
-            <div id="uploaded-photo" class="d-flex flex-wrap align-items-stretch my-2 p-1" hidden></div>
+                <div id="uploaded-photo"
+                     class="col-sm-12 d-flex flex-wrap align-items-stretch justify-content-center my-2 p-1"
+                     hidden></div>
 
-            <div id="upload-progress" class="progress style-1 my-1" hidden>
-                <span class="text"></span>
+                <div id="upload-progress" class="progress my-1 col-sm-12" hidden>
                 <div id="progress-line"
-                     class="progress-bar progress-bar-gray progress-bar-striped progress-bar-animated"
+                     class="progress-bar bg-info"
                      role="progressbar"
-                     aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                </div>
+                     aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
 
             <div class="form-group col-sm-12">

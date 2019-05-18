@@ -49,8 +49,10 @@ Route::get('contacts', 'ContactController@index')->name('contacts');
 
 
 /*-------------поиск-по-новостям-и-статьям-ajax-----*/
-Route::get('searcharticles', 'SearchController@searchArticles')->name('search.articles_ajax');
-Route::post('searchaddress', 'SearchController@searchAddress')->name('search.address');
+
+require __DIR__ . '/web.search.php';
+
+
 
 Route::get('search', 'ArticlesController@search')->name('articles.search');
 

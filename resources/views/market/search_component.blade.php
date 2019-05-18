@@ -21,7 +21,7 @@
         <div class="container-fluid">
             <!-- filters start -->
             <div class="sorting-filters text-center mb-20 d-flex justify-content-center">
-                <form class="form-inline" data-search_address="{{route('search.address')}}" id="search_realestates"
+                <form class="form-inline" id="search_realestates"
                       method="GET" action="{{route('realestates.search')}}">
                     @csrf
                     @if($rubrics->isNotEmpty())
@@ -50,6 +50,7 @@
                     <div class="form-group mr-1 position-relative">
                         <label class="invisible">Улица</label>
                         <input type="text" class="form-control" name="street_name"
+                               data-search_address="{{route('search.street')}}"
                                value="{{session('street_name') ?? ''}}" placeholder="Улица" id="street_name">
                         <input type="hidden" name="street_id" value="{{session('street_id') ?? ''}}">
                         <div class="dropdown-div">

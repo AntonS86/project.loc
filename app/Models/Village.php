@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -38,5 +39,16 @@ class Village extends Model
     public function streets(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Street');
+    }
+
+    /**
+     * @param Builder $query
+     * @param string  $search
+     *
+     * @return Builder
+     */
+    public function scopeSearch(Builder $query, string $search): Builder
+    {
+        return $query->where('name', 'LIKE', '%' . $search . '%');
     }
 }

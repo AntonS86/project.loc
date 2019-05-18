@@ -38544,6 +38544,8 @@
 
         __webpack_require__(/*! ./search_realestate */ "./resources/js/admin/search_realestate.js");
 
+        __webpack_require__(/*! ../market/createRealEstate */ "./resources/js/market/createRealEstate.js");
+
         /***/
     }),
 
@@ -39004,6 +39006,160 @@
         /***/
     }),
 
+    /***/ "./resources/js/custom/Validation.js":
+    /*!*******************************************!*\
+  !*** ./resources/js/custom/Validation.js ***!
+  \*******************************************/
+    /*! exports provided: default */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+        __webpack_require__.d(__webpack_exports__, "default", function () {
+            return Validation;
+        });
+        /* harmony import */
+        var _Notify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Notify */ "./resources/js/custom/Notify.js");
+
+        function _classCallCheck(instance, Constructor) {
+            if (!(instance instanceof Constructor)) {
+                throw new TypeError("Cannot call a class as a function");
+            }
+        }
+
+        function _defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+                var descriptor          = props[i];
+                descriptor.enumerable   = descriptor.enumerable || false;
+                descriptor.configurable = true;
+                if ("value" in descriptor) descriptor.writable = true;
+                Object.defineProperty(target, descriptor.key, descriptor);
+            }
+        }
+
+        function _createClass(Constructor, protoProps, staticProps) {
+            if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) _defineProperties(Constructor, staticProps);
+            return Constructor;
+        }
+
+
+        var Validation =
+                /*#__PURE__*/
+                function () {
+                    function Validation() {
+                        _classCallCheck(this, Validation);
+
+                        this._notify          = new _Notify__WEBPACK_IMPORTED_MODULE_0__["default"]();
+                        this._imageRegexp     = /^image\/(jpeg|jpg|png|gif)$/;
+                        this._imageNameRegexp = /^[0-9a-zA-Zа-яА-яёЁ_-]*\.(jpeg|jpg|png|gif)$/i;
+                        this._phoneRegexp     = /^(\+7|7|8)?[0-9]{10}$/;
+                    }
+
+                    /**
+                     *
+                     * @param {FileList} images
+                     * @returns {boolean}
+                     */
+
+
+                    _createClass(Validation, [{
+                        key  : "imageValidate",
+                        value: function imageValidate(images) {
+                            if (!images) return false;
+                            if (!images instanceof FileList || images.length === 0) return false;
+                            var _iteratorNormalCompletion = true;
+                            var _didIteratorError         = false;
+                            var _iteratorError            = undefined;
+
+                            try {
+                                for (var _iterator = images[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                                    var image = _step.value;
+
+                                    if (!this._imageRegexp.test(image.type) && !this._imageNameRegexp.test(image.name)) {
+                                        this._notify.alertMessage('Файл должен быть изображением');
+
+                                        return false;
+                                    }
+                                }
+                            } catch (err) {
+                                _didIteratorError = true;
+                                _iteratorError    = err;
+                            } finally {
+                                try {
+                                    if (!_iteratorNormalCompletion && _iterator.return != null) {
+                                        _iterator.return();
+                                    }
+                                } finally {
+                                    if (_didIteratorError) {
+                                        throw _iteratorError;
+                                    }
+                                }
+                            }
+
+                            return true;
+                        }
+                        /**
+                         *
+                         * @param str
+                         * @param min
+                         * @param max
+                         * @param message
+                         * @returns {boolean}
+                         */
+
+                    }, {
+                        key  : "stringValidate",
+                        value: function stringValidate(str, min, max, message) {
+                            str = str.trim();
+                            if (str.length >= min && str.length <= max) return true;
+
+                            this._notify.alertMessage(message);
+
+                            return false;
+                        }
+                        /**
+                         *
+                         * @param phone
+                         * @param message
+                         * @returns {boolean}
+                         */
+
+                    }, {
+                        key  : "phoneValidate",
+                        value: function phoneValidate(phone, message) {
+                            if (this._phoneRegexp.test(phone)) return true;
+
+                            this._notify.alertMessage(message);
+
+                            return false;
+                        }
+                        /**
+                         *
+                         * @param {int} int
+                         * @param {string} message
+                         * @returns {boolean}
+                         */
+
+                    }, {
+                        key  : "intValidate",
+                        value: function intValidate(int, message) {
+                            if (/^[1-9]\d*$/.test(int)) return true;
+
+                            this._notify.alertMessage(message);
+
+                            return false;
+                        }
+                    }]);
+
+                    return Validation;
+                }();
+
+
+        /***/
+    }),
+
     /***/ "./resources/js/custom/lazyimages.js":
     /*!*******************************************!*\
   !*** ./resources/js/custom/lazyimages.js ***!
@@ -39268,6 +39424,261 @@
         /***/
     }),
 
+    /***/ "./resources/js/market/ImageUpload.js":
+    /*!********************************************!*\
+  !*** ./resources/js/market/ImageUpload.js ***!
+  \********************************************/
+    /*! exports provided: default */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+        __webpack_require__.d(__webpack_exports__, "default", function () {
+            return ImageUpload;
+        });
+        /* harmony import */
+        var _custom_ErrorHandler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../custom/ErrorHandler */ "./resources/js/custom/ErrorHandler.js");
+        /* harmony import */
+        var _custom_Validation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../custom/Validation */ "./resources/js/custom/Validation.js");
+
+        function _classCallCheck(instance, Constructor) {
+            if (!(instance instanceof Constructor)) {
+                throw new TypeError("Cannot call a class as a function");
+            }
+        }
+
+        function _defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+                var descriptor          = props[i];
+                descriptor.enumerable   = descriptor.enumerable || false;
+                descriptor.configurable = true;
+                if ("value" in descriptor) descriptor.writable = true;
+                Object.defineProperty(target, descriptor.key, descriptor);
+            }
+        }
+
+        function _createClass(Constructor, protoProps, staticProps) {
+            if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) _defineProperties(Constructor, staticProps);
+            return Constructor;
+        }
+
+
+        var ImageUpload =
+                /*#__PURE__*/
+                function () {
+                    /**
+                     *
+                     * @param {string} selector
+                     */
+                    function ImageUpload(selector) {
+                        _classCallCheck(this, ImageUpload);
+
+                        this._inputFile = document.querySelector(selector);
+                        this._imgVal    = new _custom_Validation__WEBPACK_IMPORTED_MODULE_1__["default"]();
+                    }
+
+                    /**
+                     *
+                     */
+
+
+                    _createClass(ImageUpload, [{
+                        key  : "send",
+                        value: function send() {
+                            if (!this._inputFile) return false;
+
+                            this._imageDelete();
+
+                            this._inputEvent();
+                        }
+                        /**
+                         *
+                         * @private
+                         */
+
+                    }, {
+                        key  : "_inputEvent",
+                        value: function _inputEvent() {
+                            var _this = this;
+
+                            this._inputFile.addEventListener('change', function (e) {
+                                var images = e.target.files;
+
+                                if (_this._imgVal.imageValidate(images)) {
+                                    _this._upload(_this._buildFormData(images));
+                                }
+
+                                _this._inputFile.value = '';
+                            });
+                        }
+                        /**
+                         *
+                         * @param {FormData} formData
+                         * @private
+                         */
+
+                    }, {
+                        key  : "_upload",
+                        value: function _upload(formData) {
+                            var _this2 = this;
+
+                            var progress = document.querySelector('#upload-progress');
+                            var line     = progress.querySelector('#progress-line');
+                            var config   = {
+                                onUploadProgress: function onUploadProgress(progressEvent) {
+                                    progress.hidden      = false;
+                                    var percentCompleted = Math.round(progressEvent.loaded * 100 / progressEvent.total);
+                                    line.style.width     = percentCompleted + '%';
+                                }
+                            };
+                            axios.post(this._inputFile.dataset.route, formData, config).then(function (response) {
+                                progress.hidden = true;
+
+                                _this2._responseHandler(response);
+                            }).catch(function (error) {
+                                progress.hidden = true;
+                                new _custom_ErrorHandler__WEBPACK_IMPORTED_MODULE_0__["default"]().errorNotify(error);
+                            });
+                        }
+                        /**
+                         *
+                         * @param {FileList} images
+                         * @return {FormData}
+                         * @private
+                         */
+
+                    }, {
+                        key  : "_buildFormData",
+                        value: function _buildFormData(images) {
+                            var formData                  = new FormData();
+                            var i                         = 0;
+                            var _iteratorNormalCompletion = true;
+                            var _didIteratorError         = false;
+                            var _iteratorError            = undefined;
+
+                            try {
+                                for (var _iterator = images[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                                    var image = _step.value;
+                                    formData.append('images[' + i + ']', image);
+                                    i++;
+                                }
+                            } catch (err) {
+                                _didIteratorError = true;
+                                _iteratorError    = err;
+                            } finally {
+                                try {
+                                    if (!_iteratorNormalCompletion && _iterator.return != null) {
+                                        _iterator.return();
+                                    }
+                                } finally {
+                                    if (_didIteratorError) {
+                                        throw _iteratorError;
+                                    }
+                                }
+                            }
+
+                            return formData;
+                        }
+                        /**
+                         *
+                         * @param {number} id
+                         * @param {string} url
+                         * @return {string}
+                         * @private
+                         */
+
+                    }, {
+                        key  : "_buildUploadImage",
+                        value: function _buildUploadImage(id, url) {
+                            return "<div class=\"uploader-images border rounded\"\n                 style=\"background-image: url('".concat(url, "');\" data-image=\"").concat(id, "\">\n                <a href=\"#\" class=\"close text-danger\" aria-label=\"Close\">\n                    <i class=\"fa fa-times-circle\" aria-hidden=\"true\"></i>\n                </a>\n                <input type=\"hidden\" name=\"images[]\" value=\"").concat(id, "\">\n            </div>");
+                        }
+                        /**
+                         *
+                         * @param {Object} response
+                         * @return {boolean}
+                         * @private
+                         */
+
+                    }, {
+                        key  : "_responseHandler",
+                        value: function _responseHandler(response) {
+                            if (response.status !== 200 || response.data.length === 0) return false;
+                            var block                      = document.querySelector('#uploaded-photo');
+                            block.hidden                   = false;
+                            var result;
+                            var _iteratorNormalCompletion2 = true;
+                            var _didIteratorError2         = false;
+                            var _iteratorError2            = undefined;
+
+                            try {
+                                for (var _iterator2 = response.data[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                                    var img = _step2.value;
+                                    block.insertAdjacentHTML('beforeend', this._buildUploadImage(img.id, img.asset_thumbs_path));
+                                }
+                            } catch (err) {
+                                _didIteratorError2 = true;
+                                _iteratorError2    = err;
+                            } finally {
+                                try {
+                                    if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                                        _iterator2.return();
+                                    }
+                                } finally {
+                                    if (_didIteratorError2) {
+                                        throw _iteratorError2;
+                                    }
+                                }
+                            }
+                        }
+                        /**
+                         *
+                         * @private
+                         */
+
+                    }, {
+                        key  : "_imageDelete",
+                        value: function _imageDelete() {
+                            document.querySelector('#uploaded-photo').addEventListener('click', function (e) {
+                                e.preventDefault();
+                                var link = e.target.closest('a');
+                                if (!link) return false;
+                                var parentLink = link.parentElement;
+                                var block      = parentLink.parentElement;
+                                block.removeChild(parentLink);
+
+                                if (block.children.length === 0) {
+                                    block.hidden.true;
+                                }
+                            });
+                        }
+                    }]);
+
+                    return ImageUpload;
+                }();
+
+
+        /***/
+    }),
+
+    /***/ "./resources/js/market/createRealEstate.js":
+    /*!*************************************************!*\
+  !*** ./resources/js/market/createRealEstate.js ***!
+  \*************************************************/
+    /*! no exports provided */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony import */
+        var _ImageUpload__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ImageUpload */ "./resources/js/market/ImageUpload.js");
+
+        new _ImageUpload__WEBPACK_IMPORTED_MODULE_0__["default"]('#images-uploader').send();
+
+        /***/
+    }),
+
     /***/ "./resources/js/market/search.js":
     /*!***************************************!*\
   !*** ./resources/js/market/search.js ***!
@@ -39280,6 +39691,16 @@
         /* harmony import */
         var _custom_ErrorHandler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../custom/ErrorHandler */ "./resources/js/custom/ErrorHandler.js");
 
+        function _defineProperty(obj, key, value) {
+            if (key in obj) {
+                Object.defineProperty(obj, key, {value: value, enumerable: true, configurable: true, writable: true});
+            } else {
+                obj[key] = value;
+            }
+            return obj;
+        }
+
+
         /**
          *
          * @param data
@@ -39291,15 +39712,14 @@
             var input = document.querySelector(data.input_id);
             var ul    = document.querySelector(data.ul_id);
             if (!(input && ul && form)) return null;
-            var url = form.dataset.search_address;
+            var url = input.dataset.search_address;
             input.addEventListener('keyup', function (e) {
+                console.log('!!!');
                 form.street_id.value = '';
                 var value            = input.value.trim();
 
                 if (value) {
-                    axios.post(url, {
-                        street_name: value
-                    }).then(function (response) {
+                    axios.post(url, _defineProperty({}, input.name, value)).then(function (response) {
                         listBuilder(response, data);
                     }).catch(function (error) {
                         new _custom_ErrorHandler__WEBPACK_IMPORTED_MODULE_0__["default"]().errorNotify(error);
@@ -39384,6 +39804,24 @@
             form_id : '#search_realestates',
             input_id: '#street_name',
             ul_id   : '#list-street'
+        }); //Поиск по улице
+
+        searchAddress({
+            form_id : '#form-edit',
+            input_id: '#street_name',
+            ul_id   : '#list-street'
+        }); //поиск по региону
+
+        searchAddress({
+            form_id : '#form-edit',
+            input_id: '#region_name',
+            ul_id   : '#list-region'
+        }); //Поиск по району
+
+        searchAddress({
+            form_id : '#form-edit',
+            input_id: '#area_name',
+            ul_id   : '#list-area'
         });
 
         /***/

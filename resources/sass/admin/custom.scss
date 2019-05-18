@@ -99,3 +99,12 @@ div[aria-labelledby="message"] {
         }
     }
 }
+
+.uploader-images {
+    flex-basis: 150px;
+    margin: 2px;
+    flex-direction: column;
+    height: 100px;
+    background-position: center;
+    background-repeat: no-repeat;
+}

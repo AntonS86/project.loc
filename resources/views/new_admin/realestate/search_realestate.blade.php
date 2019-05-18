@@ -3,7 +3,7 @@
         <strong class="card-title">Поик объявлений</strong>
     </div>
     <div class="card-body">
-        <form class="rounded" data-search_address="{{route('search.address')}}" id="search_realestates"
+        <form class="rounded" id="search_realestates"
               method="GET" action="{{route('admin.realestates.search')}}">
             @csrf
             @if($rubrics->isNotEmpty())
@@ -32,6 +32,7 @@
             <div class="form-group has-feedback">
                 <label for="title">Улица</label>
                 <input type="text" name="street_name" class="form-control"
+                       data-search_address="{{route('search.street')}}"
                        value="{{session('street_name') ?? ''}}" placeholder="Улица" id="street_name">
                 <input type="hidden" name="street_id" value="{{session('street_id') ?? ''}}">
                 <div class="dropdown-div">

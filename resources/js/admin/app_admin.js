@@ -9,6 +9,7 @@ require('../custom/tuggleSortButton');
 require('../custom/message');
 require('../market/search');
 require('./search_realestate');
+require('../market/createRealEstate');
 
 
 

@@ -21005,6 +21005,16 @@ if (token) {
         /* harmony import */
         var _custom_ErrorHandler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../custom/ErrorHandler */ "./resources/js/custom/ErrorHandler.js");
 
+        function _defineProperty(obj, key, value) {
+            if (key in obj) {
+                Object.defineProperty(obj, key, {value: value, enumerable: true, configurable: true, writable: true});
+            } else {
+                obj[key] = value;
+            }
+            return obj;
+        }
+
+
         /**
          *
          * @param data
@@ -21016,15 +21026,14 @@ if (token) {
             var input = document.querySelector(data.input_id);
             var ul    = document.querySelector(data.ul_id);
             if (!(input && ul && form)) return null;
-            var url = form.dataset.search_address;
+            var url = input.dataset.search_address;
             input.addEventListener('keyup', function (e) {
+                console.log('!!!');
                 form.street_id.value = '';
                 var value            = input.value.trim();
 
                 if (value) {
-                    axios.post(url, {
-                        street_name: value
-                    }).then(function (response) {
+                    axios.post(url, _defineProperty({}, input.name, value)).then(function (response) {
                         listBuilder(response, data);
                     }).catch(function (error) {
                         new _custom_ErrorHandler__WEBPACK_IMPORTED_MODULE_0__["default"]().errorNotify(error);
@@ -21109,6 +21118,24 @@ if (token) {
             form_id : '#search_realestates',
             input_id: '#street_name',
             ul_id   : '#list-street'
+        }); //Поиск по улице
+
+        searchAddress({
+            form_id : '#form-edit',
+            input_id: '#street_name',
+            ul_id   : '#list-street'
+        }); //поиск по региону
+
+        searchAddress({
+            form_id : '#form-edit',
+            input_id: '#region_name',
+            ul_id   : '#list-region'
+        }); //Поиск по району
+
+        searchAddress({
+            form_id : '#form-edit',
+            input_id: '#area_name',
+            ul_id   : '#list-area'
         });
 
         /***/

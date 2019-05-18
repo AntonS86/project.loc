@@ -10,13 +10,14 @@ let searchAddress = (data) => {
     let input = document.querySelector(data.input_id);
     let ul    = document.querySelector(data.ul_id);
     if (!(input && ul && form)) return null;
-    let url = form.dataset.search_address;
+    let url = input.dataset.search_address;
     input.addEventListener('keyup', (e) => {
+        console.log('!!!');
         form.street_id.value = '';
         let value            = input.value.trim();
         if (value) {
             axios.post(url, {
-                street_name: value
+                [input.name]: value
             }).then((response) => {
                 listBuilder(response, data);
             }).catch((error) => {
@@ -62,4 +63,25 @@ searchAddress({
     form_id : '#search_realestates',
     input_id: '#street_name',
     ul_id   : '#list-street'
+});
+
+//Поиск по улице
+searchAddress({
+    form_id : '#form-edit',
+    input_id: '#street_name',
+    ul_id   : '#list-street'
+});
+
+//поиск по региону
+searchAddress({
+    form_id : '#form-edit',
+    input_id: '#region_name',
+    ul_id   : '#list-region'
+});
+
+//Поиск по району
+searchAddress({
+    form_id : '#form-edit',
+    input_id: '#area_name',
+    ul_id   : '#list-area'
 });
