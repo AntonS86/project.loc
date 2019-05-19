@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RealEstateRequest;
 use App\Http\Requests\SearchRealEstateRequest;
 use App\Models\RealEstate;
 use Illuminate\Http\JsonResponse;
@@ -69,14 +70,17 @@ class RealEstatesController extends Controller
         return response()->json(['success' => true, 'content' => $html]);
     }
 
-    public function create()
+    /**
+     * @return View
+     */
+    public function create(): View
     {
         return view($this->template)->with($this->varOutput);
     }
 
-    public function store()
+    public function store(RealEstateRequest $request)
     {
-
+        return response()->json($request->all());
     }
 
     public function edit()

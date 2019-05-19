@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Http\Request;
 
 class Village extends Model
 {
@@ -43,12 +44,16 @@ class Village extends Model
 
     /**
      * @param Builder $query
-     * @param string  $search
+     * @param Request $request
      *
      * @return Builder
      */
-    public function scopeSearch(Builder $query, string $search): Builder
+    public function scopeSearch(Builder $query, Request $request): Builder
     {
-        return $query->where('name', 'LIKE', '%' . $search . '%');
+        $query->where('name', 'LIKE', '%' . $request->village_name . '%');
+        if ($request->has('region_id')) {
+            $query->where('region_id', $request->region_id);
+        }
+        return $query;
     }
 }

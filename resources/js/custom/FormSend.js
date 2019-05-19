@@ -16,11 +16,15 @@ export default class FormSearchMarket {
     send(funcResp, funcError) {
         if (!this.form) return false;
         this._formHandler();
-        axios({
-            method: this.settings.method || this.form.method,
-            url   : this.settings.url || this.form.action,
-            params: this.data,
-        }).then(response => funcResp(response))
+        const formData  = {};
+        formData.method = this.settings.method || this.form.method;
+        formData.url    = this.settings.url || this.form.action;
+        if (formData.method.toLowerCase() === 'get') {
+            formData.params = this.data;
+        } else if (formData.method.toLowerCase() === 'post') {
+            formData.data = this.data;
+        }
+        axios(formData).then(response => funcResp(response))
             .catch(error => funcError(error));
     }
 

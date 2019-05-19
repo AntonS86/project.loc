@@ -52,7 +52,7 @@ class SearchController extends Controller
      */
     public function searchStreet(SearchStreetRequest $request, Street $street): JsonResponse
     {
-        $result = $street->search($request->street_name)->take(50)->get();
+        $result = $street->search($request)->take(50)->get();
         return response()->json($result);
     }
 
@@ -77,7 +77,7 @@ class SearchController extends Controller
      */
     public function searchArea(SearchAreaRequest $request, Area $area): JsonResponse
     {
-        $result = $area->search($request->area_name)->take(50)->get();
+        $result = $area->search($request)->take(50)->get();
         return response()->json($result);
     }
 
@@ -89,7 +89,7 @@ class SearchController extends Controller
      */
     public function searchCity(SearchCityRequest $request, City $city): JsonResponse
     {
-        $result = $city->search($request->city_name)->take(50)->get();
+        $result = $city->search($request)->take(50)->get();
         return response()->json($result);
     }
 
@@ -101,13 +101,13 @@ class SearchController extends Controller
      */
     public function searchVillage(SearchVillageRequest $request, Village $village): JsonResponse
     {
-        $result = $village->search($request->village_name)->take(50)->get();
+        $result = $village->search($request)->take(50)->get();
         return response()->json($result);
     }
 
     public function searchDistrict(SearchDistrictRequest $request, District $village): JsonResponse
     {
-        $result = $village->search($request->district_name)->take(50)->get();
+        $result = $village->search($request)->take(50)->get();
         return response()->json($result);
     }
 }

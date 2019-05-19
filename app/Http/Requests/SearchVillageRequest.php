@@ -27,6 +27,7 @@ class SearchVillageRequest extends FormRequest
     {
         return [
             'village_name' => 'string|required',
+            'region_id'    => 'nullable|int|exists:regions,id'
         ];
     }
 }

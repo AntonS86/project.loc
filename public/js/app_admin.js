@@ -38871,11 +38871,17 @@
 
                             this._formHandler();
 
-                            axios({
-                                method: this.settings.method || this.form.method,
-                                url   : this.settings.url || this.form.action,
-                                params: this.data
-                            }).then(function (response) {
+                            var formData    = {};
+                            formData.method = this.settings.method || this.form.method;
+                            formData.url    = this.settings.url || this.form.action;
+
+                            if (formData.method.toLowerCase() === 'get') {
+                                formData.params = this.data;
+                            } else if (formData.method.toLowerCase() === 'post') {
+                                formData.data = this.data;
+                            }
+
+                            axios(formData).then(function (response) {
                                 return funcResp(response);
                             }).catch(function (error) {
                                 return funcError(error);
@@ -39616,7 +39622,7 @@
                     }, {
                         key  : "_buildUploadImage",
                         value: function _buildUploadImage(id, url) {
-                            return "<div class=\"uploader-images border rounded\"\n                 style=\"background-image: url('".concat(url, "');\" data-image=\"").concat(id, "\">\n                <a href=\"#\" class=\"close text-danger\" aria-label=\"Close\">\n                    <i class=\"fa fa-times-circle\" aria-hidden=\"true\"></i>\n                </a>\n                <input type=\"hidden\" name=\"images[]\" value=\"").concat(id, "\">\n            </div>");
+                            return "<div class=\"uploader-images border rounded\"\n                 style=\"background-image: url('".concat(url, "');\" data-image=\"").concat(id, "\">\n                <a href=\"#\" class=\"close text-danger\" aria-label=\"Close\">\n                    <i class=\"fa fa-times-circle\" aria-hidden=\"true\"></i>\n                </a>\n                <input type=\"hidden\" name=\"images\" value=\"").concat(id, "\">\n            </div>");
                         }
                         /**
                          *
@@ -39701,11 +39707,13 @@
         var _custom_FormSend__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../custom/FormSend */ "./resources/js/custom/FormSend.js");
         /* harmony import */
         var _custom_ErrorHandler__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../custom/ErrorHandler */ "./resources/js/custom/ErrorHandler.js");
+        /* harmony import */
+        var _custom_Notify__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../custom/Notify */ "./resources/js/custom/Notify.js");
 
 
         var settings = {
             form_id   : '#form-edit',
-            fieldsName: ['_token', 'rubric_id', 'type_id', 'region_name', 'region_id', 'area_name', 'area_id', 'city_name', 'city_id', 'district_name', 'district_id', 'village_name', 'village_id', 'street_name', 'street_id', 'house_number', 'room', 'year', 'floor', 'floors', 'balcony', 'loggia', 'total_square', 'land_square', 'description', 'price', 'cadastral_number', 'status', 'images[]']
+            fieldsName: ['_token', 'realestate_id', 'rubric_id', 'type_id', 'region_name', 'region_id', 'area_name', 'area_id', 'city_name', 'city_id', 'district_name', 'district_id', 'village_name', 'village_id', 'street_name', 'street_id', 'house_number', 'rooms', 'year', 'floor', 'floors', 'balcony', 'loggia', 'total_square', 'land_square', 'description', 'price', 'cadastral_number', 'status', 'images']
         };
 
         var searchRealestate = function searchRealestate() {
@@ -39715,11 +39723,8 @@
                 e.preventDefault();
                 new _custom_FormSend__WEBPACK_IMPORTED_MODULE_1__["default"](settings).send(function (response) {
                     if (response.status === 200) {
-                        var oldContent     = document.querySelector('#paginate-content');
-                        var template       = document.createElement('template');
-                        template.innerHTML = response.data.content.trim();
-                        var content        = template.content.querySelector('#paginate-content');
-                        oldContent.parentElement.replaceChild(content, oldContent);
+                        console.log(response);
+                        new _custom_Notify__WEBPACK_IMPORTED_MODULE_3__["default"]().infoMessage('Объявление успешно сохраннено'); //setTimeout(() => window.location.href = form.dataset.success_redirect, 1000);
                     }
                 }, function (error) {
                     new _custom_ErrorHandler__WEBPACK_IMPORTED_MODULE_2__["default"]().errorNotify(error);
@@ -39756,27 +39761,44 @@
 
 
         /**
-         *
-         * @param data
+         *{form_id: '#form', field_name: 'input_name', field_id: 'input_hidden', ul_id: '#ul',[field_obligatory: 'input_obligatory']}
+         * @param sett
          * @return {null}
          */
 
-        var searchAddress = function searchAddress(data) {
-            var form  = document.querySelector(data.form_id);
-            var input = document.querySelector(data.input_id);
-            var ul    = document.querySelector(data.ul_id);
-            if (!(input && ul && form)) return null;
-            var url = input.dataset.search_address;
-            input.addEventListener('keyup', function (e) {
-                form.street_id.value = '';
-                var value            = input.value.trim();
+        var searchAddress = function searchAddress(sett) {
+            var form = document.querySelector(sett.form_id);
+            if (!form) return null;
+            var input           = form[sett.field_name];
+            var ul              = document.querySelector(sett.ul_id);
+            var obligatoryInput = null;
 
-                if (value) {
-                    axios.post(url, _defineProperty({}, input.name, value)).then(function (response) {
-                        listBuilder(response, data);
-                    }).catch(function (error) {
-                        new _custom_ErrorHandler__WEBPACK_IMPORTED_MODULE_0__["default"]().errorNotify(error);
-                    });
+            if (sett.field_obligatory) {
+                obligatoryInput = form[sett.field_obligatory];
+            }
+
+            if (!(input && ul)) return null;
+            var url       = input.dataset.search_address;
+            var timeOutId = null;
+            input.addEventListener('keyup', function (e) {
+                var value                 = input.value.trim();
+                form[sett.field_id].value = '';
+
+                if (value.length > 2) {
+                    if (timeOutId) clearTimeout(timeOutId);
+                    timeOutId = setTimeout(function () {
+                        var data = _defineProperty({}, input.name, value);
+
+                        if (obligatoryInput && +obligatoryInput.value > 0) {
+                            data[obligatoryInput.name] = +obligatoryInput.value;
+                        }
+
+                        axios.post(url, data).then(function (response) {
+                            listBuilder(response, sett);
+                        }).catch(function (error) {
+                            new _custom_ErrorHandler__WEBPACK_IMPORTED_MODULE_0__["default"]().errorNotify(error);
+                        });
+                    }, 500);
                 } else {
                     ul.hidden = true;
                 }
@@ -39784,33 +39806,34 @@
             ul.addEventListener('click', function (e) {
                 var li = e.target.closest('li');
                 if (!(li && li.dataset.id && li.innerHTML.trim())) return null;
-                input.dataset.id     = li.dataset.id;
-                input.value          = li.innerHTML.trim();
-                form.street_id.value = li.dataset.id;
-                ul.hidden            = true;
+                input.dataset.id          = li.dataset.id;
+                input.value               = li.innerHTML.trim();
+                form[sett.field_id].value = li.dataset.id;
+                ul.hidden                 = true;
             });
         };
         /**
          * build list ul
          * @param response
-         * @param data
+         * @param sett
          */
 
 
-        var listBuilder   = function listBuilder(response, data) {
-            var ul = document.querySelector(data.ul_id);
-            if (!ul) throw Error(data.ul_id + ' not found, unable to build list');
+        var listBuilder   = function listBuilder(response, sett) {
+            var ul = document.querySelector(sett.ul_id);
+            if (!ul) throw Error(sett.ul_id + ' not found, unable to build list');
 
             if (response.status === 200) {
                 ul.hidden                     = false;
+                ul.innerHTML                  = '';
                 var _iteratorNormalCompletion = true;
                 var _didIteratorError         = false;
                 var _iteratorError            = undefined;
 
                 try {
-                    for (var _iterator = ul.children[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                        var child = _step.value;
-                        child.remove();
+                    for (var _iterator = response.data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var elem = _step.value;
+                        ul.insertAdjacentHTML('beforeend', "<li data-id=\"".concat(elem.id, "\">").concat(elem.name, "</li>"));
                     }
                 } catch (err) {
                     _didIteratorError = true;
@@ -39826,73 +39849,61 @@
                         }
                     }
                 }
-
-                var _iteratorNormalCompletion2 = true;
-                var _didIteratorError2         = false;
-                var _iteratorError2            = undefined;
-
-                try {
-                    for (var _iterator2 = response.data[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                        var elem = _step2.value;
-                        ul.insertAdjacentHTML('beforeend', "<li data-id=\"".concat(elem.id, "\">").concat(elem.name, "</li>"));
-                    }
-                } catch (err) {
-                    _didIteratorError2 = true;
-                    _iteratorError2    = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-                            _iterator2.return();
-                        }
-                    } finally {
-                        if (_didIteratorError2) {
-                            throw _iteratorError2;
-                        }
-                    }
-                }
             }
         };
 
         searchAddress({
-            form_id : '#search_realestates',
-            input_id: '#street_name',
-            ul_id   : '#list-street'
+            form_id   : '#search_realestates',
+            field_name: 'street_name',
+            field_id  : 'street_id',
+            ul_id     : '#list-street'
         }); //Поиск по улице
 
         searchAddress({
-            form_id : '#form-edit',
-            input_id: '#street_name',
-            ul_id   : '#list-street'
+            form_id         : '#form-edit',
+            field_name      : 'street_name',
+            field_id        : 'street_id',
+            field_obligatory: 'city_id',
+            ul_id           : '#list-street'
         }); //поиск по региону
 
         searchAddress({
-            form_id : '#form-edit',
-            input_id: '#region_name',
-            ul_id   : '#list-region'
+            form_id   : '#form-edit',
+            field_name: 'region_name',
+            field_id  : 'region_id',
+            ul_id     : '#list-region'
         }); //Поиск по району
 
         searchAddress({
-            form_id : '#form-edit',
-            input_id: '#area_name',
-            ul_id   : '#list-area'
+            form_id         : '#form-edit',
+            field_name      : 'area_name',
+            field_id        : 'area_id',
+            field_obligatory: 'region_id',
+            ul_id           : '#list-area'
         }); //Поиск по городу
 
         searchAddress({
-            form_id : '#form-edit',
-            input_id: '#city_name',
-            ul_id   : '#list-city'
-        }); //Поиск по городу
+            form_id         : '#form-edit',
+            field_name      : 'city_name',
+            field_id        : 'city_id',
+            field_obligatory: 'region_id',
+            ul_id           : '#list-city'
+        }); //Поиск по округу
 
         searchAddress({
-            form_id : '#form-edit',
-            input_id: '#district_name',
-            ul_id   : '#list-district'
+            form_id         : '#form-edit',
+            field_name      : 'district_name',
+            field_id        : 'district_id',
+            field_obligatory: 'city_id',
+            ul_id           : '#list-district'
         }); //Поиск по деревне
 
         searchAddress({
-            form_id : '#form-edit',
-            input_id: '#village_name',
-            ul_id   : '#list-village'
+            form_id         : '#form-edit',
+            field_name      : 'village_name',
+            field_id        : 'village_id',
+            field_obligatory: 'area_id',
+            ul_id           : '#list-village'
         });
 
         /***/

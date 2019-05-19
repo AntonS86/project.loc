@@ -28,7 +28,7 @@ class CreateRealEstatesTable extends Migration
             $table->integer('floor')->unsigned()->nullable(); //этаж
             $table->integer('balcony')->unsigned()->nullable(); //балкон
             $table->integer('loggia')->unsigned()->nullable(); //лоджия
-            $table->integer('room')->unsigned()->nullable(); //количество комнат
+            $table->integer('rooms')->unsigned()->nullable(); //количество комнат
             $table->decimal('land_square', 8, 1)->unsigned()->nullable();
             $table->decimal('total_square', 8, 1)->unsigned()->nullable();
             $table->text('description');

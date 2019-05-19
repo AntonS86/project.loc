@@ -27,6 +27,7 @@ class SearchAreaRequest extends FormRequest
     {
         return [
             'area_name' => 'string|required',
+            'region_id' => 'nullable|int|exists:regions,id'
         ];
     }
 }

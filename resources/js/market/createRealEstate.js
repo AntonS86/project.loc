@@ -1,12 +1,14 @@
 import ImageUpload from './ImageUpload';
 import FormSend from '../custom/FormSend';
 import ErrorHandler from "../custom/ErrorHandler";
+import Notify from "../custom/Notify";
 
 
 const settings         = {
     form_id   : '#form-edit',
     fieldsName: [
         '_token',
+        'realestate_id',
         'rubric_id',
         'type_id',
         'region_name',
@@ -22,7 +24,7 @@ const settings         = {
         'street_name',
         'street_id',
         'house_number',
-        'room',
+        'rooms',
         'year',
         'floor',
         'floors',
@@ -34,8 +36,7 @@ const settings         = {
         'price',
         'cadastral_number',
         'status',
-        'images[]'
-
+        'images'
     ]
 };
 const searchRealestate = () => {
@@ -46,11 +47,9 @@ const searchRealestate = () => {
         e.preventDefault();
         new FormSend(settings).send(response => {
             if (response.status === 200) {
-                let oldContent     = document.querySelector('#paginate-content');
-                let template       = document.createElement('template');
-                template.innerHTML = response.data.content.trim();
-                let content        = template.content.querySelector('#paginate-content');
-                oldContent.parentElement.replaceChild(content, oldContent);
+                console.log(response);
+                new Notify().infoMessage('Объявление успешно сохраннено');
+                //setTimeout(() => window.location.href = form.dataset.success_redirect, 1000);
             }
         }, error => {
             new ErrorHandler().errorNotify(error);

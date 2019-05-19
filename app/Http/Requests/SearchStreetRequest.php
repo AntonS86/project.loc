@@ -25,6 +25,8 @@ class SearchStreetRequest extends FormRequest
     {
         return [
             'street_name' => 'string|required',
+            'city_id'     => 'nullable|int|exists:cities,id',
+            'village_id'  => 'nullable|int|exists:villages,id'
         ];
     }
 }

@@ -5,11 +5,13 @@
     </div>
     <div class="card-body">
         <form class="row" id="form-edit" method="post"
+              data-success_redirect="{{route('admin.realestates.index')}}"
               action="{{isset($realestate->id)
               ? route('admin.realestates.update', ['realestate' => $realestate->id])
               : route('admin.realestates.store')}}">
             @if (isset($realestate->id))
                 @method('PUT')
+                <input type="hidden" name="realestate_id" value="{{$realestate->id}}">
             @endif
             @csrf
             @if(isset($rubrics) && $rubrics->isNotEmpty())
@@ -84,7 +86,7 @@
                     <input type="text" name="district_name" class="form-control"
                            data-search_address="{{route('search.district')}}"
                            value="{{isset($realestate->district->name) ? $realestate->district->name : ''}}"
-                           placeholder="Город" id="district_name">
+                           placeholder="Округ" id="district_name">
                     <input type="hidden" name="district_id"
                            value="{{$realestate->district_id ?? ''}}">
                     <div class="dropdown-div">
@@ -129,11 +131,11 @@
                        id="house_number">
             </div>
             <div class="form-group col-sm-2">
-                <label for="room">Комнат</label>
-                <input type="text" name="room" class="form-control"
-                       value="{{$realestate->room ?? ''}}"
+                <label for="rooms">Комнат</label>
+                <input type="text" name="rooms" class="form-control"
+                       value="{{$realestate->rooms ?? ''}}"
                        placeholder="0"
-                       id="room">
+                       id="rooms">
             </div>
             <div class="form-group col-sm-2">
                 <label for="year">Год постройки</label>
@@ -235,7 +237,7 @@
             <div class="form-group col-sm-12">
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" data-route="{{route('imagesUploader')}}"
-                           id="images-uploader" name="images[]" multiple>
+                           id="images-uploader" name="images" multiple>
                     <label class="custom-file-label" for="uploader" data-browse="{{trans('text.photo')}}"
                     ><i class="fa fa-folder-open-o" aria-hidden="true"></i>
                     </label>

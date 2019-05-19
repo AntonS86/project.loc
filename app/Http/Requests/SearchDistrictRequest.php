@@ -27,6 +27,7 @@ class SearchDistrictRequest extends FormRequest
     {
         return [
             'district_name' => 'string|required',
+            'city_id'       => 'nullable|int|exists:cities,id'
         ];
     }
 

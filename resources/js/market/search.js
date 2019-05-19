@@ -1,27 +1,46 @@
 import ErrorHandler from "../custom/ErrorHandler";
 
 /**
- *
- * @param data
+ *{form_id: '#form', field_name: 'input_name', field_id: 'input_hidden', ul_id: '#ul',[field_obligatory: 'input_obligatory']}
+ * @param sett
  * @return {null}
  */
-let searchAddress = (data) => {
-    let form  = document.querySelector(data.form_id);
-    let input = document.querySelector(data.input_id);
-    let ul    = document.querySelector(data.ul_id);
-    if (!(input && ul && form)) return null;
-    let url = input.dataset.search_address;
+const searchAddress = (sett) => {
+    const form = document.querySelector(sett.form_id);
+    if (!form) return null;
+
+    const input         = form[sett.field_name];
+    const ul            = document.querySelector(sett.ul_id);
+    let obligatoryInput = null;
+    if (sett.field_obligatory) {
+        obligatoryInput = form[sett.field_obligatory];
+    }
+    if (!(input && ul)) return null;
+    const url = input.dataset.search_address;
+
+    let timeOutId = null;
+
     input.addEventListener('keyup', (e) => {
-        form.street_id.value = '';
-        let value            = input.value.trim();
-        if (value) {
-            axios.post(url, {
-                [input.name]: value
-            }).then((response) => {
-                listBuilder(response, data);
-            }).catch((error) => {
-                new ErrorHandler().errorNotify(error);
-            });
+        let value                 = input.value.trim();
+        form[sett.field_id].value = '';
+
+        if (value.length > 2) {
+            if (timeOutId) clearTimeout(timeOutId);
+            timeOutId = setTimeout(() => {
+
+                const data = {[input.name]: value};
+
+                if (obligatoryInput && (+obligatoryInput.value) > 0) {
+                    data[obligatoryInput.name] = +obligatoryInput.value;
+                }
+                axios.post(url, data).then((response) => {
+                    listBuilder(response, sett);
+                }).catch((error) => {
+                    new ErrorHandler().errorNotify(error);
+                });
+
+            }, 500);
+
         } else {
             ul.hidden = true;
         }
@@ -31,26 +50,25 @@ let searchAddress = (data) => {
     ul.addEventListener('click', (e) => {
         let li = e.target.closest('li');
         if (!(li && li.dataset.id && li.innerHTML.trim())) return null;
-        input.dataset.id     = li.dataset.id;
-        input.value          = li.innerHTML.trim();
-        form.street_id.value = li.dataset.id
-        ul.hidden            = true;
+        input.dataset.id          = li.dataset.id;
+        input.value               = li.innerHTML.trim();
+        form[sett.field_id].value = li.dataset.id;
+        ul.hidden                 = true;
     });
 };
 
 /**
  * build list ul
  * @param response
- * @param data
+ * @param sett
  */
-let listBuilder = (response, data) => {
-    let ul = document.querySelector(data.ul_id);
-    if (!ul) throw Error(data.ul_id + ' not found, unable to build list');
+let listBuilder = (response, sett) => {
+    let ul = document.querySelector(sett.ul_id);
+    if (!ul) throw Error(sett.ul_id + ' not found, unable to build list');
     if (response.status === 200) {
         ul.hidden = false;
-        for (let child of ul.children) {
-            child.remove();
-        }
+
+        ul.innerHTML = '';
         for (let elem of response.data) {
             ul.insertAdjacentHTML('beforeend', `<li data-id="${elem.id}">${elem.name}</li>`);
         }
@@ -59,49 +77,61 @@ let listBuilder = (response, data) => {
 
 
 searchAddress({
-    form_id : '#search_realestates',
-    input_id: '#street_name',
-    ul_id   : '#list-street'
+    form_id   : '#search_realestates',
+    field_name: 'street_name',
+    field_id  : 'street_id',
+    ul_id     : '#list-street'
 });
 
 //Поиск по улице
 searchAddress({
-    form_id : '#form-edit',
-    input_id: '#street_name',
-    ul_id   : '#list-street'
+    form_id         : '#form-edit',
+    field_name      : 'street_name',
+    field_id        : 'street_id',
+    field_obligatory: 'city_id',
+    ul_id           : '#list-street'
 });
 
 //поиск по региону
 searchAddress({
-    form_id : '#form-edit',
-    input_id: '#region_name',
-    ul_id   : '#list-region'
+    form_id   : '#form-edit',
+    field_name: 'region_name',
+    field_id  : 'region_id',
+    ul_id     : '#list-region'
 });
 
 //Поиск по району
 searchAddress({
-    form_id : '#form-edit',
-    input_id: '#area_name',
-    ul_id   : '#list-area'
+    form_id         : '#form-edit',
+    field_name      : 'area_name',
+    field_id        : 'area_id',
+    field_obligatory: 'region_id',
+    ul_id           : '#list-area'
 });
 
 //Поиск по городу
 searchAddress({
-    form_id : '#form-edit',
-    input_id: '#city_name',
-    ul_id   : '#list-city'
+    form_id         : '#form-edit',
+    field_name      : 'city_name',
+    field_id        : 'city_id',
+    field_obligatory: 'region_id',
+    ul_id           : '#list-city'
 });
 
-//Поиск по городу
+//Поиск по округу
 searchAddress({
-    form_id : '#form-edit',
-    input_id: '#district_name',
-    ul_id   : '#list-district'
+    form_id         : '#form-edit',
+    field_name      : 'district_name',
+    field_id        : 'district_id',
+    field_obligatory: 'city_id',
+    ul_id           : '#list-district'
 });
 
 //Поиск по деревне
 searchAddress({
-    form_id : '#form-edit',
-    input_id: '#village_name',
-    ul_id   : '#list-village'
+    form_id         : '#form-edit',
+    field_name      : 'village_name',
+    field_id        : 'village_id',
+    field_obligatory: 'area_id',
+    ul_id           : '#list-village'
 });

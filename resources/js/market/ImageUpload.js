@@ -90,7 +90,7 @@ export default class ImageUpload {
                 <a href="#" class="close text-danger" aria-label="Close">
                     <i class="fa fa-times-circle" aria-hidden="true"></i>
                 </a>
-                <input type="hidden" name="images[]" value="${id}">
+                <input type="hidden" name="images" value="${id}">
             </div>`;
     }
 
