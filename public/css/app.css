@@ -26756,7 +26756,7 @@ img[data-src] {
 }
 
 .slider-images ul li {
-  flex-basis: 50%;
+  flex-basis: 100%;
   margin: 1px;
   align-content: flex-end;
 }
@@ -26798,9 +26798,12 @@ img[data-src] {
   color: #fff;
 }
 
-.listing-item .body:hover {
-  background-color: rgba(232, 232, 232, 0.8);
-  transition: background-color 0.3s;
+.listing-item {
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.listing-item:hover {
+  box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, 0.2);
 }
 
 .listing-item .address {

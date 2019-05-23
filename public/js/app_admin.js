@@ -39121,8 +39121,10 @@ var searchRealestate = function searchRealestate() {
     e.preventDefault();
     new _custom_FormSend__WEBPACK_IMPORTED_MODULE_1__["default"](settings).send(function (response) {
       if (response.status === 200) {
-        console.log(response);
-        new _custom_Notify__WEBPACK_IMPORTED_MODULE_3__["default"]().infoMessage('Объявление успешно сохраннено'); //setTimeout(() => window.location.href = form.dataset.success_redirect, 1000);
+          new _custom_Notify__WEBPACK_IMPORTED_MODULE_3__["default"]().infoMessage('Объявление успешно сохраннено');
+          setTimeout(function () {
+              return window.location.href = form.dataset.success_redirect;
+          }, 1000);
       }
     }, function (error) {
       new _custom_ErrorHandler__WEBPACK_IMPORTED_MODULE_2__["default"]().errorNotify(error);

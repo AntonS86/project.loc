@@ -21,13 +21,13 @@
     <link rel="shortcut icon" href="{{asset('images/favicon.png')}}">
 
     {{--@include('components.analytics')--}}
-    @stack('slider-css')
 
     <link href="{{asset('plugins/slick/slick.css')}}" rel="stylesheet">
 
     <link href="{{mix('css/app.css')}}" rel="stylesheet">
     <link href="{{asset('css/typography-scheme-3.css')}}" rel="stylesheet">
     <link href="{{asset('css/light_blue.css')}}" rel="stylesheet">
+    @stack('fotorama.css')
 </head>
 
 <body class="page-loader-3">
@@ -55,7 +55,6 @@
 
 <script type="text/javascript" src="{{mix('js/app.js')}}"></script>
 
-@stack('slider')
 <script src="{{asset('plugins/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
 <!-- Appear javascript -->
 <script src="{{asset('plugins/waypoints/jquery.waypoints.min.js')}}"></script>
@@ -68,7 +67,8 @@
 @stack('comingsoon')
 <!-- Initialization of Plugins -->
 <script src="{{asset('js/template.js')}}"></script>
+@stack('fotorama.js')
 <!-- Custom Scripts -->
-<script src="{{asset('tugtuggleSortButton.jstton.js')}}"></script>
+{{--<script src="{{asset('tugtuggleSortButton.jstton.js')}}"></script>--}}
 
 </html>

@@ -48,7 +48,7 @@ class RealEstatesController extends Controller
      */
     public function index(Request $request)
     {
-        $this->varOutput['realestates'] = $this->realEstate->fullContent()->paginate(config('settings.market_pagination'));
+        $this->varOutput['realestates'] = $this->realEstate->fullContent()->latest()->paginate(config('settings.market_pagination'));
         if ($request->ajax()) {
             $html = view('new_admin.realestate.realestates_table', $this->varOutput)->render();
             return response()->json(['success' => true, 'content' => $html]);
@@ -87,7 +87,7 @@ class RealEstatesController extends Controller
     public function store(RealEstateCreateService $createService)
     {
         $realEstate = $createService->create();
-        return response()->json($realEstate->id);
+        return response()->json(['id' => $realEstate->id]);
     }
 
     /**
@@ -102,10 +102,16 @@ class RealEstatesController extends Controller
         return view($this->template)->with($this->varOutput);
     }
 
-    public function update(RealEstate $realEstate, RealEstateCreateService $createService)
+    /**
+     * @param RealEstate              $realEstate
+     * @param RealEstateCreateService $createService
+     *
+     * @return JsonResponse
+     */
+    public function update(RealEstate $realEstate, RealEstateCreateService $createService): JsonResponse
     {
         $realEstate = $createService->update($realEstate);
-        return response()->json($realEstate->id);
+        return response()->json(['id' => $realEstate->id]);
     }
 
 }

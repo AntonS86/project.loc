@@ -2,23 +2,13 @@
     <div class="listing-item white-bg bordered mb-20">
         @if($realestate->images->isNotEmpty())
             <div class="slider-images"
-                 style="background-image: url({{$realestate->images[0]->asset_thumbs_path}})">
+                 style="background-image: url({{$realestate->images[0]->asset_path}})">
                 <ul>
                     @foreach($realestate->images as $image)
                         <li class="slider-li-item">
-                            <div style="background-image: url({{$image->asset_thumbs_path. '123'}})"></div>
+                            <div style="background-image: url({{$image->asset_path}})"></div>
                         </li>
                     @endforeach
-                    <li class="slider-li-item">
-                        <div
-                            style="background-image: url({{$realestate->images[0]->asset_thumbs_path. '12ew3'}})"></div>
-                    </li>
-                    <li class="slider-li-item">
-                        <div style="background-image: url({{$realestate->images[0]->asset_thumbs_path. 'wer'}})"></div>
-                    </li>
-                    <li class="slider-li-item">
-                        <div style="background-image: url({{$realestate->images[0]->asset_thumbs_path. '1we3'}})"></div>
-                    </li>
                 </ul>
                 <a href="{{route('realestate.fav_toggle', ['realestate' => $realestate->id])}}"
                    title="{{trans('text.favorite')}}" data-id="{{$realestate->id}}" class="wishlist"><i
@@ -30,19 +20,18 @@
                 <h3>{{$realestate->address}}</h3>
             </div>
             <div class="d-flex default-bg my-2">
-                @if (isset($realestate->room))
-                    <div class="small border p-1 flex-fill text-center">{{$realestate->room}}-к</div>
+                @if (isset($realestate->rooms_view))
+                    <div class="small border p-1 flex-fill text-center">{{$realestate->rooms_view}}</div>
                 @endif
-                @if (isset($realestate->floors))
+                @if (isset($realestate->floors_view))
                     <div class="small border p-1 flex-fill text-center">
-                        эт. {{$realestate->floor ? $realestate->floor .'/' : ''}}{{$realestate->floors}}</div>
+                        эт. {{$realestate->floors_view}}</div>
                 @endif
-                @if (isset($realestate->total_square))
-                    <div class="small border p-1 flex-fill text-center">{{$realestate->total_square}} м<sup>2</sup>
-                    </div>
+                @if (isset($realestate->total_square_view))
+                    <div class="small border p-1 flex-fill text-center">{{$realestate->total_square_view}}</div>
                 @endif
-                @if (isset($realestate->land_square))
-                    <div class="small border p-1 flex-fill text-center">{{$realestate->land_square / 100}} сот.</div>
+                @if (isset($realestate->land_square_view))
+                    <div class="small border p-1 flex-fill text-center">{{$realestate->land_square_view}}</div>
                 @endif
             </div>
             <div class="elements-list clearfix">

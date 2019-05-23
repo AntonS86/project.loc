@@ -66,7 +66,7 @@ class RealEstateCreateService
     }
 
     /**
-     *
+     * @return void
      */
     private function inputImagesHandler(): void
     {
@@ -76,7 +76,7 @@ class RealEstateCreateService
     }
 
     /**
-     *
+     * @return void
      */
     private function inputPriceHandler(): void
     {

@@ -10,7 +10,7 @@
                 <div class="carousel-inner">
                     @foreach($realestate->images as $image)
                         <div class="carousel-item {{$loop->first ? 'active' : ''}}">
-                            <img src="{{$image->asset_thumbs_path}}" class="d-block w-100">
+                            <div style="background-image: url('{{$image->asset_thumbs_path}}');" class="w-100"></div>
                         </div>
                     @endforeach
                 </div>
@@ -27,9 +27,7 @@
             </div>
         @endif
         <div class="body position-relative">
-            <div class="address">
-                <p>{{$realestate->address}}</p>
-            </div>
+            <div class="address">{{$realestate->address}}</div>
             <div class="d-flex bg-instagram text-white my-2">
                 @if (isset($realestate->room))
                     <div class="small border p-1 flex-fill text-center">{{$realestate->room}}-к</div>
@@ -52,6 +50,7 @@
                 <a href="{{route('admin.realestates.edit', ['realestate' => $realestate->id])}}" target="_blank"
                    class="stretched-link"></a>
             </div>
+            <div>Дата создания: {{$realestate->created_at_view}}</div>
         </div>
     </div>
 </div>

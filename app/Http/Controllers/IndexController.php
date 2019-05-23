@@ -62,7 +62,7 @@ class IndexController extends SiteController
     {
         $this->varOutput['rs_fav_id']       = $this->cookieService->searchCookie(config('settings.realestates_fav'))->get();
         $this->varOutput['realestates_fav'] = $this->realEstate->whereIn('id', $this->varOutput['rs_fav_id'])->published()->fullContent()->get();
-        $this->varOutput['realestates']     = $this->realEstate->published()->fullContent()->paginate(config('settings.market_pagination'));
+        $this->varOutput['realestates']     = $this->realEstate->published()->fullContent()->latest()->paginate(config('settings.market_pagination'));
         if ($request->ajax()) {
             $html = view('market.ads_content', $this->varOutput)->render();
             return response()->json(['success' => true, 'content' => $html]);

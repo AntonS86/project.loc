@@ -48,9 +48,8 @@ const searchRealestate = () => {
         e.preventDefault();
         new FormSend(settings).send(response => {
             if (response.status === 200) {
-                console.log(response);
                 new Notify().infoMessage('Объявление успешно сохраннено');
-                //setTimeout(() => window.location.href = form.dataset.success_redirect, 1000);
+                setTimeout(() => window.location.href = form.dataset.success_redirect, 1000);
             }
         }, error => {
             new ErrorHandler().errorNotify(error);

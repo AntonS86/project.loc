@@ -18881,6 +18881,20 @@ div[aria-labelledby=message] {
   min-width: 200px;
 }
 
+.uploader-images {
+  flex-basis: 150px;
+  margin: 2px;
+  flex-direction: column;
+  height: 100px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.carousel .carousel-item div {
+  height: 180px;
+  background-size: cover;
+}
+
 .listing-item {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
@@ -18894,7 +18908,7 @@ div[aria-labelledby=message] {
 }
 
 .listing-item .address {
-  min-height: 60px;
+  min-height: 100px;
 }
 
 .form-group .dropdown-div {
@@ -18927,15 +18941,6 @@ div[aria-labelledby=message] {
   background-color: #007bff;
   transition: color 0.2s, background-color 0.2s;
   cursor: pointer;
-}
-
-.uploader-images {
-  flex-basis: 150px;
-  margin: 2px;
-  flex-direction: column;
-  height: 100px;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 .ct-label {

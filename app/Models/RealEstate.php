@@ -15,7 +15,17 @@ class RealEstate extends Model
 
     protected $appends = [
         'current_price',
-        'address'
+        'address',
+        'rooms_view',
+        'land_square_view',
+        'total_square_view',
+        'floors_view',
+        'date_view_at'
+    ];
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
     ];
 
     /**
@@ -106,16 +116,78 @@ class RealEstate extends Model
         return number_format($this->price, 0, '.', ' ');
     }
 
+    /**
+     * @return string
+     */
     public function getAddressAttribute(): string
     {
-        return vsprintf('%s %s %s %s %s %s', [
-            $this->region->name,
-            $this->city->name ?? '',
-            $this->area->name ?? '',
-            $this->village->name ?? '',
-            $this->street->name ?? '',
-            $this->house_number ?? '',
-        ]);
+        $address   = [];
+        $address[] = $this->region->name;
+
+        if (isset($this->area->name)) {
+            $address[] = $this->area->name;
+        }
+        if (isset($this->city->name)) {
+            $address[] = $this->city->name;
+        }
+        if (isset($this->village->name)) {
+            $address[] = $this->village->name;
+        }
+        if (isset($this->street->name)) {
+            $address[] = $this->street->name;
+        }
+        if (isset($this->house_number)) {
+            $address[] = $this->house_number;
+        }
+
+        $format = trim(str_repeat('%s ', count($address)));
+        return vsprintf($format, $address);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getRoomsViewAttribute(): ?string
+    {
+        return ($this->rooms)
+            ? sprintf('%s-к', $this->rooms)
+            : null;
+    }
+
+    public function getLandSquareViewAttribute(): ?string
+    {
+        return ($this->land_square)
+            ? sprintf('%s сот.', $this->land_square / 100)
+            : null;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTotalSquareViewAttribute(): ?string
+    {
+        return ($this->total_square)
+            ? sprintf('%s м%s', $this->total_square, html_entity_decode('&#178;'))
+            : null;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFloorsViewAttribute(): ?string
+    {
+        if ($this->floors) {
+            return ($this->floor) ? sprintf('%s/%s', $this->floor, $this->floors) : $this->floors;
+        }
+        return null;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateViewAtAttribute(): string
+    {
+        return $this->created_at->format('d-m-Y');
     }
 
     /**

@@ -1,3 +1,4 @@
+@include('components.meta_tag_realestate', ['realestate' => $realestate])
 <h1 class="page-title">{{$realestate->address}}</h1>
 <div class="separator"></div>
 <div class="row">
@@ -7,26 +8,10 @@
         <!-- Tab panes -->
         @if($realestate->images->isNotEmpty())
             <div class="tab-content clear-style">
-                <div class="tab-pane active" id="pill-1">
-                    <div class="slick-carousel content-slider-with-thumbs mb-20">
-                        @foreach($realestate->images as $key=>$image)
-                            <div class="overlay-container overlay-visible">
-                                <img src="{{$image->asset_path}}" alt="">
-                                <a href="{{$image->asset_path}}" class="slick-carousel--popup-img overlay-link"
-                                   title="{{$key+1}}"></a>
-                            </div>
-                        @endforeach
-
-                    </div>
-                    <div class="content-slider-thumbs-container">
-                        <div class="slick-carousel content-slider-thumbs">
-                            @foreach($realestate->images as $image)
-                                <div class="slick-nav-thumb">
-                                    <img src="{{$image->asset_thumbs_path}}" alt="">
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
+                <div class="fotorama" data-nav="thumbs" data-loop="true">
+                    @foreach($realestate->images as $key=>$image)
+                        <a href="{{$image->asset_path}}"><img src="{{$image->asset_thumbs_path}}"></a>
+                    @endforeach
                 </div>
             </div>
     @endif
@@ -51,21 +36,21 @@
             <dt class="col-sm-5">{{trans('text.category')}}</dt>
             <dd class="col-sm-7">{{$realestate->type->name}}</dd>
 
-            @if($realestate->room)
+            @if($realestate->rooms_view)
                 <dt class="col-sm-5">{{trans('text.rooms_count')}}</dt>
-                <dd class="col-sm-7">{{$realestate->room}}</dd>
+                <dd class="col-sm-7">{{$realestate->rooms_view}}</dd>
             @endif
-            @if($realestate->land_square)
+            @if($realestate->land_square_view)
                 <dt class="col-sm-5">{{trans('text.land_square')}}</dt>
-                <dd class="col-sm-7">{{$realestate->land_square/100}} сот.</dd>
+                <dd class="col-sm-7">{{$realestate->land_square_view}}</dd>
             @endif
-            @if($realestate->total_square)
+            @if($realestate->total_square_view)
                 <dt class="col-sm-5">{{trans('text.total_square')}}</dt>
-                <dd class="col-sm-7">{{$realestate->total_square}} м<sup>2</sup></dd>
+                <dd class="col-sm-7">{{$realestate->total_square_view}}</dd>
             @endif
-            @if($realestate->floors)
+            @if($realestate->floors_view)
                 <dt class="col-sm-5">{{trans('text.floor')}}</dt>
-                <dd class="col-sm-7">{{$realestate->floor ? $realestate->floor.'/' : ''}}{{$realestate->floors}}</dd>
+                <dd class="col-sm-7">{{$realestate->floors_view}}</dd>
             @endif
             @if($realestate->balcony)
                 <dt class="col-sm-5">{{trans('text.balcony')}}</dt>
@@ -83,6 +68,8 @@
                 <dt class="col-sm-5">{{trans('text.cadastral_number')}}</dt>
                 <dd class="col-sm-7">{{$realestate->cadastral_number}}</dd>
             @endif
+            <dt class="col-sm-5">{{trans('text.added')}}</dt>
+            <dd class="col-sm-7">{{$realestate->date_view_at}}</dd>
         </dl>
         @if($realestate->description)
             <h2>{{trans('text.description')}}</h2>
@@ -91,8 +78,19 @@
         <hr>
         <span class="product price"><i class="fa fa-tag pr-10"></i>{{$realestate->current_price}} <i
                 class="fa fa-rub"></i></span>
-        <div class="product elements-list pull-right clearfix">
-            <input type="submit" value="Add to Cart" class="margin-clear btn btn-default">
-        </div>
+        @if(isset($company->phone))
+            <div class="product elements-list pull-right clearfix">
+                <a href="tel:{{$company->phone}}" class="margin-clear btn btn-animated btn-default">{{$company->phone}}
+                    <i class="fa fa-phone"></i>
+                </a>
+            </div>
+        @endif
     </div>
 </div>
+
+@push('fotorama.css')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+@endpush
+@push('fotorama.js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+@endpush

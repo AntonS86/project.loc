@@ -1,3 +1,4 @@
+@include('components.meta_tag_index')
 <div id="paginate-content">
     <div class="tab-content clear-style">
         <div class="tab-pane active" id="pill-1">

@@ -13,11 +13,11 @@ class TypesSeeder extends Seeder
     public function run()
     {
         DB::table('types')->insert([
-            ['name' => 'Квартиры'],
-            ['name' => 'Комнаты'],
-            ['name' => 'Дачи'],
-            ['name' => 'Дома'],
-            ['name' => 'Земельные участки'],
+            ['name' => 'Квартира'],
+            ['name' => 'Комната'],
+            ['name' => 'Дача'],
+            ['name' => 'Дом'],
+            ['name' => 'Земельный участок'],
         ]);
     }
 }

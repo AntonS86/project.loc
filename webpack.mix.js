@@ -18,4 +18,10 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/site/typography-scheme-3.scss', 'public/css')
     .sass('resources/sass/site/skins/light_blue.scss', 'public/css')
     .sass('resources/sass/admin/app_admin.scss', 'public/css')
-    .version();
+    .version()
+    .browserSync({
+        open : 'external',
+        host : 'proj.loc',
+        proxy: 'proj.loc',
+        files: ['resources/views/**/*.php', 'app/**/*.php', 'routes/**/*.php', 'public/js/*.js', 'public/css/*.css']
+    });

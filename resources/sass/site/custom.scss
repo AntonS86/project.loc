@@ -98,7 +98,7 @@ img {
         align-items: stretch;
 
         li {
-            flex-basis: 50%;
+            flex-basis: 100%;
             margin: 1px;
             align-content: flex-end;
 
@@ -148,9 +148,11 @@ img {
 }
 
 .listing-item {
-    .body:hover {
-        background-color: rgba(232, 232, 232, .8);
-        transition: background-color .3s;
+
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, .2);
+
+    &:hover {
+        box-shadow: 2px 2px 5px 3px rgba(0, 0, 0, .2);
     }
 
     .address {
