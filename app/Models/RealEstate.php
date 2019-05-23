@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Auth;
 
 class RealEstate extends Model
 {
@@ -201,6 +202,10 @@ class RealEstate extends Model
      */
     public function resolveRouteBinding($value)
     {
-        return $this->where('id', $value)->published()->first() ?? abort(404);
+        $query = $this->where('id', $value);
+        if (Auth::guest()) {
+            $query->published();
+        }
+        return $query->first() ?? abort(404);
     }
 }

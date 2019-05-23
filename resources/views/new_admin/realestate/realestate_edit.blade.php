@@ -189,9 +189,8 @@
             <div class="form-group col-sm-12">
                 <label for="description">Описание</label>
                 <textarea name="description" class="form-control"
-                          value="{{$realestate->description ?? ''}}"
                           placeholder="" rows="4"
-                          id="description"></textarea>
+                          id="description">{{$realestate->description ?? ''}}</textarea>
             </div>
             <div class="form-group col-sm-4">
                 <label for="price">Цена</label>
@@ -222,10 +221,27 @@
                     </option>
                 </select>
             </div>
-
+                @if($realestate->images->isNotEmpty())
+                    <div id="uploaded-photo"
+                         class="col-sm-12 d-flex flex-wrap align-items-stretch justify-content-center my-2 p-1"
+                    >
+                        @foreach($realestate->images as $image)
+                            <div class="uploader-images border rounded"
+                                 style="background-image: url('{{$image->asset_thumbs_path}}');"
+                                 data-image="{{$image->id}}">
+                                <a href="#" class="close text-danger" aria-label="Close">
+                                    <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                </a>
+                                <input type="hidden" name="images" value="{{$image->id}}">
+                            </div>
+                        @endforeach
+                    </div>
+                @else
                 <div id="uploaded-photo"
                      class="col-sm-12 d-flex flex-wrap align-items-stretch justify-content-center my-2 p-1"
                      hidden></div>
+                @endif
+
 
                 <div id="upload-progress" class="progress my-1 col-sm-12" hidden>
                 <div id="progress-line"

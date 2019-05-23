@@ -11,6 +11,14 @@ use Illuminate\Http\Request;
 class Area extends Model
 {
     /**
+     * @var array
+     */
+    protected $fillable = [
+        'region_id',
+        'name'
+    ];
+
+    /**
      * Indicates if the model should be timestamped.
      *
      * @var bool

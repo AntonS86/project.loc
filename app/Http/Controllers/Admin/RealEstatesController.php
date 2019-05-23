@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RealEstateRequest;
 use App\Http\Requests\SearchRealEstateRequest;
+use App\Http\Services\RealEstate\RealEstateCreateService;
 use App\Models\RealEstate;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -78,18 +79,33 @@ class RealEstatesController extends Controller
         return view($this->template)->with($this->varOutput);
     }
 
-    public function store(RealEstateRequest $request)
+    /**
+     * @param RealEstateCreateService $createService
+     *
+     * @return JsonResponse
+     */
+    public function store(RealEstateCreateService $createService)
     {
-        return response()->json($request->all());
+        $realEstate = $createService->create();
+        return response()->json($realEstate->id);
     }
 
-    public function edit()
+    /**
+     * @param RealEstate $realEstate
+     *
+     * @return View
+     */
+    public function edit(RealEstate $realEstate): View
     {
+        $this->varOutput['realestate'] = $realEstate->loadFullContent();
 
+        return view($this->template)->with($this->varOutput);
     }
 
-    public function delete()
+    public function update(RealEstate $realEstate, RealEstateCreateService $createService)
     {
-
+        $realEstate = $createService->update($realEstate);
+        return response()->json($realEstate->id);
     }
+
 }

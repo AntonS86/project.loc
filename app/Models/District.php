@@ -12,6 +12,14 @@ class District extends Model
 {
 
     /**
+     * @var array
+     */
+    protected $fillable = [
+        'city_id',
+        'name'
+    ];
+
+    /**
      * Indicates if the model should be timestamped.
      *
      * @var bool

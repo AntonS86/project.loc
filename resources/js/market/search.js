@@ -30,8 +30,12 @@ const searchAddress = (sett) => {
 
                 const data = {[input.name]: value};
 
-                if (obligatoryInput && (+obligatoryInput.value) > 0) {
-                    data[obligatoryInput.name] = +obligatoryInput.value;
+                if (obligatoryInput) {
+                    if (+obligatoryInput.value > 0) {
+                        data[obligatoryInput.name] = +obligatoryInput.value;
+                    } else {
+                        return;
+                    }
                 }
                 axios.post(url, data).then((response) => {
                     listBuilder(response, sett);
@@ -66,12 +70,17 @@ let listBuilder = (response, sett) => {
     let ul = document.querySelector(sett.ul_id);
     if (!ul) throw Error(sett.ul_id + ' not found, unable to build list');
     if (response.status === 200) {
-        ul.hidden = false;
-
         ul.innerHTML = '';
-        for (let elem of response.data) {
-            ul.insertAdjacentHTML('beforeend', `<li data-id="${elem.id}">${elem.name}</li>`);
+        if (response.data.length > 0) {
+            ul.hidden = false;
+
+            for (let elem of response.data) {
+                ul.insertAdjacentHTML('beforeend', `<li data-id="${elem.id}">${elem.name}</li>`);
+            }
+        } else {
+            ul.hidden = true;
         }
+
     }
 };
 

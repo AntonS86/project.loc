@@ -34,7 +34,16 @@ class RealEstateRequest extends FormRequest
             'type_id'          => 'required|int|exists:types,id',
             'region_name'      => 'required|string',
             'region_id'        => 'required|int|exists:regions,id',
-            'area_name'        => 'nullable|required_without:city_name|string',
+            'area_name'        => [
+                'nullable',
+                'required_without:city_name',
+                'string',
+                function ($attribute, $value, $fail) {
+                    if ($this->filled('city_name')) {
+                        $fail("Поле :attribute должно быть пустым если заполнено поле город");
+                    }
+                },
+            ],
             'area_id'          => [
                 'nullable',
                 'int',
@@ -42,14 +51,32 @@ class RealEstateRequest extends FormRequest
                     ->where('region_id', $this->input('region_id')),
 
             ],
-            'city_name'        => 'nullable|required_without:village_name|string',
+            'city_name'        => [
+                'nullable',
+                'required_without:village_name,area_name',
+                'string',
+                function ($attribute, $value, $fail) {
+                    if ($this->filled('area_name')) {
+                        $fail("Поле :attribute должно быть пустым если заполнено поле район");
+                    }
+                },
+            ],
             'city_id'          => [
                 'nullable',
                 'int',
                 Rule::exists('cities', 'id')
                     ->where('region_id', $this->input('region_id')),
             ],
-            'street_name'      => 'nullable|required_with:city_name,village_name|string',
+            'street_name'      => [
+                'nullable',
+                'required_with:city_name,village_name',
+                'string',
+                function ($attribute, $value, $fail) {
+                    if ($this->filled('village_name') && $this->filled('city_name')) {
+                        $fail("Выберете что-то одно, город либо деревню, потом заполните поле :attribute");
+                    }
+                },
+            ],
             'street_id'        => [
                 'nullable',
                 'int',
@@ -74,10 +101,10 @@ class RealEstateRequest extends FormRequest
             'year'             => 'nullable|date_format:Y',
             'floor'            => 'nullable|int|min:1',
             'floors'           => 'nullable|int|gte:floor',
-            'balcony'          => 'nullable|int|min:1|max:5',
-            'loggia'           => 'nullable|int|min:1|max:5',
-            'total_square'     => 'nullable|int|min:5',
-            'land_square'      => 'nullable|int|min:100',
+            'balcony'          => 'nullable|int|min:0|max:5',
+            'loggia'           => 'nullable|int|min:0|max:5',
+            'total_square'     => 'nullable|numeric|min:5',
+            'land_square'      => 'nullable|numeric|min:100',
             'description'      => 'required|string',
             'price'            => 'required|int|min:50000',
             'cadastral_number' => 'nullable|string',

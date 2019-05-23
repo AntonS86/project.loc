@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Region extends Model
 {
 
+
     /**
      * Indicates if the model should be timestamped.
      *

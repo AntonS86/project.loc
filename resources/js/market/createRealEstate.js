@@ -8,6 +8,7 @@ const settings         = {
     form_id   : '#form-edit',
     fieldsName: [
         '_token',
+        '_method',
         'realestate_id',
         'rubric_id',
         'type_id',

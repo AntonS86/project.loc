@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 
 class Street extends Model
 {
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'name'
+    ];
 
     /**
      * Indicates if the model should be timestamped.
