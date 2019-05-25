@@ -10,9 +10,7 @@
                             <div class="logo-footer"><img id="logo-footer" class="mx-auto" src="{{ asset('images/logo/' . $company->img) }}" alt=""></div>
                             <p>{{$company->title}}</p>
                             <ul class="list-inline mb-20">
-                                <li class="list-inline-item"><i class="text-default fa fa-map-marker pr-1"></i>{{$company->address}}</li>
-                                <li class="list-inline-item"><a href="#" class="link-dark"><i class="text-default fa fa-phone pl-10 pr-1"></i>{{$company->phone}}</a></li>
-                                <li class="list-inline-item"><a href="#" class="link-dark"><i class="text-default fa fa-envelope-o pl-10 pr-1"></i>{{$company->email}}</a></li>
+                                @include('components.contacts')
                             </ul>
                             <ul class="social-links circle animated-effect-1 margin-clear">
                                 @foreach($company->companyLinks as $socialLink)

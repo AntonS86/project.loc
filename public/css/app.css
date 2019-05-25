@@ -26790,7 +26790,6 @@ img[data-src] {
 }
 
 .slider-images .wishlist {
-  z-index: 9999;
   display: block;
   position: absolute;
   top: 5px;
@@ -26820,6 +26819,7 @@ img[data-src] {
 }
 
 .dark-translucent-bg .form-group .dropdown-div .dropdown-list {
+    width: 100%;
   position: absolute;
   max-height: 300px;
   list-style: none;

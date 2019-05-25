@@ -62,8 +62,8 @@
                     <div class="form-group mr-1">
                         <label>Сортировать по</label>
                         <select class="form-control" name="sort">
-                            <option selected="selected" value="created_at">Дате</option>
-                            <option value="price">Цене</option>
+                            <option value="created_at">Дате</option>
+                            <option value="price" {{session('sort') === 'price' ? 'selected' : ''}}>Цене</option>
                         </select>
                     </div>
                     <div class="form-group mr-1">

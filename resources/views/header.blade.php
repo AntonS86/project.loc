@@ -5,24 +5,18 @@
             <div class="row">
                 <div class="col-md-auto hidden-md-down pl-3">
                     <div class="header-first clearfix">
-
                         @if(isset($company))
-
                             <div id="logo" class="logo">
                                 <a href="{{route('home')}}"><img id="logo_img"
                                                                  src="{{ asset('images/logo/' . $company->img) }}"
                                                                  alt="{{$company->name}}"></a>
                             </div>
-                            <div class="site-slogan">
-                                Multipurpose HTML5 Template
-                            </div>
+                            <div class="site-slogan">{{trans('text_action.site_slogan')}}</div>
                         @endif
                     </div>
                 </div>
                 <div class="col-lg-8 ml-auto">
-
                     <div class="header-second clearfix">
-
                         <div class="main-navigation main-navigation--mega-menu  animated">
                             <nav class="navbar navbar-expand-lg navbar-light p-0">
 
@@ -35,9 +29,7 @@
                                                                              src="{{ asset('images/logo/' . $company->img) }}"
                                                                              alt="{{$company->name}}"></a>
                                         </div>
-                                        <div class="site-slogan">
-                                            Multipurpose HTML5 Template
-                                        </div>
+                                        <div class="site-slogan">{{trans('text_action.site_slogan')}}</div>
                                     @endif
                                 </div>
 

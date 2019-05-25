@@ -18,7 +18,7 @@
     <meta property="og:locale" content="ru_RU">
     <meta name="csrf-token" content="{{csrf_token()}}">
 
-    <link rel="shortcut icon" href="{{asset('images/favicon.png')}}">
+    <link rel="shortcut icon" href="{{asset('favicon4.png')}}">
 
     {{--@include('components.analytics')--}}
 

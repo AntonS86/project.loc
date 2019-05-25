@@ -138,7 +138,6 @@ img {
     }
 
     .wishlist {
-        z-index: 9999;
         display: block;
         position: absolute;
         top: 5px;
@@ -169,6 +168,7 @@ img {
             width: 100%;
 
             .dropdown-list {
+                width: 100%;
                 position: absolute;
                 max-height: 300px;
                 list-style: none;

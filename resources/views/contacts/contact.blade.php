@@ -9,7 +9,7 @@
 @endsection
 
 @section('action_block')
-    @include('components.enter_phone_action')
+    {{--@include('components.enter_phone_action')--}}
 @endsection
 
 @section('footer')

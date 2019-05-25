@@ -7,11 +7,9 @@
             <div class="col-lg-8 text-center pv-20">
                 <h1 class="page-title text-center">{{ trans('text.contact_us') }}</h1>
                 <div class="separator"></div>
-                <p class="lead text-center">It would be great to hear from you! Just drop us a line and ask for anything with which you think we could be helpful. We are looking forward to hearing from you!</p>
+                <p class="lead text-center">{{trans('text_action.action_call1')}}</p>
                 <ul class="list-inline mb-20 text-center">
-                    <li class="list-inline-item"><i class="text-default fa fa-map-marker pr-2"></i>{{$company->address}}</li>
-                    <li class="list-inline-item"><a href="#" class="link-dark"><i class="text-default fa fa-phone pl-10 pr-2"></i>{{$company->phone}}</a></li>
-                    <li class="list-inline-item"><a href="#" class="link-dark"><i class="text-default fa fa-envelope-o pl-10 pr-2"></i>{{$company->email}}</a></li>
+                    @include('components.contacts')
                 </ul>
                 <div class="separator"></div>
                 <ul class="social-links circle animated-effect-1 margin-clear text-center space-bottom">
