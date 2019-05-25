@@ -4,14 +4,11 @@
     <div class="container">
         <div class="row justify-content-lg-center">
             <div class="col-lg-8 text-center pv-20">
-                <h2 class="title hc-element-invisible" data-animation-effect="fadeIn" data-effect-delay="100">Wellcome
-                    to <strong>Shop</strong></h2>
-                <div class="separator hc-element-invisible mt-10" data-animation-effect="fadeIn"
-                     data-effect-delay="100"></div>
-                <p class="text-center hc-element-invisible" data-animation-effect="fadeIn" data-effect-delay="100">Lorem
-                    ipsum dolor sit amet, consectetur adipisicing elit. Excepturi perferendis magnam ea necessitatibus,
-                    officiis voluptas odit! Aperiam omnis, cupiditate laudantium velit nostrum, exercitationem
-                    accusamus, possimus soluta illo deserunt tempora qui.</p>
+                <h2 class="title hc-element-invisible title-market" data-animation-effect="fadeIn"
+                    data-effect-delay="100">{{trans('text_action.welcome_market')}}</h2>
+                {{-- <div class="separator hc-element-invisible mt-10" data-animation-effect="fadeIn"
+                      data-effect-delay="100"></div>
+                 <p class="text-center hc-element-invisible" data-animation-effect="fadeIn" data-effect-delay="100"></p>--}}
             </div>
         </div>
     </div>

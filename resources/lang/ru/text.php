@@ -2,18 +2,18 @@
 
 
 return [
-    'added'             => 'Добавлено',
-    'all_results'       => 'Все результаты',
-    'apply'             => 'Подать заявку',
-    'archived'          => 'в архиве',
-    'balcony'           => 'Балкон',
-    'call_us'           => 'Позвоните нам',
-    'cadastral_number'  => 'Кадастровый номер',
-    'category'          => 'Категория',
-    'coming_soon'       => 'Скоро Открытие',
-    'construction_year' => 'Год постройки',
-    'contact_us'        => 'Напишите Нам',
-    'description'       => 'Описание',
+    'added'                => 'Добавлено',
+    'all_results'          => 'Все результаты',
+    'apply'                => 'Подать заявку',
+    'archived'             => 'в архиве',
+    'balcony'              => 'Балкон',
+    'call_us'              => 'Позвоните нам',
+    'cadastral_number'     => 'Кадастровый номер',
+    'category'             => 'Категория',
+    'coming_soon'          => 'Скоро Открытие',
+    'construction_year'    => 'Год постройки',
+    'contact_us'           => 'Напишите Нам',
+    'description'          => 'Описание',
     'details'              => 'Детали',
     'email_address'        => 'Email',
     'enter_email'          => 'Укажите email',
@@ -63,6 +63,7 @@ return [
     'total_square'         => 'Общая площадь',
     'to_favorites'         => 'В избранное',
     'to_find'              => 'Найти',
+    'welcome'              => 'Добро пожаловать',
     'works'                => 'Услуги',
     'your_phone'           => 'Ваш номер телефона'
 
