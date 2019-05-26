@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Repositories\ArticleRepository;
 use App\Services\Parsers\ArticlesSave;
-use App\Services\Parsers\NersParser;
 use Illuminate\Console\Command;
 use App\Services\Parsers\ParserInterface;
 
@@ -35,8 +34,9 @@ class ParserNers extends Command
     }
 
     /**
-     * @param NersParser   $nersParser
-     * @param ArticlesSave $articlesSave
+     * @param ParserInterface   $nersParser
+     * @param ArticlesSave      $articlesSave
+     * @param ArticleRepository $aRep
      *
      * @throws \Exception
      */

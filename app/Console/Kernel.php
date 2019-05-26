@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('queue:work --tries=3 --stop-when-empty')->withoutOverlapping();
-        $schedule->command('parser:ners')->dailyAt('11:00');
+        //$schedule->command('parser:ners')->dailyAt('11:00');
     }
 
     /**

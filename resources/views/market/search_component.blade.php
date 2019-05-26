@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-lg-center">
             <div class="col-lg-8 text-center pv-20">
-                <h2 class="title hc-element-invisible title-market" data-animation-effect="fadeIn"
+                <h2 class="title hc-element-invisible" data-animation-effect="fadeIn"
                     data-effect-delay="100">{{trans('text_action.welcome_market')}}</h2>
                 {{-- <div class="separator hc-element-invisible mt-10" data-animation-effect="fadeIn"
                       data-effect-delay="100"></div>
