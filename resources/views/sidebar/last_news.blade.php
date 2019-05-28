@@ -21,8 +21,7 @@
                             href="{{route('articles.show', ['alias' => $lastArticle->alias])}}">{{$lastArticle->title}}</a>
                     </h6>
                     <p class="small margin-clear text-right"><i
-                            class="fa fa-calendar pr-10"></i>{{$lastArticle->published_at->format('d')}} {{trans('text.month.'.$lastArticle->published_at->format('F'))}}  {{$lastArticle->published_at->format('Y')}}
-                    </p>
+                            class="fa fa-calendar pr-10"></i>{{$lastArticle->date_view_at}}</p>
                 </div>
 
             </div>

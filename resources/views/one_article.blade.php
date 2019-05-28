@@ -9,9 +9,8 @@
             <div class="post-info mb-2">
         <span class="post-date">
             <i class="fa fa-calendar-o pr-1"></i>
-            <span class="day">{{$oneArticle->published_at->format('d')}}</span>
             <span
-                class="month">{{trans('text.month.'.$oneArticle->published_at->format('F'))}}  {{$oneArticle->published_at->format('Y')}}</span>
+                class="month">{{$oneArticle->date_view_at}}</span>
         </span>
                 <span>
             <i class="fa fa-chain"></i> <a

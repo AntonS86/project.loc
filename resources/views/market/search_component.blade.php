@@ -1,5 +1,5 @@
 <div class="banner dark-translucent-bg padding-bottom-clear"
-     style="background-image:url({{asset('images/slider/002_1920_650.jpg')}});background-position: 50% 32%;">
+     style="background-image:url({{asset('images/search-backgr.jpeg')}});background-position: 50% 32%;">
 
     <div class="container">
         <div class="row justify-content-lg-center">

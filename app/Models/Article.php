@@ -24,7 +24,8 @@ class Article extends Model
     ];
 
     protected $appends = [
-        'article_link'
+        'article_link',
+        'date_view_at'
     ];
 
     public function user()
@@ -48,6 +49,22 @@ class Article extends Model
         return $this->belongsToMany('App\Models\Image');
     }
 
+    /**
+     * format date
+     * @return string
+     */
+    public function getDateViewAtAttribute(): string
+    {
+        if (is_null($date = $this->published_at)) {
+            return trans('text.unpublished');
+        }
+        return vsprintf('%s %s %s', [
+            $date->format('d'),
+            trans('text.month.' . $date->format('F')),
+            $date->format('Y')
+        ]);
+
+    }
 
     public function getArticleLinkAttribute()
     {

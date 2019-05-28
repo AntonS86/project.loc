@@ -22,10 +22,7 @@
                                 <div class="post-info">
 							<span class="post-date">
 								<i class="fa fa-calendar-o pr-1"></i>
-								<span class="day">{{$article->published_at->format('d')}}</span>
-								<span
-                                    class="month">{{trans('text.month.'.$article->published_at->format('F'))}}  {{$article->published_at->format('Y')}}</span>
-							</span>
+								<span class="month">{{$article->date_view_at}}</span>
                                     <span class="post-info">
                                 <i class="fa fa-chain"></i> <a
                                             href="{{ $article->category->path }}">{{$article->category->title}}</a>

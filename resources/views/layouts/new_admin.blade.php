@@ -16,7 +16,7 @@
     <meta name="csrf-token" content="{{csrf_token()}}">
 
     <link rel="apple-touch-icon" href="{{asset('images/favicon.png')}}">
-    <link rel="shortcut icon" href="{{asset('images/favicon.png')}}">
+    <link rel="shortcut icon" href="{{asset('favicon4.png')}}">
 
     <link rel="stylesheet" href="{{mix('css/app_admin.css')}}">
 

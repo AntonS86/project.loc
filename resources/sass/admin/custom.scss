@@ -1,5 +1,5 @@
 .article-row {
-    height: 100px;
+    min-height: 100px;
     position: relative;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -20,14 +20,11 @@
     }
 
     img {
-        width: 100px;
-        height: 70px;
+        width: 100%;
+        margin: 1em 0;
         @extend .rounded;
     }
 
-    a {
-        @extend .stretched-link;
-    }
 }
 
 .meg {
